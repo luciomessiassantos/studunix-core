@@ -1,0 +1,241 @@
+{
+  "schedule": {
+    "Seg": [
+      {
+        "block": "H",
+        "color": "pastelBlue",
+        "schedule": {
+          "id": "sch-001",
+          "moduleId": "mod-poo-pablo",
+          "moduleName": "Programação Orientada a Objetos",
+          "weekDay": "Segunda",
+          "startHour": "17:50",
+          "endHour": "18:50",
+          "room": "H7",
+          "professor": "Pablo Roberto"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelBlue",
+        "schedule": {
+          "id": "sch-002",
+          "moduleId": "mod-poo-pablo",
+          "moduleName": "Programação Orientada a Objetos",
+          "weekDay": "Segunda",
+          "startHour": "18:50",
+          "endHour": "19:50",
+          "room": "H7",
+          "professor": "Pablo Roberto"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelRed",
+        "schedule": {
+          "id": "sch-003",
+          "moduleId": "mod-fin",
+          "moduleName": "Fundamentos de Admin. e Finanças",
+          "weekDay": "Segunda",
+          "startHour": "19:50",
+          "endHour": "20:50",
+          "room": "H12",
+          "professor": "Sinthia Dantas"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelYellow",
+        "schedule": {
+          "id": "sch-004",
+          "moduleId": "mod-ext",
+          "moduleName": "Extensão",
+          "weekDay": "Segunda",
+          "startHour": "20:50",
+          "endHour": "21:50",
+          "room": "H13",
+          "professor": "Sinthia Dantas"
+        }
+      }
+    ],
+
+    "Ter": [
+      {
+        "block": "H",
+        "color": "pastelPurple",
+        "schedule": {
+          "id": "sch-005",
+          "moduleId": "mod-es",
+          "moduleName": "Engenharia de Software",
+          "weekDay": "Terça",
+          "startHour": "17:50",
+          "endHour": "18:50",
+          "room": "H11",
+          "professor": "Keila"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelPurple",
+        "schedule": {
+          "id": "sch-006",
+          "moduleId": "mod-es",
+          "moduleName": "Engenharia de Software",
+          "weekDay": "Terça",
+          "startHour": "18:50",
+          "endHour": "19:50",
+          "room": "H11",
+          "professor": "Keila"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelGreen",
+        "schedule": {
+          "id": "sch-007",
+          "moduleId": "mod-dh",
+          "moduleName": "Direitos Humanos",
+          "weekDay": "Terça",
+          "startHour": "19:50",
+          "endHour": "20:50",
+          "room": "H14",
+          "professor": "Flávio Franklin"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelGreen",
+        "schedule": {
+          "id": "sch-008",
+          "moduleId": "mod-dh",
+          "moduleName": "Direitos Humanos",
+          "weekDay": "Terça",
+          "startHour": "20:50",
+          "endHour": "21:50",
+          "room": "H14",
+          "professor": "Flávio Franklin"
+        }
+      }
+    ],
+
+    "Qua": [
+      {
+        "block": "H",
+        "color": "pastelBlue",
+        "schedule": {
+          "id": "sch-009",
+          "moduleId": "mod-poo-arthur",
+          "moduleName": "Programação Orientada a Objetos",
+          "weekDay": "Quarta",
+          "startHour": "17:50",
+          "endHour": "18:50",
+          "room": "H7",
+          "professor": "Arthur"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelBlue",
+        "schedule": {
+          "id": "sch-010",
+          "moduleId": "mod-poo-arthur",
+          "moduleName": "Programação Orientada a Objetos",
+          "weekDay": "Quarta",
+          "startHour": "18:50",
+          "endHour": "19:50",
+          "room": "H7",
+          "professor": "Arthur"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelRed",
+        "schedule": {
+          "id": "sch-011",
+          "moduleId": "mod-fin",
+          "moduleName": "Fundamentos de Admin. e Finanças",
+          "weekDay": "Quarta",
+          "startHour": "19:50",
+          "endHour": "20:50",
+          "room": "H12",
+          "professor": "Sinthia Dantas"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelRed",
+        "schedule": {
+          "id": "sch-012",
+          "moduleId": "mod-fin",
+          "moduleName": "Fundamentos de Admin. e Finanças",
+          "weekDay": "Quarta",
+          "startHour": "20:50",
+          "endHour": "21:50",
+          "room": "H12",
+          "professor": "Sinthia Dantas"
+        }
+      }
+    ],
+
+    "Qui": [],
+
+    "Sex": [
+      {
+        "block": "H",
+        "color": "pastelGreen",
+        "schedule": {
+          "id": "sch-013",
+          "moduleId": "mod-dh",
+          "moduleName": "Direitos Humanos",
+          "weekDay": "Sexta",
+          "startHour": "17:50",
+          "endHour": "18:50",
+          "room": "H15",
+          "professor": "Flávio Franklin"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelGreen",
+        "schedule": {
+          "id": "sch-014",
+          "moduleId": "mod-dh",
+          "moduleName": "Direitos Humanos",
+          "weekDay": "Sexta",
+          "startHour": "18:50",
+          "endHour": "19:50",
+          "room": "H15",
+          "professor": "Flávio Franklin"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelOrange",
+        "schedule": {
+          "id": "sch-015",
+          "moduleId": "mod-aw",
+          "moduleName": "Autoria Web",
+          "weekDay": "Sexta",
+          "startHour": "19:50",
+          "endHour": "20:50",
+          "room": "H11",
+          "professor": "Arthur"
+        }
+      },
+      {
+        "block": "H",
+        "color": "pastelYellow",
+        "schedule": {
+          "id": "sch-016",
+          "moduleId": "mod-ext",
+          "moduleName": "Extensão",
+          "weekDay": "Sexta",
+          "startHour": "20:50",
+          "endHour": "21:50",
+          "room": "H13",
+          "professor": "Sinthia Dantas"
+        }
+      }
+    ]
+  }
+}
