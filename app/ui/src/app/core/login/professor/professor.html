@@ -1,0 +1,49 @@
+<main class="w-full h-screen flex items-center justify-center bg-mute/5 professor ">
+
+    <z-card class="w-full h-full md:w-5/6 md:h-5/6 lg:w-2/3 lg:h-4/5 
+    2xl:h-3/6
+    flex flex-row enter-in">
+        <div  class="w-full h-full flex flex-col md:flex-row">
+            
+                <section class="w-full h-1/2 md:w-2/5 md:h-full flex flex-col items-center justify-start py-10">
+                    <div class="w-32 h-32 rounded-full bg-primary/20 flex justify-center items-center">
+                            <lucide-angular [img]="cap" class="text-primary" [size]="64" [strokeWidth]="1.5" />
+                    </div>
+                    <h1 class="text-primary font-medium text-3xl mt-2">Studunix</h1>
+                    <p class="text-center px-4 text-sm mt-6">Conecte-se com sua instituição, em qualquer lugar e a qualquer momento.</p>
+                </section>
+                <z-divider class="hidden md:block" [zOrientation]="'vertical'" />
+                <section class=" w-full md:w-3/5 h-full flex justify-center">
+                        <form [formGroup]="professorForm" (ngSubmit)="handleSubmit()" class="w-8/10 mt-10" >
+                            <z-form-field>
+                                <label z-form-label zRequired for="login">Email ou Matrícula</label>
+                                <z-form-control [errorMessage]="isFieldInvalid('login') ? getLoginError() : ''">
+                                    <input z-input name="login" [disabled]="isSubmiting()" [class]="isSubmiting() ? 'opacity-90' : ''" [class]="isFieldInvalid('login') ? 'border border-red-300' : ''" formControlName="login"/>
+                                </z-form-control>
+                                <z-form-message zType="default">Email deve ser no formato exemplo@email.com, e a matrícula no formato 2025.1.222.333.</z-form-message>
+                            </z-form-field>
+
+                            <z-form-field class="mt-6">
+                                <label z-form-label zRequired for="password">Senha de acesso</label>
+                                <z-form-control [errorMessage]="isFieldInvalid('password') ? 'O campo Senha deve ser preenchido' : ''">
+                                    <input z-input name="password" [disabled]="isSubmiting()" [class]="isSubmiting() ? 'opacity-90' : ''" [class]="isFieldInvalid('password') ? 'border border-red-300' : ''" formControlName="password"/>
+                                </z-form-control>
+                            </z-form-field>
+                            <a class="text-primary font-medium text-sm w-full flex justify-center mt-6 hover:underline cursor-pointer ">Esqueci a senha</a>
+                            <button type="submit" z-button [zDisabled]="isSubmiting()" class="w-full  py-5 text-sm rounded-lg transition-none"  [class]="(isFieldInvalid('password') || isFieldInvalid('login')) ? 'mt-8' : 'mt-14'" >
+                                @if (isSubmiting()) {
+                                    <lucide-angular [img]="load" class="animate-spin" />
+                                } 
+                                @else {
+                                    Entrar
+                                }
+                            </button>
+                            <a [routerLink]="'/login/student'" class="text-primary-student text-sm font-semibold hover:underline cursor-pointer w-full flex justify-center mt-6">Sou Aluno</a>
+                        </form>
+                </section>
+            
+        </div>
+
+    </z-card>
+
+</main>
