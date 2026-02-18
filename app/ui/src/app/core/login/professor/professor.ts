@@ -11,6 +11,7 @@ import { toast } from 'ngx-sonner';
 import { CircleAlertIcon } from 'lucide-angular'
 import { ErrorCard } from '~/shared/components/error-card/error-card';
 import { AuthStore } from '~/core/auth/auth-store';
+import { ProfessorPages } from '~/core/layout/layout';
 
 
 const loginPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^\d{4}\.\d{1}\.\d{3}\.\d{3}$/;
@@ -33,7 +34,7 @@ interface ProfessorFormData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class Professor implements OnInit {
+export class Professor {
 
   cap = GraduationCapIcon;
   load = LoaderCircleIcon;
@@ -50,8 +51,8 @@ export class Professor implements OnInit {
     password: ['', [Validators.required]]
   });
 
-
- 
+  
+  
   isFieldInvalid(fieldName: keyof ProfessorFormData): boolean {
     const field = this.professorForm.get(fieldName);
     return !!(field?.invalid && (field?.dirty || field?.touched));
@@ -117,15 +118,6 @@ export class Professor implements OnInit {
     this.showSuccess.set(false);
   }
 
-  ngOnInit(): void {
-    if (this.auth.isAuthenticated()) {
-      console.log("ta certo ");
-      
-      if (this.auth.user()?.role == 'PROFESSOR') {
-        this.router.navigateByUrl("/professor");
-      }
-    }  
-  }
 
 
 }

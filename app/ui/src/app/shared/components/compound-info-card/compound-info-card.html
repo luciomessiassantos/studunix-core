@@ -1,0 +1,7 @@
+<z-card class="w-full h-full shadow-none enter-in">
+    <div class="w-full h-full flex flex-col px-6 md:px-0 md:flex-row last:border-none">
+        @for (d of data; track $index) {
+            <app-inner-card class="last:border-none" [style.minWidth.%]="100/data.length" [isLast]="$index == data.length - 1" [cardData]="d"  [lenght]="data.length"/>
+        }   
+    </div>
+</z-card>

@@ -14,6 +14,7 @@
                 </section>
                 <z-divider class="hidden md:block" [zOrientation]="'vertical'" />
                 <section class=" w-full md:w-3/5 h-full flex justify-center">
+                    
                         <form [formGroup]="professorForm" (ngSubmit)="handleSubmit()" class="w-8/10 mt-10" >
                             <z-form-field>
                                 <label z-form-label zRequired for="login">Email ou Matrícula</label>
@@ -26,7 +27,7 @@
                             <z-form-field class="mt-6">
                                 <label z-form-label zRequired for="password">Senha de acesso</label>
                                 <z-form-control [errorMessage]="isFieldInvalid('password') ? 'O campo Senha deve ser preenchido' : ''">
-                                    <input z-input name="password" [disabled]="isSubmiting()" [class]="isSubmiting() ? 'opacity-90' : ''" [class]="isFieldInvalid('password') ? 'border border-red-300' : ''" formControlName="password"/>
+                                    <input z-input name="password" [type]="'password'" [disabled]="isSubmiting()" [class]="isSubmiting() ? 'opacity-90' : ''" [class]="isFieldInvalid('password') ? 'border border-red-300' : ''" formControlName="password"/>
                                 </z-form-control>
                             </z-form-field>
                             <a class="text-primary font-medium text-sm w-full flex justify-center mt-6 hover:underline cursor-pointer ">Esqueci a senha</a>

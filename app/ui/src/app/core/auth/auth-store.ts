@@ -6,18 +6,38 @@ import { User } from '../types';
 })
 export class AuthStore {
 
-  private readonly _user = signal<User | undefined>(undefined);
+  private readonly _user = signal<User | undefined>(
+    this.loadUserFromStorage()
+  );
 
   readonly user = this._user.asReadonly();
 
   readonly isAuthenticated = computed(() => !!this._user())
 
+
+
+private loadUserFromStorage() {
+  const stored = localStorage.getItem('user');
+  if (!stored) return;
+
+  try {
+    const parsed = JSON.parse(stored) as User;
+    return parsed;
+  } catch {
+    localStorage.removeItem('user');
+  }
+
+  return undefined;
+}
+
   login(data: User) {
     this._user.set(data);
+    localStorage.setItem('user', JSON.stringify(this._user()));
   }
 
   logout() {
     this._user.set(undefined);
+    localStorage.removeItem('user');
   }
 
 }

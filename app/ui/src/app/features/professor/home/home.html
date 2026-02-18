@@ -1,1 +1,18 @@
-<p>home works!</p>
+<main class="w-full h-full overflow-y-auto ">
+
+    <section class="w-full h-40 mt-6 md:px-2 md:pr-6 enter-in">
+        <label for="" class="font-semibold">Notícias</label>
+        <div class="w-full h-8/10">
+            <app-news-card />
+        </div>
+    </section>
+
+    <section class="w-full min-h-8/10 border md:h-35 mt-4 px-2 enter-in">
+        <section class=" w-full md:w-2/3 h-full gap-6 flex flex-col md:flex-row">
+            @for (card of actionData; track $index) {
+                <app-action-card [lenght]="actionData.length" [label]="card.label" [details]="card.details" [icon]="card.icon" [action]="card.action" />
+            }
+        </section>
+    </section>
+
+</main>

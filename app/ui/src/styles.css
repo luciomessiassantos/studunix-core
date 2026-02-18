@@ -316,3 +316,11 @@
         transform: translateX(0px);
     }
 }
+
+
+router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}

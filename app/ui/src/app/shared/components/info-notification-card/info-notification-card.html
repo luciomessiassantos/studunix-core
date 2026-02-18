@@ -1,0 +1,15 @@
+<z-card class="w-full border-none shadow-none" [class]="theme()?.bgSoft">
+    <div class="w-full h-full flex flex-col md:flex-row md:pr-4">
+        <section class=" w-full md:w-1/12 h-1/3 md:h-full md:mx-4 xl:mx-1 flex justify-center items-start">
+            <div class="w-12 h-12 flex items-center justify-center rounded-xl" [class]="theme()?.bgSoft">
+                <lucide-angular [img]="data?.icon" [class]="theme()?.text" />
+            </div>
+        </section>
+        <section class=" h-2/3 w-full px-6 md:h-full mt-2">
+            <h1 class="font-semibold text-center md:text-start" [class]="theme()?.text">{{data?.label}}</h1>
+            <p class="text-sm text-mute mt-4 text-center md:mt-1 md:text-start">{{data?.details}}</p>
+        </section>
+
+        
+    </div>
+</z-card>

@@ -1,0 +1,21 @@
+
+<z-card class="p-0! h-full w-full border-none shadow-none">
+    <div class="w-full h-full overflow-y-hidden overflow-x-auto snap-mandatory snap-x rounded-xl  relative">
+        @for (news of data; track $index) {
+            <img [src]="news.imageUrl" class="w-full h-full object-cover object-center" 
+            [class.opacity-0]="loading()"
+            [class.opacity-100]="!loading()"
+            loading="lazy" (load)="onLoad()" (error)="onError()" alt="">
+            @if(loading()) {
+                <z-skeleton class="w-full h-full absolute inset-0 z-10 top-0 rounded-lg"></z-skeleton>
+            }
+            @else {
+                <div class="w-full h-full z-10 top-0 absolute bg-linear-0 from-black/80 to-black/10 hover:from-black/90 transition-colors duration-300 ease-in-out 
+            flex items-end
+            ">
+                <h1 class="text-white font-semibold text-sm md:text-md p-4">{{news.title}}</h1>
+            </div>
+            }
+        }
+    </div>
+</z-card>

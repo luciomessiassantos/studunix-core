@@ -1,0 +1,13 @@
+<z-card class=" rounded-xl md:h-full min-w-80 min-h-40 py-0 hover:bg-primary/15 transition-all duration-100 px-4 shadow-none border-dashed bg-primary/10 border-primary"
+[style.width.%]="100"
+>
+    <div class="w-full h-full flex flex-col justify-center md:justify-start items-start md:items-start">
+        <article class="w-full h-25 md:h-2/3 flex items-center">
+            <div class="rounded-xl p-3 bg-primary/20 mr-4">
+                <lucide-angular [img]="icon" class="text-primary" />
+            </div>
+                <h1 class="text-primary font-semibold">{{label}}</h1>
+        </article>
+        <p class="text-sm text-mute px-2 ">{{details}}</p>
+    </div>
+</z-card>

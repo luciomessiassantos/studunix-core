@@ -12,10 +12,6 @@ import { authGuardGuard } from './core/auth/auth-guard-guard';
 
 export const routes: Routes = [
     {
-        path: '*',
-        component: ErrorPage
-    },
-    {
         path: 'studunix',
         component: Hero
     },
@@ -40,11 +36,16 @@ export const routes: Routes = [
         children: [
             {
                 path: 'professor',
-                component: HomeProfessor,
                 children: [
                     {
-                        path: "dasboard",
-                        component: Dashboard
+                        path: "",
+                        component: HomeProfessor
+                    },
+                    {
+                    path: 'dashboard',
+                    loadChildren: () =>
+                        import('../app/features/professor/dashboard/dashboard.routes')
+                        .then(m => m.DASHBOARD_ROUTES)
                     },
                     {
                         path: "students",
@@ -53,5 +54,9 @@ export const routes: Routes = [
                 ]
             }
         ]
-    }
+    },
+    {
+        path: '**',
+        component: ErrorPage
+    },
 ];

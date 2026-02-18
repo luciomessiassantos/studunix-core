@@ -1,0 +1,8 @@
+<header class="min-w-full min-h-full h-full flex border-b gap-4">
+    @for (item of tabsData; track $index) {
+        <div class="flex transition-all duration-100 ease-in-out items-center h-full min-w-20 px-2 w-fit  justify-center cursor-default" (click)="toggleTab(item.path)" [class]="isTab(item.path) ? 'border-b-2 border-b-primary font-medium text-black ' : ''">
+            <lucide-angular [img]="item.icon" [size]="16" class="mr-1" />
+            <h1>{{item.label}}</h1>
+        </div>
+    }
+</header>

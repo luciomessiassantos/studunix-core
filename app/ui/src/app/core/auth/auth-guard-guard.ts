@@ -7,7 +7,7 @@ export const authGuardGuard: CanActivateChildFn = (route, state) => {
   const router = inject(Router);
 
   if (!auth.isAuthenticated()) {
-    router.navigate(['/login']);
+    router.navigate(['/login/student']);
     return false;
   }
 

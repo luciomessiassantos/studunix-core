@@ -1,0 +1,44 @@
+<section class="w-full ">
+    <table z-table class="w-full">
+        <thead z-table-header class="">
+            <tr z-table-row class="pb-4 h-12">
+              @for (c of columns; track $index) {
+                <th z-table-head>{{c.header}}</th>
+              }
+            </tr>
+        </thead>
+        <tbody z-table-body>
+            @for (row of data; track $index) {
+                <tr z-table-row>
+                    @for(col of columns; track $index) {
+                        @if(col.template) {
+                            <td z-table-cell>
+                                <ng-container
+                                *ngTemplateOutlet="col.template; context: { $implicit: row }"
+                                >
+                                </ng-container>
+                            </td>
+                        }
+
+                        @else if(col.component) {
+                            <td z-table-cell>
+                                <ng-container
+                                *ngComponentOutlet="col.component;
+                                inputs: col.componentInputs?.(row)">
+                                >
+                                </ng-container>
+                            </td>
+                        }
+
+                        @else if(col.cell) {
+                            <td z-table-cell class="text-center">{{ col.cell(row) }}</td>
+                        }
+                        @else {
+                            <td z-table-cell class="">{{ row[col.accessor!] }}</td>
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
