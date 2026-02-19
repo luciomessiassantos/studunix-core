@@ -33,8 +33,9 @@ export class InnerTabs {
   }
 
   isTab(path: string): boolean {
+  const currentUrl = this.current.split('?')[0]; 
 
-  return this.current == path;
+    return currentUrl.startsWith(path);
 }
 
   toggleTab(path: string) {

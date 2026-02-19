@@ -8,8 +8,9 @@
             </tr>
         </thead>
         <tbody z-table-body>
-            @for (row of data; track $index) {
-                <tr z-table-row>
+            @if (data) {
+                @for (row of data; track $index) {
+                <tr z-table-row (dblclick)="onDoubleClick?.(row)">
                     @for(col of columns; track $index) {
                         @if(col.template) {
                             <td z-table-cell>
@@ -37,6 +38,14 @@
                             <td z-table-cell class="">{{ row[col.accessor!] }}</td>
                         }
                     }
+                </tr>
+            }
+            }
+            @else {
+                <tr z-table-row class="w-full">
+                    <div class="w-full h-full flex justify-center items-center">
+                        <p>Sem resultados</p>
+                    </div>
                 </tr>
             }
         </tbody>

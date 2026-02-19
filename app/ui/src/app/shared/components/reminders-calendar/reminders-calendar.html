@@ -1,0 +1,26 @@
+
+<section class="w-full h-full ">
+<section class="md:min-h-72 md:max-h-72 min-w-full max-w-full p-0 m-0!">
+    <z-calendar class="border-none shadow-none m-0! my-0! py-! p-0!" (dateChange)="onChangeDate($event)" />
+</section>
+
+<z-divider zOrientation="horizontal" />
+
+<header class="w-full flex justify-between items-center px-2 mb-3">
+    <span class="text-sm">Adicionar lembrete</span>
+    <lucide-angular [img]="plus" [size]="16"/>
+
+
+
+</header>
+<section class="w-full max-h-2/12 min-h-2/12 overflow-y-auto no-scroll-bar pb-2 flex flex-col gap-3">
+    @if (loading()) {
+        <z-skeleton class="w-full rounded-lg" />
+    }
+    @else {
+        @for (reminder of reminders(); track $index) {
+            <app-reminder [data]="reminder" />
+        }
+    }
+</section>
+</section>
