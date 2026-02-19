@@ -3,11 +3,11 @@
 #stateTemplate let-row
 >
 <div class="w-full h-full flex items-center justify-center">
-    <z-badge class="h-2/10 py-1 px-2">
+    <z-badge class="h-2/10 py-1 px-2 font-semibold" [class]="row.state == 'Pending' ? 'bg-pastel-yellow/20 text-pastel-yellow' : 'bg-pastel-green/20 text-pastel-green'">
         @if (row.state == 'Pending') {
             <lucide-angular [img]="clock" [size]="16" class="mr-1" /> <span>Pendente</span>
         }
-        @else if (row.state == 'Timeout') {
+        @else if (row.state == 'Done') {
             <lucide-angular [img]="check" [size]="16" class="mr-1" /> <span>Concluída</span>
         }
     </z-badge>
@@ -26,7 +26,9 @@
     </button>
 </header>
 @if (assignments != undefined) {
-    <app-data-table [columns]="columns()" [data]="assignments()"  />
+    <section class="w-full pb-10 text-sm enter-in">
+        <app-data-table (doubleClick)="redirect($event)" [columns]="columns()" [data]="assignments()"  />
+    </section>
 }
 
 

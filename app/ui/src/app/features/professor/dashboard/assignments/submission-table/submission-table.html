@@ -1,0 +1,31 @@
+
+<ng-template
+#submissionState let-row
+>
+<div class="w-full h-full flex justify-center items-center">
+    @if (row.status == "Pending") {
+    <z-badge class="bg-pastel-yellow/15 text-pastel-yellow font-semibold w-30 min-h-7 flex justify-start">
+        <lucide-angular [img]="clock" [size]="16" class="mr-1" />
+        <p>Pendente</p>
+    </z-badge>
+    }
+    @else if (row.status == "Accepted") {
+    <z-badge class="bg-pastel-green/15 text-pastel-green font-semibold w-30 min-h-7 flex justify-start">
+        <lucide-angular [img]="check" [size]="16" class="mr-1" />
+        <p>Aceita</p>
+    </z-badge>
+    }
+    @else {
+        <z-badge class="bg-pastel-red/15 text-pastel-red font-semibold w-30 min-h-7 flex justify-start">
+        <lucide-angular [img]="xmark" [size]="16" class="mr-1" />
+        <p>Rejeitada</p>
+    </z-badge>
+    }
+</div>
+</ng-template>
+
+
+
+<section class="px-2 text-sm pb-20">
+    <app-data-table [columns]="submissionColumnDef()" [data]="submissions()" />
+</section>

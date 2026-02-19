@@ -7,12 +7,13 @@
         </div>
     </section>
 
-    <section class="w-full min-h-8/10 border md:h-35 mt-4 px-2 enter-in">
-        <section class=" w-full md:w-2/3 h-full gap-6 flex flex-col md:flex-row">
+    <section class="w-full min-h-8/10 flex md:min-h-8/10 mt-4 px-2 enter-in">
+        <section class=" w-full md:w-2/3 md:max-h-1/3 h-full gap-6 flex flex-col md:flex-row">
             @for (card of actionData; track $index) {
                 <app-action-card [lenght]="actionData.length" [label]="card.label" [details]="card.details" [icon]="card.icon" [action]="card.action" />
             }
         </section>
+        <app-reminders-calendar />
     </section>
 
 </main>

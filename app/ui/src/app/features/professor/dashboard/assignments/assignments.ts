@@ -12,6 +12,7 @@ import { ZardDialogModule, ZardDialogService } from '~/shared/components/dialog'
 import { CreateAssignment } from './create-assignment/create-assignment';
 import { FormBuilder } from '@angular/forms';
 import { ZardFormImports } from '~/shared/components/form';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-assignments',
@@ -27,8 +28,13 @@ export class Assignments implements AfterViewInit {
 
   service = inject(AssignmentService);
   private readonly dialogService = inject(ZardDialogService);
-  private readonly builder = inject(FormBuilder);
   loading = signal(true);
+  router = inject(Router);
+
+
+  redirect(a: AssignmentProfessor) {
+    this.router.navigate([`/professor/dashboard/assignments/${a.id}`]);
+  }
 
   assignments = toSignal(
       this.service.getAssignments().pipe(

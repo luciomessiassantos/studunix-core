@@ -1,1 +1,102 @@
-<p>assignment-page works!</p>
+
+
+
+<main class="w-full min-h-15/10 h-fit flex flex-col">
+
+<header class="w-full min-h-1/10 p-2 flex justify-between items-center px-3 border-b">
+    @if(loading()) {
+        <z-skeleton class="w-full h-full" />
+    }
+    @else {
+        <h1 class="font-medium">{{assignment()?.title}}</h1> 
+        <article class="flex items-center gap-4">
+            <p class="flex items-center text-sm font-medium">
+                <lucide-angular [img]="calendar" [size]="16" class="mr-1"/> 
+                {{ assignment()?.created_at | date: 'dd MMM yyyy HH:mm' }}
+            </p>
+            @if(assignment()?.isReusable) {
+                <z-badge class="h-7 rounded-lg text-primary bg-primary/15 font-semibold">
+                    <lucide-angular [img]="ccwRotate" [size]="16" />
+                    Reutilizável
+                </z-badge>
+            }
+
+        </article>
+    }
+</header>
+
+<article class="w-full max-h-3/10 mt-5 p-3 text-sm">
+    <markdown [data]="assignment()?.description" ></markdown>
+</article>
+
+<table z-table class="w-1/2 border rounded-xl mt-6">
+    <thead z-table-header>
+        <tr z-table-row>
+            <th z-table-head>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody z-table-body>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium bg-accent">
+                Período
+            </td>
+            <td z-table-cel class="border-l">
+                {{assignment()?.period}}
+            </td>
+        </tr>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium bg-accent">
+                Turma
+            </td>
+            <td z-table-cel class="border-l">
+                {{assignment()?.class}}
+            </td>
+        </tr>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium bg-accent">
+                Situação
+            </td>
+            <td z-table-cel class="border-l">
+                    <z-badge class="h-2/10 py-1 px-2 font-semibold" [class]="assignment()?.state == 'Pending' ? 'bg-pastel-yellow/20 text-pastel-yellow' : 'bg-pastel-green/20 text-pastel-green'">
+        @if (assignment()?.state == 'Pending') {
+            <lucide-angular [img]="clock" [size]="16" class="mr-1" /> <span>Pendente</span>
+        }
+        @else if (assignment()?.state == 'Done') {
+            <lucide-angular [img]="check" [size]="16" class="mr-1" /> <span>Concluída</span>
+        }
+    </z-badge>
+            </td>
+        </tr>
+
+        <tr z-table-row>
+            <td z-table-cell class="font-medium bg-accent">
+                Data limite
+            </td>
+            <td z-table-cel class="border-l">
+                {{assignment()?.deadline | date: 'dd MMM HH:mm'}}
+            </td>
+        </tr>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium bg-accent">
+                Submissões
+            </td>
+            <td z-table-cel class="border-l">
+                {{assignment()?.submissionsQuantity}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<header class="w-full border-b min-h-1/18 px-4 hover:bg-accent flex items-center mt-10">
+    <lucide-angular [img]="folder" [size]="16" class="mr-1" />
+    <p class="text-sm">{{assignment()?.folderOriginName}}</p>
+</header>
+
+<section class="w-full enter-in">
+    <app-submission-table [assignmentId]="assignmentId()" />
+</section>
+
+</main>
+

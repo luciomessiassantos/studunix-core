@@ -1,4 +1,4 @@
-export type AssignmentState = "Pending" | "Timeout";
+export type AssignmentState = "Pending" | "Done";
 export type ClassLetter = "A" | "B";
 export type ClassRoom = {
     letter: ClassLetter
@@ -109,5 +109,5 @@ export type Submission = {
     files?: TFileProfessor
 
     sendAt: string
-    accepted: boolean
+    status: "Pending" | "Accepted" | "Rejected"
 }
