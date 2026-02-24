@@ -1,0 +1,56 @@
+<table z-table class="border rounded-lg">
+    <thead z-table-header>
+        <tr z-table-row>
+            <th z-table-head class="bg-accent">
+                Estágio
+            </th>
+            <th z-table-head class="border-l bg-accent">
+                Nota
+            </th>
+            <th z-table-head class="border-l bg-accent">
+                Ações
+            </th>
+        </tr>
+    </thead>
+    <tbody z-table-body>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium w-1/3">
+                1° Estágio
+            </td>
+            <td z-table-cell class="w-1/3 border-l text-center">
+                {{data.p1}}
+            </td>
+            <td z-table-cell class="w-full border-l flex justify-center">
+                <button (click)="apply(data.p1!)" [zType]="gradeApplied() == data.p1! ? 'secondary' : 'default'" z-button [zSize]="'sm'" class="flex items-center justify-center p-2!">
+                    <lucide-angular [img]="gradeApplied() == data.p1! ? check : plus" [size]="16" />
+                </button>
+            </td>
+        </tr>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium w-1/3">
+                2° Estágio
+            </td>
+            <td z-table-cell class="w-1/3 border-l text-center">
+                {{data.p2}}
+            </td>
+            <td z-table-cell class="w-full border-l flex justify-center">
+                <button (click)="apply(data.p2!)" [zType]="gradeApplied() == data.p2! ? 'secondary' : 'default'" z-button [zSize]="'sm'" class="flex items-center justify-center p-2!">
+                    <lucide-angular [img]="gradeApplied() == data.p2! ? check : plus" [size]="16" />
+                </button>
+            </td>
+        </tr>
+        <tr z-table-row>
+            <td z-table-cell class="font-medium w-1/3">
+                3° Estágio
+            </td>
+            <td z-table-cell class="w-1/3 border-l text-center">
+                {{data.p3}}
+            </td>
+            <td z-table-cell class="w-full border-l flex justify-center">
+                <button (click)="apply(data.p3!)" [zType]="gradeApplied() == data.p3! ? 'secondary' : 'default'" z-button [zSize]="'sm'" class="flex items-center justify-center p-2!">
+                    <lucide-angular [img]="gradeApplied() == data.p3! ? check : plus" [size]="16" />
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

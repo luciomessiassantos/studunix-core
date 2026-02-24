@@ -35,11 +35,14 @@ export type StudentProfessor = {
 }
 
 export type StudentGrades = {
+    id: string
+    recordId: string
     p1?: number;
     p2?: number;
     p3?: number;
     recovery?: number;
     final?: number;
+
 };
 
 export type StudentSemesterRecord = {
@@ -49,6 +52,8 @@ export type StudentSemesterRecord = {
 
     grades: StudentGrades
     absenses: number
+    moduleId: string
+    moduleName: string
 
     extraPoints?: ExtraPoints[];
 
@@ -65,11 +70,16 @@ export type AcademicPeriod = {
 
 export type ExtraPoints = {
     id: number
+    recordId: string 
     points: number
-    description?: string
+    title?: string
+    reason?: string
 
+    state: ExtraPointsState
     expires_at: string
 }
+
+export type ExtraPointsState = "Available" | "Expired" | "Applied";
 
 export type AssignmentProfessor = {
     id: string
@@ -110,4 +120,19 @@ export type Submission = {
 
     sendAt: string
     status: "Pending" | "Accepted" | "Rejected"
+}
+
+export type ProfessorModule = {
+    id: string
+    name: string
+    period: AcademicPeriod
+}
+
+
+
+export type ProfessorDetails = {
+    id: string
+    userId: string
+    moduleId: string
+    period: AcademicPeriod
 }

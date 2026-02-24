@@ -9,16 +9,18 @@ import { ThumbsDownIcon } from 'lucide-angular';
 })
 export class AssignmentService extends BaseApiService {
   
-getAssignments() {
-  return this.client.get<AssignmentProfessor[]>(
+  getAssignments() {
+    const result = this.client.get<AssignmentProfessor[]>(
     `${this.baseUrl}/assignments`
   );
-}
+    
+    return result;
+  }
 
-getAssignmentById(id: string) {
-  return this.client.get<AssignmentProfessor>(
-    `${this.baseUrl}/assignments/${id}`
-  );
-}
+  getAssignmentById(id: string) {
+    return this.client.get<AssignmentProfessor>(
+      `${this.baseUrl}/assignments/${id}`
+    );
+  }
 
 }

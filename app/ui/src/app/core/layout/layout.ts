@@ -1,12 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthStore } from '../auth/auth-store';
-import { HouseIcon, LayoutDashboard, LucideIconData, Users, LucideAngularModule, BellIcon, CircleQuestionMarkIcon } from 'lucide-angular';
+import { HouseIcon, LayoutDashboard, LucideIconData, Users, LucideAngularModule, BellIcon, CircleQuestionMarkIcon, UserIcon, LogOutIcon, Presentation } from 'lucide-angular';
 import { LayoutImports } from '~/shared/components/layout';
 import { ZardButtonComponent } from '~/shared/components/button';
 import { ZardSkeletonComponent } from '~/shared/components/skeleton';
 import { User } from '../types';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
+import { ZardDropdownImports, ZardDropdownMenuContentComponent } from "~/shared/components/dropdown";
+import { ZardMenuImports } from '~/shared/components/menu';
+import { Notification } from "~/shared/components/notification/notification";
+import { ZardToastComponent } from "~/shared/components/toast";
+import { ZardDialogService } from '~/shared/components/dialog';
+import { HelpDialog } from '../help-dialog/help-dialog';
 
 export type SideBarItems = {
   id: string,
@@ -43,6 +49,12 @@ export const ProfessorPages: SectionItems[] = [
         label: "Alunos",
         icon: Users,
         path: "/professor/students"
+      },
+      {
+        id: '/professor/lectures',
+        label: "Aulas e frequência",
+        icon: Presentation,
+        path: "/professor/lectures"
       }
     ]
   }
@@ -51,8 +63,7 @@ export const ProfessorPages: SectionItems[] = [
 @Component({
   selector: 'app-layout',
   imports: [LayoutImports, ZardButtonComponent, LucideAngularModule,
-    RouterOutlet
-  ],
+    RouterOutlet, ZardDropdownMenuContentComponent, ZardMenuImports, ZardDropdownImports, Notification, ZardToastComponent],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })
@@ -60,18 +71,32 @@ export class Layout implements OnInit{
 
   bellIcon = BellIcon;
   helpIcon = CircleQuestionMarkIcon;
-
+  user = UserIcon
+  logout = LogOutIcon
 
   readonly auth = inject(AuthStore);
 
-  readonly currentRole = this.auth.user()?.role;
+  readonly currentRole = this.auth.user()?.roles;
   readonly sidebarCollapsed = signal(false);
+  private readonly dialogService = inject(ZardDialogService);
 
-  readonly sections = this.currentRole === 'PROFESSOR' ? ProfessorPages : null; 
+  readonly sections = this.currentRole?.includes('PROFESSOR') ? ProfessorPages : null; 
+  readonly router = inject(Router);
+
+  displayDialog() {
+    this.dialogService.create({
+      zHideFooter: true,
+      zContent: HelpDialog,
+      zData: this.currentRole,
+      zCustomClasses: 'min-w-250 min-h-120',
+      zTitle: 'Ajuda'
+    });
+  }
+
 
   current: string = '';
 
-    constructor(private router: Router) {
+    constructor() {
     
     this.current = this.router.url;
     console.log('Initial URL:', this.current);
@@ -86,9 +111,8 @@ export class Layout implements OnInit{
   }
 
   isPage(path: string): boolean {
-  const currentUrl = this.current.split('?')[0]; // remove query params
+  const currentUrl = this.current.split('?')[0]; 
 
-  // Caso especial: página inicial
   if (path === '/professor') {
     return currentUrl === '/professor';
   }
@@ -96,6 +120,20 @@ export class Layout implements OnInit{
   return currentUrl.startsWith(path);
 }
 
+  account = this.auth.user();
+
+  goToDetails() {
+      this.router.navigate(['/details'], {
+      queryParams: {
+        type: this.account?.roles
+      }
+    })
+  }
+
+  logOut() {
+    this.auth.logout();
+    
+  }
 
   toggleSidebar() {
     this.sidebarCollapsed.update(collapsed => !collapsed);

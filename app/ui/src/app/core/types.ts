@@ -2,11 +2,7 @@ import { CommomColors } from "~/shared/utils/colorUtils"
 
 export type Role = 'STUDENT' | 'PROFESSOR' | 'ADMIN'
 
-export type User = {
-    id: string
-    username: string
-    role: Role
-}
+
 
 export type ReminderDto = {
     id: string
@@ -24,13 +20,37 @@ export type ReminderInput = {
 
 
 export type UserDetailsDto = {
-    userId: string
+    id: string
     firstName: string
     lastName: string
     cpf: string
     officialEmail: string
 }
+
+export type StudentDetailsDto = {
+    registry: string
+    period: string,
+    courseId: string
+    courseName: string
+} & UserDetailsDto;
+
+
 // para context service local
 export type LoginDetails = {
     lastLogin: Date
+    location: GeolocationPosition
 }
+
+
+
+export type LoginRequest = {
+    login: string
+    password: string
+}
+
+export type User = {
+    id: string
+    username: string
+    roles: Role[]
+}
+

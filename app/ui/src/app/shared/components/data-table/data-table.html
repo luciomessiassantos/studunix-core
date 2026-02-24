@@ -3,17 +3,17 @@
         <thead z-table-header class="">
             <tr z-table-row class="pb-4 h-12">
               @for (c of columns; track $index) {
-                <th z-table-head>{{c.header}}</th>
+                <th z-table-head class="max-w-fit">{{c.header}}</th>
               }
             </tr>
         </thead>
         <tbody z-table-body>
             @if (data) {
                 @for (row of data; track $index) {
-                <tr z-table-row (dblclick)="onDoubleClick?.(row)">
+                <tr z-table-row  (dblclick)="onDoubleClick(row)">
                     @for(col of columns; track $index) {
                         @if(col.template) {
-                            <td z-table-cell>
+                            <td z-table-cell class="max-w-fit">
                                 <ng-container
                                 *ngTemplateOutlet="col.template; context: { $implicit: row }"
                                 >
@@ -32,10 +32,10 @@
                         }
 
                         @else if(col.cell) {
-                            <td z-table-cell class="text-center">{{ col.cell(row) }}</td>
+                            <td z-table-cell class="text-center max-w-fit">{{ col.cell(row) }}</td>
                         }
                         @else {
-                            <td z-table-cell class="">{{ row[col.accessor!] }}</td>
+                            <td z-table-cell class="max-w-fit">{{ row[col.accessor!] }}</td>
                         }
                     }
                 </tr>

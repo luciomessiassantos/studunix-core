@@ -104,8 +104,8 @@ export class Professor {
     
     this.showSuccess.set(true);
 
-    this.auth.login({ id: '1234qwert', username: "Nando Moura Araújo Júnior", role: "PROFESSOR" });
-    this.router.navigateByUrl("/professor")
+    this.auth.login({ id: 'user-1', username: "Nando Moura Araújo Júnior", roles: ["PROFESSOR"] });
+    this.router.navigateByUrl("/professor");
     
 
     setTimeout(() => {

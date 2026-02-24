@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, inject, input, Input, OnChanges, signal, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { SubmissionService } from '~/core/services/submission-service/submission-service';
+import { SubmissionService } from '~/core/services/SubmissionService/submission-service';
 import { Submission } from '~/features/professor/shared/types.dto';
 import { ColumnDef } from '~/shared/components/data-table/types';
 import { DataTable } from "~/shared/components/data-table/data-table";

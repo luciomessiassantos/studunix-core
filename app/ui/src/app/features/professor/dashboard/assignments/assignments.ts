@@ -5,18 +5,21 @@ import { AssignmentProfessor } from '../../shared/types.dto';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { ZardBadgeComponent } from "~/shared/components/badge";
-import { CheckIcon, ClockIcon, LucideAngularModule, PlusIcon } from "lucide-angular";
+import { CheckIcon, ClockIcon, EllipsisVerticalIcon, LucideAngularComponent, LucideAngularModule, LucideIconData, PlusIcon, TrashIcon } from "lucide-angular";
 import { ColumnDef } from '~/shared/components/data-table/types';
 import { ZardButtonComponent } from "~/shared/components/button";
-import { ZardDialogModule, ZardDialogService } from '~/shared/components/dialog';
+import { ZardDialogModule, ZardDialogService, Z_MODAL_DATA } from '~/shared/components/dialog';
 import { CreateAssignment } from './create-assignment/create-assignment';
 import { FormBuilder } from '@angular/forms';
 import { ZardFormImports } from '~/shared/components/form';
 import { Router } from '@angular/router';
+import { ZardDropdownDirective, ZardDropdownMenuContentComponent, ZardDropdownMenuItemComponent } from "~/shared/components/dropdown";
+import { DeleteConfirm } from './delete-confirm/delete-confirm';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-assignments',
-  imports: [DataTable, ZardBadgeComponent, LucideAngularModule, ZardButtonComponent, ZardDialogModule, ZardFormImports],
+  imports: [DataTable, ZardBadgeComponent, LucideAngularModule, ZardButtonComponent, ZardFormImports, ZardDropdownDirective, ZardDropdownMenuContentComponent, ZardDropdownMenuItemComponent],
   templateUrl: './assignments.html',
   styleUrl: './assignments.css',
 })
@@ -25,15 +28,33 @@ export class Assignments implements AfterViewInit {
   clock = ClockIcon
   check = CheckIcon
   plus = PlusIcon
+  more = EllipsisVerticalIcon
+  trash = TrashIcon
 
-  service = inject(AssignmentService);
+
+  private readonly service = inject(AssignmentService);
   private readonly dialogService = inject(ZardDialogService);
-  loading = signal(true);
-  router = inject(Router);
-
+  private readonly loading = signal(true);
+  private readonly router = inject(Router);
 
   redirect(a: AssignmentProfessor) {
     this.router.navigate([`/professor/dashboard/assignments/${a.id}`]);
+  }
+
+  deleteAssignment(data: AssignmentProfessor) {
+    this.dialogService.create({
+      zContent: DeleteConfirm,
+      zOkText: 'Excluir tarefa',
+      zOnOk: () => {
+        toast.message('Tarefa deletada com sucesso', {
+          
+        });
+      },
+      zCustomClasses: "professor",
+      zData: data,
+      zCancelText: 'Cancelar',
+      zClosable: false
+    });
   }
 
   assignments = toSignal(
@@ -60,8 +81,14 @@ export class Assignments implements AfterViewInit {
   @ViewChild('stateTemplate', { static: true })
   stateTemplate!: TemplateRef<any>;
 
+  @ViewChild('period', { static: true })
+  periodTemplate!: TemplateRef<any>
+
   @ViewChild('submissions', { static: true })
   submissions!: TemplateRef<any>;
+
+    @ViewChild('options', { static: true })
+    optionsButton!: TemplateRef<any>
 
   columns = signal<ColumnDef<AssignmentProfessor>[]>([]);
 
@@ -76,6 +103,7 @@ export class Assignments implements AfterViewInit {
         id: "c2",
         accessor: 'period',
         header: "Período",
+        template: this.periodTemplate
       },
       {
         id: "c3",
@@ -110,6 +138,11 @@ export class Assignments implements AfterViewInit {
         accessor: 'state',
         header: "Situação",
         template: this.stateTemplate,
+      },
+      {
+        id: "opts",
+        header: " ",
+        template: this.optionsButton,
       },
     ]);
   }

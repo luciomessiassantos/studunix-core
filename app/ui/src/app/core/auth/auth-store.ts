@@ -14,6 +14,7 @@ export class AuthStore {
 
   readonly isAuthenticated = computed(() => !!this._user())
 
+  readonly LastLogin = signal<Date>(new Date());
 
 
 private loadUserFromStorage() {
@@ -33,6 +34,7 @@ private loadUserFromStorage() {
   login(data: User) {
     this._user.set(data);
     localStorage.setItem('user', JSON.stringify(this._user()));
+    this.LastLogin.set(new Date());
   }
 
   logout() {

@@ -1,13 +1,39 @@
-<z-layout class="w-full h-screen flex flex-col" [class]="currentRole === 'STUDENT' ? 'student' : 'professor'">
+<z-layout class="w-full h-screen flex flex-col" [class]="currentRole?.includes('STUDENT') ? 'student' : 'professor'">
 
     <z-header class="border-none w-full shrink-0">
         <div class="w-full flex justify-between">
             <h1 class="font-medium">Studunix</h1>
 
-            <div class="w-3/10 2xl:w-1/16 xl:w-1/10 md:w-2/16 flex items-center justify-between">
-                <lucide-angular [img]="bellIcon" size="18" />
-                <lucide-angular [img]="helpIcon" size="18" />
-                <div class="w-9 h-9 rounded-full bg-primary"></div>
+            <div class=" relative w-3/10 2xl:w-1/16 xl:w-1/10 md:w-2/16 flex items-center justify-between">
+                <button z-button z-dropdown [zDropdownMenu]="notifications" class="bg-transparen text-black shadow-none border-none h-fit! w-fit! hover:bg-transparent">
+                    <lucide-angular [img]="bellIcon" size="18" />
+                </button>
+                <z-dropdown-menu-content #notifications="zDropdownMenuContent" class="w-120 pb-5 px-2 right-43 absolute" >  
+                    <z-menu-label>Notificações</z-menu-label>
+                    <section class="w-full h-fit py-1 max-h-300 overflow-y-auto mt-1">
+                        <app-notification />
+                    </section>
+                </z-dropdown-menu-content>
+
+                <button z-button (click)="displayDialog()" class="bg-transparen text-black shadow-none border-none h-fit! w-fit! hover:bg-transparent">
+                    <lucide-angular [img]="helpIcon" size="18" />
+                </button>
+
+
+                <button type="button" z-button z-dropdown [zDropdownMenu]="options" class="w-10 h-10 rounded-full bg-primary"></button>
+                <z-dropdown-menu-content #options="zDropdownMenuContent" class="w-60 right-40 absolute" >  
+                    <z-menu-label>Opções</z-menu-label>
+                    <z-dropdown-menu-item (click)="goToDetails()">
+                            <lucide-angular [img]="user" [size]="16" />
+                            <p>Conta</p>
+                        
+                    </z-dropdown-menu-item>
+                    <z-dropdown-menu-item (click)="logOut()">
+                            <lucide-angular [img]="logout" [size]="16" />
+                            <p>Sair</p>
+                        
+                    </z-dropdown-menu-item>
+                </z-dropdown-menu-content>
             </div>
         </div>
     </z-header>
@@ -31,6 +57,7 @@
 
     <div class="flex flex-col flex-1 min-h-0 overflow-hidden">
       <router-outlet />
+      <z-toaster [theme]="'light'" />
     </div>
 
 

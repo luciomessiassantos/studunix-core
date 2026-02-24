@@ -1,3 +1,5 @@
+import { LucideIconData } from "lucide-angular";
+import { CommomColors } from "~/shared/utils/colorUtils";
 
 export type AssignmentState = "Pending" | "Timeout";
 export type ClassLetter = "A" | "B";
@@ -142,4 +144,15 @@ export type AssignmentInput = {
 
     isReusable: boolean
 
+}
+
+
+export type Classroom = {
+    id: string
+    moduleName: string
+    moduleId: string
+
+    academicPeriod: string
+    color: CommomColors
+    icon: LucideIconData
 }

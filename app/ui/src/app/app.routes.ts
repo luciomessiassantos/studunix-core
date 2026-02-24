@@ -9,11 +9,18 @@ import { Dashboard } from './features/professor/dashboard/dashboard';
 import { Grades } from './features/professor/grades/grades';
 import { ErrorPage } from './features/error-page/error-page';
 import { authGuardGuard } from './core/auth/auth-guard-guard';
+import { Details } from './core/details/details';
+import { Lectures } from './features/professor/lectures/lectures';
+import { LectureDetails } from './features/professor/lectures/lecture-details/lecture-details';
 
 export const routes: Routes = [
     {
-        path: 'studunix',
+        path: '',
         component: Hero
+    },
+    {
+        path: 'details',
+        component: Details
     },
     {
         path: 'login',
@@ -50,11 +57,25 @@ export const routes: Routes = [
                     {
                         path: "students",
                         component: Grades
-                    }
+                    },
+                    {
+                        path: 'lectures',
+                        children: [
+                            {
+                                path: '',
+                                component: Lectures
+                            },
+                            {
+                                path: ':id',
+                                component: LectureDetails
+                            }
+                        ]
+                    },
                 ]
             }
         ]
     },
+    
     {
         path: '**',
         component: ErrorPage

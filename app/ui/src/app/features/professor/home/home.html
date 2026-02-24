@@ -1,19 +1,56 @@
 <main class="w-full h-full overflow-y-auto ">
 
-    <section class="w-full h-40 mt-6 md:px-2 md:pr-6 enter-in">
+    <!-- <section class="w-full h-40 mt-6 md:px-2 md:pr-6 enter-in">
         <label for="" class="font-semibold">Notícias</label>
         <div class="w-full h-8/10">
             <app-news-card />
         </div>
+    </section> -->
+
+    <section class="w-full h-1/10 text-xl font-medium px-3">
+        Olá, Prof. Nando Moura &#x1F44B;
     </section>
 
-    <section class="w-full min-h-8/10 flex md:min-h-8/10 mt-4 px-2 enter-in">
-        <section class=" w-full md:w-2/3 md:max-h-1/3 h-full gap-6 flex flex-col md:flex-row">
-            @for (card of actionData; track $index) {
-                <app-action-card [lenght]="actionData.length" [label]="card.label" [details]="card.details" [icon]="card.icon" [action]="card.action" />
-            }
+    
+
+    <section class="w-full min-h-8/10 flex md:min-h-8/10 mt-4 px-2 enter-in pb-10">
+        <section class="md:w-2/3 md:min-h-full h-full flex flex-col">
+
+            <section class=" w-full md:w-full md:max-h-1/5 md:h-1/5 h-full gap-6 flex flex-col md:flex-row">
+                @for (card of actionData; track $index) {
+                    <app-action-card [lenght]="actionData.length" [label]="card.label" [details]="card.details" [icon]="card.icon" [action]="card.action" />
+                }
+            </section>
+
+            <div class="w-full min-h-60 p-2">
+                <label class="text-sm text-mute p-2 mt-2 flex items-center">
+                    <lucide-angular [img]="folders" [size]="16" class="mr-0.5" />
+                    Acessos recentes
+                </label>
+                <article class="pr-8 mt-1">
+                    <div class="w-full h-10 border-b text-sm p-2 hover:bg-accent flex justify-between items-center">
+                        <p>POO - 2025.2 - Noite</p>
+                        <p class="text-mute text-xs">agora</p>
+                    </div>
+                    <div class="w-full h-10 border-b text-sm p-2 hover:bg-accent flex justify-between items-center">
+                        <p>Banco_de_DadosI - 2025.2 - Noite</p>
+                        <p class="text-mute text-xs">há 2h</p>
+                    </div>
+                    <div class="w-full h-10 border-b text-sm p-2 hover:bg-accent flex justify-between items-center">
+                        <p>Banco_de_DadosII - 2025.2 - Noite</p>
+                        <p class="text-mute text-xs">ontem</p>
+                    </div>
+                </article>
+            </div>
+            <section class="w-full h-50 pr-10 ">
+                <label class="text-sm font-medium text-mute p-2">Notícias</label>
+                <app-news-card />
+            </section>
         </section>
-        <app-reminders-calendar />
+
+        <section class="md:w-1/4">
+            <app-reminders-calendar />
+        </section>
     </section>
 
 </main>

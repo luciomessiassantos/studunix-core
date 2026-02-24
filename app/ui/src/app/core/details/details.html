@@ -1,0 +1,51 @@
+<main class="w-full h-screen border overflow-y-auto" [class]="userType() == 'STUDENT' ? 'student' : 'professor'">
+    <button z-button (click)="back()" [zType]="'outline'" class="absolute flex bg-white z-10 m-4 border-black/20 ">
+        <lucide-angular [img]="chevronLeft" class="mr-1"/>
+        Voltar
+    </button>
+<section class=" w-full min-h-2/12 xl:min-h-3/10 bg-primary/20 relative">
+    <div class="w-24 h-24 absolute inset-0 m-auto rounded-full bg-primary -bottom-full">
+        <div class="
+        flex flex-col items-center justify-center cursor-default
+        w-full h-full absolute rounded-full inset-0 text-white top-0 z-10 opacity-0 hover:opacity-100 bg-mute/20  transition-all duration-200 ease-in-out">
+            <lucide-angular [img]="image" [size]="32" />
+            <p class="text-sm">Mudar foto</p>
+        </div>
+    </div>
+</section>
+
+    <article class="flex flex-col mt-16 p-6 gap-4
+    xl:flex-row xl:flex-wrap xl:mt-18
+    ">
+        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
+            <label class="text-sm text-mute">Nome de Usuário:</label>
+            <p class="px-2">{{userDetails()?.firstName + ' ' + userDetails()?.lastName}}</p>
+        </div>
+        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
+            <label class="text-sm text-mute">Email Institucional:</label>
+            <p class="px-2">{{userDetails()?.officialEmail}}</p>
+        </div>
+        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
+            <label class="text-sm text-mute">Senha:</label>
+            <div class="flex justify-between items-center">
+                <p class="px-2 text-mute">***********</p>
+                <button z-button class="rounded-lg">Mudar senha</button>
+            </div>
+        </div>
+
+        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
+            <label class="text-sm text-mute">Último Login:</label>
+            <p class="px-2">{{lastLoginData() | date: 'dd MMMM yyyy HH:mm:ss'}}</p>
+        </div>
+
+        
+    </article>
+    <section class="w-full h-2/10 mt-80 rounded-lg 
+    xl:mt-0 xl:flex xl:justify-end xl:px-6
+    ">
+            <button z-button class="w-full rounded-lg h-10 text-lg
+            xl:w-26 xl:text-sm xl:h-8 
+            ">Editar Perfil</button>
+        </section>
+
+</main>

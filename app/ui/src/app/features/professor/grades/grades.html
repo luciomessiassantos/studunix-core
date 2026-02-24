@@ -1,1 +1,325 @@
-<p>grades works!</p>
+<!-- Templates -->
+
+<ng-template
+#checkBox let-row
+>
+    <div class="min-w-20 flex justify-center" ><span  z-checkbox [ngModel]="selected === row" (ngModelChange)="onCheck(row)"  ></span></div>
+</ng-template>
+
+<main class="w-full h-full flex md:flex-row enter-in">
+    <section class="w-4/10 min-w-3/10 max-w-6/10 h-full overflow-y-auto pb-2 border-r resize-x">
+        <article class="w-full h-2/10 border-b flex">
+            <div class="h-full w-3/12 flex justify-center items-center">
+                <div class="w-20 h-20 bg-pastel-cyan/10 rounded-full flex justify-center items-center text-pastel-cyan/50">
+                    <h1 class="text-4xl font-medium">P</h1>
+                </div>
+            </div>
+            <article class="flex flex-col h-full justify-center">
+                <h1>Paulo Carlos Arruda Cardoso</h1>
+                <p class="text-sm text-mute">2025.2.444.222 - 2025.2</p>
+            </article>
+        </article>
+
+        <section class="mt-3 w-full h-fit min-h-4/10 py-2 pb-4">
+            <label class="text-sm font-medium p-2 mt-2">Notas</label>
+            <z-tab-group class="mt-4">
+                <z-tab label="POO" class="h-fit ">
+                    <table z-table class="enter-in">
+                        <thead z-table-header>
+                            <tr z-table-row>
+                                <th z-table-head>
+
+                                </th>
+                                <th z-table-head>
+                                    
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody z-table-body>
+                            <tr z-table-row>
+                                <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                                    1° Estágio
+                                </td>
+                                <td z-table-cell class="border-l"> 
+                                    9.0
+                                </td>
+                            </tr>
+                            <tr z-table-row>
+                                <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                                    2° Estágio
+                                </td>
+                                <td z-table-cell class="border-l"> 
+                                    8.5
+                                </td>
+                            </tr>
+                            <tr z-table-row>
+                                <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                                    3° Estágio
+                                </td>
+                                <td z-table-cell class="border-l"> 
+                                    9.5
+                                </td>
+                            </tr>
+                            <tr z-table-row>
+                                <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                                    Reposição
+                                </td>
+                                <td z-table-cell class="border-l"> 
+                                    sem notas
+                                </td>
+                            </tr>
+                            <tr z-table-row>
+                                <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                                    Final
+                                </td>
+                                <td z-table-cell class="border-l"> 
+                                    sem notas
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr z-table-row class="bg-accent font-semibold border-t">
+                                <td z-table-cell>
+                                    Média parcial
+                                </td>
+                                <td z-table-cell class="border-l">
+                                    9.0
+                                </td>
+                            </tr>   
+                        </tfoot>
+                    </table>
+                    <div class="w-full flex justify-end items-center mt-2 px-4">
+                        <button z-button>
+                            <lucide-angular [img]="edit" />
+                            Editar
+                        </button>
+                    </div>
+            <section class="w-full min-h-4/10 max-h-9/10 overflow-y-auto mt-8 enter-in">
+            <label class="text-sm font-medium p-4">Trabalhos e tarefas</label>
+            <table z-table>
+                <thead z-table-header>
+                    <tr z-table-row>
+                        <th z-table-head>
+                            Título
+                        </th>
+                        <th z-table-head>
+                            Pontuação
+                        </th>
+                        <th z-table-head>
+                            Estado
+                        </th>
+                        <th z-table-head>
+                            Data entrega
+                        </th>
+                    </tr>
+                </thead>
+                <tbody z-table-body>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            1° Entrega
+                        </td>
+                        <td z-table-cell>
+                            0.3
+                        </td>
+                        <td z-table-cell>
+                            <z-badge class="bg-pastel-yellow/20 text-pastel-yellow">
+                                Pendente
+                            </z-badge>
+                        </td>
+                        <td z-table-cell>
+                            20 de Jan. 14:34
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="w-full min-h-8/10 max-h-full overflo-y-auto mt-8 mb-6 px-4 enter-in">
+            <label class="text-sm font-medium p-3 mt-4">Pontuação extra: </label>
+            <z-card class="mt-4 shadow-none p-0!">
+                <div class="w-full h-full p-4">
+                    <div class="w-full flex justify-between mb-6">
+                        <h1 class="text-sm font-medium">Evento ADS Play - <strong>Participação</strong></h1>
+                        <z-badge class="bg-pastel-green/10 text-pastel-green font-semibold">
+                            Disponível
+                        </z-badge>
+                    </div>
+                    <div class="w-full flex justify-between">
+                        <p class="text-sm font-medium">pontuação: <strong>0.5</strong> </p>
+                        <button z-button [zSize]="'sm'" (click)="onApply('Ola')" >Aplicar</button>
+                    </div>
+                </div>
+            </z-card>
+            <z-card class="mt-4 shadow-none p-0! cursor-not-allowed" [class]="'opacity-70'">
+                <div class="w-full h-full p-4">
+                    <div class="w-full flex justify-between mb-6">
+                        <h1 class="text-sm font-medium">Evento ADS Connection - <strong>Participação</strong></h1>
+                        <z-badge class="bg-pastel-red/10 text-pastel-red font-semibold">
+                            Expirada
+                        </z-badge>
+                    </div>
+                    <div class="w-full flex justify-between">
+                        <p class="text-sm font-medium">pontuação: <strong>1.0</strong> </p>
+                        <button disabled [zDisabled]="true" z-button [zType]="'outline'" [zSize]="'sm'" >Aplicar</button>
+                    </div>
+                </div>
+            </z-card>
+        </section>
+        
+                </z-tab>
+
+                <z-tab label="Banco de Dados">
+                    <table z-table class="enter-in">
+                <thead z-table-header>
+                    <tr z-table-row>
+                        <th z-table-head>
+
+                        </th>
+                        <th z-table-head>
+                            
+                        </th>
+                    </tr>
+                </thead>
+                <tbody z-table-body>
+                    <tr z-table-row>
+                        <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                            1° Estágio
+                        </td>
+                        <td z-table-cell class="border-l"> 
+                            7.0
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                            2° Estágio
+                        </td>
+                        <td z-table-cell class="border-l"> 
+                            6.5
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                            3° Estágio
+                        </td>
+                        <td z-table-cell class="border-l"> 
+                            8.0
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                            Reposição
+                        </td>
+                        <td z-table-cell class="border-l"> 
+                            7.0
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell class="font-semibold bg-accent/30 w-1/2"> 
+                            Final
+                        </td>
+                        <td z-table-cell class="border-l"> 
+                            sem notas
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <section class="w-full min-h-4/10 max-h-9/10 overflow-y-auto mt-8 enter-in">
+            <label class="text-sm font-medium p-4">Trabalhos e tarefas</label>
+            <table z-table>
+                <thead z-table-header>
+                    <tr z-table-row>
+                        <th z-table-head>
+                            Título
+                        </th>
+                        <th z-table-head>
+                            Pontuação
+                        </th>
+                        <th z-table-head>
+                            Estado
+                        </th>
+                        <th z-table-head>
+                            Data entrega
+                        </th>
+                    </tr>
+                </thead>
+                <tbody z-table-body>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            Colsultas Avançadas
+                        </td>
+                        <td z-table-cell>
+                            2.0
+                        </td>
+                        <td z-table-cell>
+                            <z-badge class="bg-pastel-green/20 text-pastel-green">
+                                Enviada
+                            </z-badge>
+
+                        </td>
+                        <td z-table-cell>
+                            12 de Fev. 16:31
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            Subcolsultas
+                        </td>
+                        <td z-table-cell>
+                            0.5
+                        </td>
+                        <td z-table-cell>
+                            <z-badge class="bg-pastel-red/20 text-pastel-red">
+                                Expirada
+                            </z-badge>
+
+                        </td>
+                        <td z-table-cell>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+        <section class="w-full min-h-8/10 max-h-full overflo-y-auto mt-8 px-4 mb-6 enter-in">
+            <label class="text-sm font-medium p-3 mt-4">Pontuação extra: </label>
+            <z-card class="mt-4 shadow-none p-0!">
+                <div class="w-full h-full p-4">
+                    <div class="w-full flex justify-between mb-6">
+                        <h1 class="text-sm font-medium">Evento ADS Play - <strong>Participação</strong></h1>
+                        <z-badge class="bg-pastel-green/10 text-pastel-green font-semibold">
+                            Disponível
+                        </z-badge>
+                    </div>
+                    <div class="w-full flex justify-between">
+                        <p class="text-sm font-medium">pontuação: <strong>1.0</strong> </p>
+                        <button z-button [zSize]="'sm'"  (click)="onApply('Ola')"  >Aplicar</button>
+                    </div>
+                </div>
+            </z-card>
+            <z-card class="mt-4 shadow-none p-0! cursor-not-allowed" [class]="'opacity-70'">
+                <div class="w-full h-full p-4">
+                    <div class="w-full flex justify-between mb-6">
+                        <h1 class="text-sm font-medium">Evento ADS Connection - <strong>Participação</strong></h1>
+                        <z-badge class="bg-pastel-blue/10 text-pastel-blue font-semibold">
+                            Aplicada
+                        </z-badge>
+                    </div>
+                    <div class="w-full flex justify-between">
+                        <p class="text-sm font-medium">pontuação: <strong>1.0</strong> </p>
+                        <button disabled [zDisabled]="true" z-button [zType]="'secondary'" [zSize]="'sm'" >Aplicar</button>
+                    </div>
+                </div>
+            </z-card>
+        </section>
+
+                </z-tab>
+            </z-tab-group>
+        </section>
+        
+    </section>
+    <section class="w-6/10 h-full">
+        <app-data-table [columns]="studentColumns()" [data]="studentsData()" />
+    </section>
+</main>
