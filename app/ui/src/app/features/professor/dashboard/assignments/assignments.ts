@@ -5,7 +5,7 @@ import { AssignmentProfessor } from '../../shared/types.dto';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { ZardBadgeComponent } from "~/shared/components/badge";
-import { CheckIcon, ClockIcon, EllipsisVerticalIcon, LucideAngularComponent, LucideAngularModule, LucideIconData, PlusIcon, TrashIcon } from "lucide-angular";
+import { CheckIcon, ClockIcon, EllipsisVerticalIcon, LucideAngularComponent, LucideAngularModule, LucideIconData, PlusIcon, Trash2Icon, TrashIcon } from "lucide-angular";
 import { ColumnDef } from '~/shared/components/data-table/types';
 import { ZardButtonComponent } from "~/shared/components/button";
 import { ZardDialogModule, ZardDialogService, Z_MODAL_DATA } from '~/shared/components/dialog';
@@ -29,7 +29,7 @@ export class Assignments implements AfterViewInit {
   check = CheckIcon
   plus = PlusIcon
   more = EllipsisVerticalIcon
-  trash = TrashIcon
+  trash = Trash2Icon
 
 
   private readonly service = inject(AssignmentService);

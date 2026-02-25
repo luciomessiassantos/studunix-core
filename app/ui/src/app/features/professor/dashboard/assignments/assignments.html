@@ -32,11 +32,11 @@
 
 
     <div>
-        <div zDropdown [zDropdownMenu]="moreOptions" class="rounded-full min-w-5 max-w-6 min-h-6 flex justify-center items-center hover:bg-mute/15 transition-all duration-200 ease-in-out">
+        <div zDropdown [zDropdownMenu]="moreOptions" class="rounded-full min-w-6 max-w-6 min-h-6 flex justify-center items-center hover:bg-mute/15 transition-all duration-200 ease-in-out">
             <lucide-angular [img]="more" [size]="16" />
         </div>
-        <z-dropdown-menu-content #moreOptions="zDropdownMenuContent"  class="absolute right-20">
-            <z-dropdown-menu-item class="hover:bg-pastel-red hover:text-white" (click)="deleteAssignment(row)">
+        <z-dropdown-menu-content #moreOptions="zDropdownMenuContent"  class="absolute right-40">
+            <z-dropdown-menu-item class="hover:bg-pastel-red/20 hover:text-pastel-red" (click)="deleteAssignment(row)">
                 <lucide-angular [img]="trash" [size]="16" class="mr-1"  />
                 <p class="text-sm">Excluir</p>
             </z-dropdown-menu-item>

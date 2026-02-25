@@ -54,3 +54,25 @@ export type User = {
     roles: Role[]
 }
 
+
+export type FolderMetadata = {
+    id: string
+    name: string
+    size: number
+    folder_root_id: string
+    created_at: Date
+    modified_at: Date
+}
+
+export type FileMetadata = {
+    id: string
+    name: string
+    size: number
+    folder_id: string
+    mime_type: string
+    created_at: Date
+    modified_at: Date
+}
+
+
+export type Metadata = (FolderMetadata | FileMetadata) & { type: 'FILE' | 'FOLDER' }
