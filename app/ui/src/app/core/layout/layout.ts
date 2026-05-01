@@ -1,10 +1,8 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthStore } from '../auth/auth-store';
-import { HouseIcon, LayoutDashboard, LucideIconData, Users, LucideAngularModule, BellIcon, CircleQuestionMarkIcon, UserIcon, LogOutIcon, Presentation } from 'lucide-angular';
+import { HouseIcon, LayoutDashboard, LucideIconData, Users, LucideAngularModule, BellIcon, CircleQuestionMarkIcon, UserIcon, LogOutIcon, Presentation, ChartNoAxesColumnIncreasingIcon, UsersRoundIcon, WorkflowIcon, ClipboardIcon, ComponentIcon, MegaphoneIcon } from 'lucide-angular';
 import { LayoutImports } from '~/shared/components/layout';
 import { ZardButtonComponent } from '~/shared/components/button';
-import { ZardSkeletonComponent } from '~/shared/components/skeleton';
-import { User } from '../types';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { ZardDropdownImports, ZardDropdownMenuContentComponent } from "~/shared/components/dropdown";
@@ -13,6 +11,7 @@ import { Notification } from "~/shared/components/notification/notification";
 import { ZardToastComponent } from "~/shared/components/toast";
 import { ZardDialogService } from '~/shared/components/dialog';
 import { HelpDialog } from '../help-dialog/help-dialog';
+import { Footer } from "~/shared/components/footer/footer";
 
 export type SideBarItems = {
   id: string,
@@ -42,19 +41,34 @@ export const ProfessorPages: SectionItems[] = [
         id: '/professor/dashboard',
         label: "Dashboard",
         icon: LayoutDashboard,
-        path: "/professor/dashboard/assignments"
+        path: "/professor/dashboard"
+      },
+    ]
+  }
+]
+
+const StudentPages: SectionItems[] = [
+  {
+    id: 'sp-1',
+    title: 'Principal',
+    pages: [
+      {
+        id: '/student',
+        label: 'Início',
+        icon: HouseIcon,
+        path: '/student'
       },
       {
-        id: '/professor/students',
-        label: "Alunos",
-        icon: Users,
-        path: "/professor/students"
+        id: '/student/grades',
+        label: 'Desempenho',
+        icon: ChartNoAxesColumnIncreasingIcon,
+        path: '/student/grades'
       },
       {
-        id: '/professor/lectures',
-        label: "Aulas e frequência",
-        icon: Presentation,
-        path: "/professor/lectures"
+        id: '/student/modules',
+        label: 'Módulos',
+        icon: ComponentIcon,
+        path: '/student/modules'
       }
     ]
   }
@@ -63,7 +77,7 @@ export const ProfessorPages: SectionItems[] = [
 @Component({
   selector: 'app-layout',
   imports: [LayoutImports, ZardButtonComponent, LucideAngularModule,
-    RouterOutlet, ZardDropdownMenuContentComponent, ZardMenuImports, ZardDropdownImports, Notification, ZardToastComponent],
+    RouterOutlet, ZardDropdownMenuContentComponent, ZardMenuImports, ZardDropdownImports, Notification, ZardToastComponent, Footer],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })
@@ -73,6 +87,7 @@ export class Layout implements OnInit{
   helpIcon = CircleQuestionMarkIcon;
   user = UserIcon
   logout = LogOutIcon
+  megaphone = MegaphoneIcon
 
   readonly auth = inject(AuthStore);
 
@@ -80,7 +95,7 @@ export class Layout implements OnInit{
   readonly sidebarCollapsed = signal(false);
   private readonly dialogService = inject(ZardDialogService);
 
-  readonly sections = this.currentRole?.includes('PROFESSOR') ? ProfessorPages : null; 
+  readonly sections = this.currentRole?.includes('PROFESSOR') ? ProfessorPages : StudentPages; 
   readonly router = inject(Router);
 
   displayDialog() {
@@ -88,7 +103,7 @@ export class Layout implements OnInit{
       zHideFooter: true,
       zContent: HelpDialog,
       zData: this.currentRole,
-      zCustomClasses: 'min-w-250 min-h-120',
+      zCustomClasses: 'md:min-w-250 md:min-h-120 min-w-100 min-h-200 bg-background text-foreground',
       zTitle: 'Ajuda'
     });
   }
@@ -117,6 +132,10 @@ export class Layout implements OnInit{
     return currentUrl === '/professor';
   }
 
+  if (path === '/student') {
+    return currentUrl === '/student';
+  }
+
   return currentUrl.startsWith(path);
 }
 
@@ -132,6 +151,12 @@ export class Layout implements OnInit{
 
   logOut() {
     this.auth.logout();
+    if (this.account?.roles[0] == 'PROFESSOR') {
+      this.router.navigateByUrl("/login/professor");
+    }
+    if (this.account?.roles[0] == 'STUDENT') {
+      this.router.navigateByUrl("/login/student");
+    }
     
   }
 

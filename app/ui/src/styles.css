@@ -141,12 +141,12 @@
 }
 
 .student {
-    --primary: oklch(41.794% 0.16972 267.464);
+    --primary: #253fa7;
     --sidebar-primary: oklch(41.794% 0.16972 267.464);
 }
 
 .professor {
-    --primary: oklch(51.035% 0.17762 26.202);
+    --primary: #b62929;
     --sidebar-primary: oklch(51.035% 0.17762 26.202);     
 }
 
@@ -324,4 +324,9 @@ router-outlet + * {
   flex: 1;
   min-height: 0;
   height: 100%;
+}
+
+input:focus {
+    outline: none;
+    border: none;
 }

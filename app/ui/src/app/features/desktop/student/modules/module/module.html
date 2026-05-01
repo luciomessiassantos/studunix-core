@@ -1,0 +1,111 @@
+<main class="w-full h-full px-4">
+    <z-breadcrumb >
+        @for (bp of breadCrumbData; track $index) {
+            <z-breadcrumb-item [routerLink]="[bp.path]" >
+                {{bp.label}}
+            </z-breadcrumb-item>
+        }
+    </z-breadcrumb>
+    <article class="w-full h-1/12 flex items-center gap-4 px-4">
+        <h1 class="text-xl font-semibold">{{ data()?.name }}</h1>
+    </article>
+    <section class="w-full h-11/12">
+        <z-tab-group class="w-full h-full px-2 pr-6">
+            <z-tab label="Início" class="w-full ">
+                <article class="w-full max-h-120 h-120 overflow-y-auto">
+                    <section class="
+                    md:w-full md:h-32 md:flex md:gap-4 md:items-start
+                    ">
+                    <div class="h-1/2 w-1/5 bg-primary rounded-xl p-2 px-4 enter-in">
+                        <p class="text-white text-sm">Local</p>
+                        <h2 class="text-xl text-white font-semibold">Sala H08</h2>
+                    </div>
+                    <div class="h-1/2 w-1/5 bg-primary rounded-xl p-2 px-4 enter-in">
+                        <p class="text-white text-sm">Total alunos</p>
+                        <h2 class="text-xl text-white font-semibold">18</h2>
+                    </div>
+                    </section>
+                    <section class="
+                    md:w-full md:h-48
+                    ">
+                    <table title="Horários" z-table class="border ">
+                        
+                        <thead z-table-header>
+                            <tr z-table-row>
+                                <th z-table-head class="bg-accent">
+                                    Turma
+                                </th>
+                                <th z-table-head class="border-l bg-accent">
+                                    Dia da semana
+                                </th>
+                                <th z-table-head class="border-l bg-accent">
+                                    Horários
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr z-table-row>
+                                <td z-table-cell>
+                                    A
+                                </td>
+                                <td z-table-cell class="border-l ">
+                                    Terça-feira
+                                </td>
+                                <td z-table-cell class="border-l ">
+                                    17:50 - 21:50
+                                </td>
+                            </tr>
+                            <tr z-table-row>
+                                <td z-table-cell>
+                                    B
+                                </td>
+                                <td z-table-cell class="border-l ">
+                                    Quarta-feira
+                                </td>
+                                <td z-table-cell class="border-l ">
+                                    17:50 - 21:50
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    </section>
+                    <!-- <section class="
+                    md:w-full md:h-128
+                    ">
+
+                    </section> -->
+                </article>
+            </z-tab>
+            <z-tab label="Tarefas">
+                <article class="w-full max-h-120 h-120 gap-8">
+                    <header class="w-full h-2/18 border-b mb-3 flex items-center justify-between px-4">
+                            <!-- <h1 class="text-xl font-medium">Tarefas</h1> -->
+                        <div class="w-3/12 h-2/3 border rounded-xl flex items-center px-2 gap-2">
+                            <lucide-angular [img]="search" [size]="16" class="text-mute/50" />
+                            <input type="text" class="w-8/10 placeholder:text-mute/50 text-sm placeholder:text-sm" placeholder="Pesquisar tarefa">
+                        </div>
+                        <div class="w-2/12 h-2/3 border rounded-xl flex items-center px-2 gap-2 hover:bg-mute/10 transition-colors duration-100">
+                            <lucide-angular [img]="filter" [size]="16" class="text-mute/60" />
+                            <span class="text-sm text-mute/60">Filtros</span>
+                        </div>
+                    </header>
+                    <label class="text-sm font-medium text-mute mb-12 ">Exibindo {{assignments().length}} resultados.</label>
+                        <section class="mt-6 overflow-y-auto max-h-13/18">
+                            @for (assignment of assignments(); track $index) {
+                                <section class="mb-6">
+                                    <app-assignment-card [data]="assignment" />
+                                </section>
+                            }
+                        </section>
+                </article>
+            </z-tab>
+            <z-tab label="Materiais">
+                <article class="w-full max-h-120 h-120 overflow-y-auto">
+
+                </article>
+            </z-tab>
+            
+        </z-tab-group>
+    </section>
+</main>

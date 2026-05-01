@@ -26,35 +26,15 @@ import {
 import { mergeClasses, noopFn } from '@/shared/utils/merge-classes';
 
 import type { ZardDialogRef } from './dialog-ref';
-import { ZardDialogService } from './dialog.service';
+// import { ZardDialogService } from './dialog.service';
 import { dialogVariants } from './dialog.variants';
 import { ZardButtonComponent } from '@/shared/components/button/button.component';
 import { ZardIconComponent } from '@/shared/components/icon/icon.component';
-import type { ZardIcon } from '@/shared/components/icon/icons';
+import { ZardDialogOptions } from './dialog.types'
 
 // Used by the NgModule provider definition
 
 export type OnClickCallback<T> = (instance: T) => false | void | object;
-export class ZardDialogOptions<T, U> {
-  zCancelIcon?: ZardIcon;
-  zCancelText?: string | null;
-  zClosable?: boolean;
-  zContent?: string | TemplateRef<T> | Type<T>;
-  zCustomClasses?: string;
-  zData?: U;
-  zDescription?: string;
-  zHideFooter?: boolean;
-  zMaskClosable?: boolean;
-  zOkDestructive?: boolean;
-  zOkDisabled?: boolean;
-  zOkIcon?: ZardIcon;
-  zOkText?: string | null;
-  zOnCancel?: EventEmitter<T> | OnClickCallback<T> = noopFn;
-  zOnOk?: EventEmitter<T> | OnClickCallback<T> = noopFn;
-  zTitle?: string | TemplateRef<T>;
-  zViewContainerRef?: ViewContainerRef;
-  zWidth?: string;
-}
 
 @Component({
   selector: 'z-dialog',
@@ -206,6 +186,6 @@ export class ZardDialogComponent<T, U> extends BasePortalOutlet {
 
 @NgModule({
   imports: [ZardButtonComponent, ZardDialogComponent, OverlayModule, PortalModule],
-  providers: [ZardDialogService],
+  providers: [],
 })
 export class ZardDialogModule {}

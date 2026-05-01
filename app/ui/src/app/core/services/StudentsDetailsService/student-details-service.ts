@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '../BaseApiService/base-api-service';
-import { StudentProfessor } from '~/features/professor/shared/types';
+import { StudentProfessor } from '~/features/desktop/professor/shared/types';
 
 @Injectable({
   providedIn: 'root',

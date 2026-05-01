@@ -1,0 +1,28 @@
+@if(data){
+    <div (click)="OnDayClick(data)" class="min-h-18 p-1.5 border-r border-b flex flex-col gap-1 cursor-default
+            hover:bg-accent/50 transition-colors" [class]="(!data.isCurrent && isOtherMonth) ? 'bg-accent/30' : ''"
+
+     [class.border-r-0]="isLastColumn">
+
+  <span class="w-6 h-6 flex items-center justify-center rounded-full text-sm leading-none"
+  [class]="today.toDateString() == data.date.toDateString() && data.isCurrent ? 'bg-primary text-primary-foreground font-medium' : ''"
+  [class]="!data.isCurrent ? 'text-mute/80' : ''"
+  >
+    {{ data.day }}
+  </span>
+
+  @for (reminder of data.reminders.slice(0, 2); track reminder.id) {
+    <span class="text-[10px] px-1.5 py-0.5 rounded truncate leading-snug"
+        [class]="getTheme(reminder.color).bgSofter + ' ' + getTheme(reminder.color).text">
+      {{ reminder.name }}
+    </span>
+  }
+
+    @if (data.reminders.length > 2) {
+    <span class="text-[16px] text-muted-foreground px-1">
+      +{{ data.reminders.length - 2 }} mais
+    </span>
+  }
+
+</div>
+  }

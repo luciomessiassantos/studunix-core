@@ -1,4 +1,4 @@
-import { AtomIcon, AwardIcon, BadgeCheckIcon, BookCheckIcon, BookIcon, BookOpenCheckIcon, BookOpenIcon, BookTextIcon, BrainIcon, CalculatorIcon, ClipboardIcon, FlaskConicalIcon, GraduationCapIcon, LightbulbIcon, LucideIconData, MedalIcon, MicroscopeIcon, NotebookIcon, NotebookPen, NotebookPenIcon, NotebookTextIcon, PencilIcon, PencilLine, PencilLineIcon, PencilRulerIcon, RulerIcon, SchoolIcon, UniversityIcon } from "lucide-angular";
+import { AtomIcon, AwardIcon, BadgeCheckIcon, BookCheckIcon, BookIcon, BookOpenCheckIcon, BookOpenIcon, BookTextIcon, BrainIcon, CalculatorIcon, CalendarIcon, ChartBarStackedIcon, ChartLineIcon, ClipboardCheckIcon, ClipboardIcon, ClipboardListIcon, ClockIcon, DatabaseIcon, FileBadgeIcon, FileCheckCornerIcon, FileTextIcon, FlaskConicalIcon, GlobeIcon, GraduationCapIcon, LightbulbIcon, LucideIconData, MedalIcon, MicroscopeIcon, NotebookIcon, NotebookPen, NotebookPenIcon, NotebookTextIcon, PackageIcon, PencilIcon, PencilLine, PencilLineIcon, PencilRulerIcon, PresentationIcon, RulerIcon, SchoolIcon, TimerIcon, ToolCaseIcon, UniversityIcon, WrenchIcon } from "lucide-angular";
 
 export type IconMapper = Record<string, LucideIconData>;
 
@@ -26,22 +26,29 @@ export const academicIcons: IconMapper = {
   lightbulb: LightbulbIcon,
   award: AwardIcon,
   medal: MedalIcon,
-  "badge-check": BadgeCheckIcon,
+  badge_check: BadgeCheckIcon,
   clipboard: ClipboardIcon,
-//   "clipboard-list": {},
-//   "clipboard-check": {},
-//   "file-text": {},
-//   "file-check": {},
-//   "file-badge": {},
-//   presentation: {},
-//   "presentation-chart": {},
-//   "chart-bar": {},
-//   "chart-line": {},
-//   calendar: {},
-//   "calendar-days": {},
-//   "calendar-check": {},
-//   "calendar-clock": {},
-//   timer: {},
-//   clock: {},
-//   "alarm-clock": {}
+  database: DatabaseIcon,
+  globe: GlobeIcon,
+  package: PackageIcon,
+  "clipboard-list": ClipboardListIcon,
+  "clipboard-check": ClipboardCheckIcon,
+  "file-text": FileTextIcon,
+  "file-check": FileCheckCornerIcon,
+  "file-badge": FileBadgeIcon,
+  presentation: PresentationIcon,
+  "chart-bar": ChartBarStackedIcon,
+  "chart-line": ChartLineIcon,
+  calendar: CalendarIcon,
+  timer: TimerIcon,
+  clock: ClockIcon,
+  wrench: WrenchIcon,
+  tool: ToolCaseIcon,
+  
+};
+
+export const IconKeys = Object.keys(academicIcons) as (keyof typeof academicIcons)[];
+
+export const getAcademicIcon = (key: keyof typeof academicIcons): LucideIconData => {
+  return academicIcons[key];
 };

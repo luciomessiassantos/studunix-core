@@ -1,0 +1,179 @@
+<main class="w-full h-fit flex flex-col gap-6 items-center p-4">
+    @if(loading()) {
+        <article class="w-full min-h-90 h-90 border rounded-xl pt-4 text-foreground px-6">
+        <header class="h-1/10 w-full flex items-center justify-between">
+            <z-skeleton class="dark w-full rounded-full h-8/10" />
+        </header>
+        <table class="w-full text-sm mt-4" z-table>
+            <thead z-table-header>
+
+            </thead>
+            <tbody z-table-body>
+                <tr z-table-row>
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+                <tr z-table-row>
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+                <tr z-table-row>
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+                <tr z-table-row>
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+                <tr z-table-row>
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+
+                <tr z-table-row>
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+
+                <tr z-table-row class="border-t-2 bg-accent font-medium">
+                    <td z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                    <td class="border-l border-l-background" z-table-cell>
+                        <z-skeleton class="dark w-full rounded-full h-5" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+
+    } @else {
+
+        @for (record of recordData; track $index) {
+
+            <article class="w-full min-h-90 h-90 border rounded-xl pt-4 text-foreground px-6 enter-in">
+                <header class="h-1/10 w-full flex items-center justify-between">
+                    <label class="text-sm font-medium">
+                    {{record.moduleName}}
+                </label>
+                    @if(record.updated) {
+                        <z-badge class="bg-pastel-blue/20 text-pastel-blue font-bold ">
+                            Atualizada
+                        </z-badge>
+                    }
+                </header>
+            <table class="w-full text-sm mt-4" z-table>
+                <thead z-table-header>
+
+                </thead>
+                <tbody z-table-body>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            1° Estágio
+                        </td>
+                        <td class="border-l" z-table-cell>
+                            @if(record.firstGrade) {
+                                {{record.firstGrade.value}}
+                            } @else {
+                                Sem nota
+                            }
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            2° Estágio
+                        </td>
+                        <td class="border-l" z-table-cell>
+                            @if(record.secondGrade) {
+                                {{record.secondGrade.value}}
+                            } @else {
+                                Sem nota
+                            }
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            3° Estágio
+                        </td>
+                        <td class="border-l" z-table-cell>
+                            @if(record.thirdGrade) {
+                                {{record.thirdGrade.value}}
+                            } @else {
+                                Sem nota
+                            }
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            Reposição
+                        </td>
+                        <td class="border-l" z-table-cell>
+                            @if(record.replacement) {
+                                {{record.replacement.value}}
+                            } @else {
+                                Sem nota
+                            }
+                        </td>
+                    </tr>
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            Final
+                        </td>
+                        <td class="border-l" z-table-cell>
+                            @if(record.final) {
+                                {{record.final.value}}
+                            } @else {
+                                Sem nota
+                            }
+                        </td>
+                    </tr>
+
+                    <tr z-table-row>
+                        <td z-table-cell>
+                            Faltas
+                        </td>
+                        <td class="border-l" z-table-cell>
+                            {{record.absenses}}
+                        </td>
+                    </tr>
+
+                    <tr z-table-row class="border-t-2 bg-accent font-medium">
+                        <td z-table-cell>
+                            Média parcial
+                        </td>
+                        <td class="border-l border-l-background" z-table-cell>
+                            {{record.partialAverage}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+
+        }
+    }
+
+</main>

@@ -11,6 +11,5 @@ export class BaseApiService {
 
   client = inject(HttpClient);
 
-  
 
 }

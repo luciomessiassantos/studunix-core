@@ -23,3 +23,4 @@ export type TabData = {
   icon: LucideIconData
   path: string
 }
+

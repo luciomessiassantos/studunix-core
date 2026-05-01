@@ -4,14 +4,11 @@ import { Login } from './core/login/login';
 import { Student } from './core/login/student/student';
 import { Professor } from './core/login/professor/professor';
 import { Layout } from './core/layout/layout';
-import { HomeProfessor } from './features/professor/home/home';
-import { Dashboard } from './features/professor/dashboard/dashboard';
-import { Grades } from './features/professor/grades/grades';
-import { ErrorPage } from './features/error-page/error-page';
+import { ErrorPage } from './features/desktop/error-page/error-page';
 import { authGuardGuard } from './core/auth/auth-guard-guard';
 import { Details } from './core/details/details';
-import { Lectures } from './features/professor/lectures/lectures';
-import { LectureDetails } from './features/professor/lectures/lecture-details/lecture-details';
+import { studenRoutes } from './student.routes';
+import { professorRoutes } from './professor.routes';
 
 export const routes: Routes = [
     {
@@ -41,41 +38,10 @@ export const routes: Routes = [
         component: Layout,
         canActivateChild: [authGuardGuard],
         children: [
-            {
-                path: 'professor',
-                children: [
-                    {
-                        path: "",
-                        component: HomeProfessor
-                    },
-                    {
-                    path: 'dashboard',
-                    loadChildren: () =>
-                        import('../app/features/professor/dashboard/dashboard.routes')
-                        .then(m => m.DASHBOARD_ROUTES)
-                    },
-                    {
-                        path: "students",
-                        component: Grades
-                    },
-                    {
-                        path: 'lectures',
-                        children: [
-                            {
-                                path: '',
-                                component: Lectures
-                            },
-                            {
-                                path: ':id',
-                                component: LectureDetails
-                            }
-                        ]
-                    },
-                ]
-            }
+            ...studenRoutes,
+            ...professorRoutes
         ]
     },
-    
     {
         path: '**',
         component: ErrorPage

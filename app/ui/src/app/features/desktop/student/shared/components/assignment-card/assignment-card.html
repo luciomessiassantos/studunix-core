@@ -1,0 +1,35 @@
+<article class="w-full min-h-full border rounded-xl px-6 py-4 pb-4 shadow-sm">
+    <header class="flex items-center justify-between">
+        <a class=" font-semibold hover:underline cursor-pointer">{{data?.title}}</a>
+        
+        @switch (data?.status) {
+            @case ("EXPIRED") {
+                <z-badge class="bg-pastel-red/20 font-semibold text-pastel-red">
+                    Expirada
+                </z-badge>  
+            }
+            @case ("PENDING") {
+                <z-badge class="bg-pastel-yellow/20 font-semibold text-pastel-yellow">
+                    Pendente
+                </z-badge>
+            }
+            @default {
+                <z-badge class="bg-pastel-blue/20 font-semibold text-pastel-blue">
+                    Nova
+                </z-badge>
+            }
+        }
+
+    </header>
+
+    <article class="w-full flex gap-4">
+        <span class="mt-2 text-sm px-2">
+            Vencimento em: <strong>{{ expiresDate }}</strong>
+        </span>
+        <span class="mt-2 text-sm px-2">
+            Aberta em: <strong>{{ createdDate }}</strong>
+        </span>
+    </article>
+
+    
+</article>

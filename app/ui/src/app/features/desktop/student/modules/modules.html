@@ -1,0 +1,15 @@
+
+<main class=" w-full h-auto px-4">
+    <z-breadcrumb >
+        @for (bp of breadCrumbData; track $index) {
+            <z-breadcrumb-item [routerLink]="[bp.path]" >
+                {{bp.label}}
+            </z-breadcrumb-item>
+        }
+</z-breadcrumb>
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full pt-2 px-2">
+        @for (module of modules; track $index) {
+            <app-channel-card [prefix]="'/student/modules/'" [_data]="module" />
+        }
+    </section>
+</main>

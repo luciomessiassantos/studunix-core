@@ -1,0 +1,78 @@
+<!-- <article class="w-full h-full border rounded-xl shadow-xs calendar-grid">
+    <header class="w-full h-1/13 bg-accent border-b rounded-t-xl flex items-center justify-center">
+        <div class=" min-w-3/4 max-w-3/4 w-3/4 md:w-3/10 flex items-center justify-evenly text-mute">
+            <button z-button [zType]="'secondary'" (click)="decreaseMonth()" class="hover:bg-accent-foreground/10 h-10 w-10 rounded-full">
+                <lucide-angular [img]="left" [size]="64" />
+            </button>
+            <h1 class="text-black font-medium">{{ monthName | titlecase }} de {{ year() }}</h1>
+            <button z-button [zType]="'secondary'" (click)="increaseMonth()" class="hover:bg-accent-foreground/10 h-10 w-10 rounded-full">
+                <lucide-angular [img]="right" [size]="64" />
+            </button>
+        </div>
+    </header>
+    <main class="w-full h-12/13 rounded-b-xl">
+        <header class="w-full h-1/10 flex items-center">
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Dom</p>
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Seg</p>
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Ter</p>
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Qua</p>
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Qui</p>
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Sex</p>
+            <p class="w-1/7 text-center text-sm font-medium text-mute mt-1">Sáb</p>
+        </header>
+        <section class="w-full h-9/10 grid grid-cols-7 ">
+            @for (day of days(); track day.date.toISOString(); let idx = $index) {
+                <app-day-card [data]="day" [index]="idx" />
+            }
+            
+        </section>
+    </main>
+</article> -->
+
+
+<article class="w-full border rounded-xl overflow-hidden bg-background">
+
+  <header class="flex items-center justify-between px-5 py-3 border-b bg-background">
+    <div class="flex items-center gap-2">
+      <button z-button [zType]="'ghost'" (click)="decreaseMonth()"
+              class="w-7 h-7 rounded-full flex items-center justify-center
+                     hover:bg-accent transition-colors">
+        <lucide-angular [img]="left" [size]="14" [strokeWidth]="1.5" />
+      </button>
+      <span class="text-sm font-medium w-32 text-center">
+        {{ monthName | titlecase }} de {{ year() }}
+      </span>
+      <button z-button [zType]="'ghost'" (click)="increaseMonth()"
+              class="w-7 h-7 rounded-full flex items-center justify-center
+                     hover:bg-accent transition-colors">
+        <lucide-angular [img]="right" [size]="14" [strokeWidth]="1.5" />
+      </button>
+    </div>
+    <button z-button [zType]="'secondary'" (click)="goToToday()"
+            class="text-xs px-3 py-1 h-auto rounded-md">
+      Hoje
+    </button>
+  </header>
+
+  <div class="grid grid-cols-7 bg-accent/50 border-b">
+    @for (wd of weekdays; track wd) {
+      <p class="text-center text-[11px] font-medium text-muted-foreground py-1.5">{{ wd }}</p>
+    }
+  </div>
+
+  <section class="grid grid-cols-7">
+    @for (day of days(); track day.date.toISOString(); let idx = $index) {
+      <app-day-card [data]="day" [index]="idx" />
+    }
+  </section>
+
+  <footer class="flex items-center gap-4 px-5 py-2.5 border-t flex-wrap">
+    @for (item of legend; track item.label) {
+      <div class="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+        <span class="w-1.5 h-1.5 rounded-sm inline-block" [style.background]="item.color"></span>
+        {{ item.label }}
+      </div>
+    }
+  </footer>
+
+</article>

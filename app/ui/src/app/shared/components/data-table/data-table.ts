@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ColumnDef } from './types';
 import { ZardTableHeaderComponent, ZardTableBodyComponent, ZardTableRowComponent, ZardTableCellComponent } from "../table";
 import { NgTemplateOutlet, NgComponentOutlet } from '@angular/common';
-import { AssignmentProfessor } from '~/features/professor/shared/types.dto';
+import { AssignmentProfessor } from '~/features/desktop/professor/shared/types.dto';
 
 
 @Component({

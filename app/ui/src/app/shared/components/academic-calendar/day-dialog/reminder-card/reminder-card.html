@@ -1,0 +1,9 @@
+<article class="w-full min-h-full rounded-lg p-4 text-white" [class]="theme()?.bg">
+    <h1 class="font-semibold">{{reminder.name}}</h1>
+    <p class="text-sm text-white font-medium m-2">
+        {{reminder.description}}
+    </p>
+    <footer class="m-2 text-sm font-medium">
+        <h3>Data:   {{reminder.date | date : "dd 'de' MMMM"}}</h3>
+    </footer>
+</article>

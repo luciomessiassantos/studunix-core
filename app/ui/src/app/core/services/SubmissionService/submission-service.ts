@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from '../BaseApiService/base-api-service';
-import { Submission } from '~/features/professor/shared/types.dto';
+import { Submission } from '~/features/desktop/professor/shared/types.dto';
 
 @Injectable({
   providedIn: 'root',

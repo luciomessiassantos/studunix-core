@@ -74,5 +74,13 @@ export type FileMetadata = {
     modified_at: Date
 }
 
+export type PaginatedData<T> = {
+    data: T,
+    totalPages: number
+    elementsPage: number
+    hasPrevious: boolean
+    hasNext: boolean
+    currentPage: number 
+}
 
 export type Metadata = (FolderMetadata | FileMetadata) & { type: 'FILE' | 'FOLDER' }

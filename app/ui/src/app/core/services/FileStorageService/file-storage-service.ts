@@ -15,7 +15,7 @@ export class FileStorageService {
       // ===== FOLDERS =====
       {
         id: 'folder-1',
-        name: 'Matemática 2026.1',
+        name: 'WebI-2026.1',
         size: 1250000,
         folder_root_id: 'root',
         created_at: now,
@@ -24,7 +24,7 @@ export class FileStorageService {
       },
       {
         id: 'folder-2',
-        name: 'Direito Constitucional',
+        name: 'POO-Diagramas',
         size: 840000,
         folder_root_id: 'root',
         created_at: now,
@@ -33,7 +33,7 @@ export class FileStorageService {
       },
       {
         id: 'folder-3',
-        name: 'Projetos ADS',
+        name: 'Projetos-ADS',
         size: 2300000,
         folder_root_id: 'root',
         created_at: now,

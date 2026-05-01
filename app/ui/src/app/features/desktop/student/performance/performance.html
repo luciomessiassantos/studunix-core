@@ -1,0 +1,22 @@
+<ng-template let-row>
+    <span>
+        
+    </span>
+</ng-template>
+
+
+<main class="w-full h-full overflow-y-auto flex flex-col items-center pb-10">
+    <section class="w-9/10 h-fit mt-4">
+        <app-compound-info-card [data]="cardData" />
+    </section>
+    <section class="w-full h-fit min-h-fit pb-30 mt-10 px-6 pr-6">
+        @if (deviceType() === "mobile") {
+            <app-vertical-table [recordData]="records()" />
+        }
+        @else {
+            <article class="w-full h-full border rounded-xl shadow-xs">
+                <app-data-table class="md:text-sm" [columns]="recordsColumnDef()" [data]="records()" />
+            </article>
+        }
+    </section>
+</main>

@@ -1,0 +1,24 @@
+<main class="w-full min-h-120 h-120">
+    <section class="w-full h-8/10 ">
+        @if(data.reminders.length > 0) {
+        @for (reminder of data.reminders; track $index) {
+            <article class="w-full p-4 ">
+                <app-reminder-card [reminder]="reminder" />
+            </article>
+        }
+    } 
+    @else {
+        <section class="w-full min-h-20 flex items-center justify-center">
+            <h1>Sem lembretes</h1>
+        </section>
+    }
+    </section>
+
+    <footer class="w-full h-2/10 flex items-end gap-4 ">
+        <section class="w-3/5 space-y-4">
+            <input type="text" z-input>
+            <input type="date" z-input />
+        </section>
+        <button z-button class="bg-primary" >Criar lembrete</button>
+    </footer>
+</main>

@@ -1,5 +1,5 @@
-<section class="w-full ">
-    <table z-table class="w-full">
+<section class="w-full text-foreground ">
+    <table z-table class="w-full ">
         <thead z-table-header class="">
             <tr z-table-row class="pb-4 h-12">
               @for (c of columns; track $index) {
@@ -10,7 +10,7 @@
         <tbody z-table-body>
             @if (data) {
                 @for (row of data; track $index) {
-                <tr z-table-row  (dblclick)="onDoubleClick(row)">
+                <tr z-table-row  (dblclick)="onDoubleClick(row)" [class]="$index % 2 == 1 ? 'bg-accent' : ''" >
                     @for(col of columns; track $index) {
                         @if(col.template) {
                             <td z-table-cell class="max-w-fit">
