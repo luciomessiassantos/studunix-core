@@ -9,6 +9,7 @@ import { ZardButtonComponent } from "~/shared/components/button";
 import { DatePipe, Location } from '@angular/common';
 import { ZardBadgeComponent } from "~/shared/components/badge";
 
+
 @Component({
   selector: 'app-details',
   imports: [LucideAngularModule, ZardButtonComponent, DatePipe, ZardBadgeComponent],
