@@ -1,16 +1,14 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { BreadcrumbService } from '~/core/services/Interface/BreadcrumbService/breadcrumb-service';
-import { ColumnDef } from '~/shared/components/data-table/types';
 import { StudentProfessor } from '../../shared/types';
 import { students } from '../../shared/data-mock';
-import { DataTable } from "~/shared/components/data-table/data-table";
 import { ZardSelectImports } from '~/shared/components/select';
 import { ListFilterIcon, SearchIcon, LucideAngularModule } from 'lucide-angular';
 import { StudentProfessorCard } from "../../shared/student-professor-card/student-professor-card";
 
 @Component({
   selector: 'app-students',
-  imports: [DataTable, ZardSelectImports, LucideAngularModule, StudentProfessorCard],
+  imports: [ZardSelectImports, LucideAngularModule, StudentProfessorCard],
   templateUrl: './students.html',
   styleUrl: './students.css',
 })

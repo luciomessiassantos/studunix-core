@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ZardCardComponent } from "~/shared/components/card";
-import { ZardSkeletonComponent } from "~/shared/components/skeleton";
-import { Schedules } from '../shared/components/schedules/schedules';
-import { ZardCalendarComponent } from "~/shared/components/calendar";
-import { FileIcon, FolderIcon, NotebookPenIcon, LucideAngularModule } from 'lucide-angular';
+import { FileIcon, NotebookPenIcon, LucideAngularModule } from 'lucide-angular';
 import { Footer } from "~/shared/components/footer/footer";
 import { AcademicCalendar } from "~/shared/components/academic-calendar/academic-calendar";
 import { ProfileCard } from '~/shared/components/profile-card/profile-card';
@@ -11,7 +7,7 @@ import { UpdatesCard } from "../shared/updates-card/updates-card";
 
 @Component({
   selector: 'app-home',
-  imports: [ZardSkeletonComponent, Schedules, LucideAngularModule, Footer, AcademicCalendar, ProfileCard, UpdatesCard],
+  imports: [LucideAngularModule, Footer, AcademicCalendar, ProfileCard, UpdatesCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

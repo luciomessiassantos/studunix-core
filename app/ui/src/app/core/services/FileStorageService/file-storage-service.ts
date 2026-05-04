@@ -12,7 +12,6 @@ export class FileStorageService {
     const now = new Date();
 
     const mock: Metadata[] = [
-      // ===== FOLDERS =====
       {
         id: 'folder-1',
         name: 'WebI-2026.1',

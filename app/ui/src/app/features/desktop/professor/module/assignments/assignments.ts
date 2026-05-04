@@ -1,12 +1,9 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { ZardAccordionImports, ZardAccordionItemComponent } from "~/shared/components/accordion";
+import { ZardAccordionImports } from "~/shared/components/accordion";
 import { GroupIcon, ListFilterIcon, LucideAngularModule, MoonIcon, PlusIcon, SearchIcon, SunIcon } from "lucide-angular";
 import { ZardButtonComponent } from '~/shared/components/button';
 import { BreadcrumbService } from '~/core/services/Interface/BreadcrumbService/breadcrumb-service';
 import { ActivatedRoute, RouterLink } from "@angular/router";
-import { AssignmentStudent } from '~/features/desktop/student/types';
-import { getAssignmentsByChannelId } from '~/features/desktop/student/data';
-import { AssignmentCard } from "~/features/desktop/student/shared/components/assignment-card/assignment-card";
 import { ZardSelectImports } from '~/shared/components/select';
 import { AssignmentProfessor } from '../../shared/types';
 import { AssignmentCardProfessor } from "~/shared/components/assignment-card-professor/assignment-card-professor";
@@ -14,7 +11,7 @@ import { getAssignmentsProfessorByChannelId } from '../../shared/data-mock';
 
 @Component({
   selector: 'app-assignments',
-  imports: [ZardAccordionImports, LucideAngularModule, ZardButtonComponent, RouterLink, AssignmentCard,
+  imports: [ZardAccordionImports, LucideAngularModule, ZardButtonComponent, RouterLink,
     ZardSelectImports, AssignmentCardProfessor],
   templateUrl: './assignments.html',
   styleUrl: './assignments.css',

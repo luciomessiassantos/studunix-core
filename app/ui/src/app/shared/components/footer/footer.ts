@@ -5,7 +5,7 @@ import { ZardDialogComponent } from "../dialog";
 
 @Component({
   selector: 'app-footer',
-  imports: [ZardDividerComponent, LucideAngularModule, ZardDialogComponent],
+  imports: [ZardDividerComponent, LucideAngularModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })

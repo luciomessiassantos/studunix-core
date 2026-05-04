@@ -1,17 +1,14 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
-import { GraduationCapIcon, LoaderCircleIcon, LoaderIcon, LucideAngularModule } from 'lucide-angular';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from '@angular/core';
+import { GraduationCapIcon, LoaderCircleIcon, LucideAngularModule } from 'lucide-angular';
 import { ZardCardComponent } from "~/shared/components/card";
-import { ZardDividerComponent } from "~/shared/components/divider";
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
 import { ZardButtonComponent } from '~/shared/components/button';
 import { ZardInputDirective } from '~/shared/components/input';
 import { ZardFormImports } from '~/shared/components/form';
 import { Router, RouterLink } from "@angular/router";
 import { toast } from 'ngx-sonner';
-import { CircleAlertIcon } from 'lucide-angular'
 import { ErrorCard } from '~/shared/components/error-card/error-card';
 import { AuthStore } from '~/core/auth/auth-store';
-import { ProfessorPages } from '~/core/layout/layout';
 
 
 const loginPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^\d{4}\.\d{1}\.\d{3}\.\d{3}$/;
@@ -22,7 +19,7 @@ interface ProfessorFormData {
 }
 @Component({
   selector: 'app-professor',
-  imports: [LucideAngularModule, ZardCardComponent, ZardDividerComponent,
+  imports: [LucideAngularModule, ZardCardComponent,
     ReactiveFormsModule,
     ZardButtonComponent,
     ZardInputDirective,

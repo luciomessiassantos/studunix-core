@@ -11,7 +11,6 @@ import { Notification } from "~/shared/components/notification/notification";
 import { ZardToastComponent } from "~/shared/components/toast";
 import { ZardDialogService } from '~/shared/components/dialog';
 import { HelpDialog } from '../help-dialog/help-dialog';
-import { Footer } from "~/shared/components/footer/footer";
 
 export type SideBarItems = {
   id: string,
@@ -77,7 +76,7 @@ const StudentPages: SectionItems[] = [
 @Component({
   selector: 'app-layout',
   imports: [LayoutImports, ZardButtonComponent, LucideAngularModule,
-    RouterOutlet, ZardDropdownMenuContentComponent, ZardMenuImports, ZardDropdownImports, Notification, ZardToastComponent, Footer],
+    RouterOutlet, ZardDropdownMenuContentComponent, ZardMenuImports, ZardDropdownImports, Notification, ZardToastComponent],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })

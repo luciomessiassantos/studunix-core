@@ -1,16 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AssignmentStudent } from '../../../types';
-import { ZardAccordionComponent, ZardAccordionItemComponent } from "~/shared/components/accordion";
-import { ZardTableBodyComponent, ZardTableRowComponent, ZardTableCellComponent } from "~/shared/components/table";
-import { DatePipe } from '@angular/common';
-import { ZardButtonComponent } from '~/shared/components/button';
 import { ZardBadgeComponent } from "~/shared/components/badge";
 import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-assignment-card',
-  imports: [ZardAccordionComponent, ZardAccordionItemComponent, ZardTableBodyComponent, ZardTableRowComponent, ZardTableCellComponent, DatePipe,
-    ZardButtonComponent, ZardBadgeComponent, RouterLink],
+  imports: [ZardBadgeComponent, RouterLink],
   templateUrl: './assignment-card.html',
   styleUrl: './assignment-card.css',
 })

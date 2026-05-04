@@ -1,4 +1,4 @@
-import { NgClass, DatePipe } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { LucideAngularModule, FoldersIcon, DatabaseIcon, AtomIcon, PencilLineIcon, FolderIcon, UserIcon, UserRoundIcon } from 'lucide-angular';
 import { pastDate } from '~/shared/utils/dateUtils';
@@ -6,7 +6,7 @@ import { RecentAccessType, RecentAccess } from '../types';
 
 @Component({
   selector: 'app-recent-access-card',
-  imports: [LucideAngularModule, NgClass, DatePipe],
+  imports: [LucideAngularModule, NgClass],
   templateUrl: './recent-access-card.html',
 })
 export class RecentAccessCard {

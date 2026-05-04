@@ -1,13 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { ActionCard } from '~/shared/components/action-card/action-card';
 import { ZardTableImports } from '~/shared/components/table';
-import { ZardTabGroupComponent, ZardTabComponent } from "~/shared/components/tabs";
 import { LucideAngularModule, ArrowLeft, MoonIcon, SunIcon, FoldersIcon, FolderIcon, PlusIcon, GroupIcon, UserPlusIcon, HouseIcon, NotebookPenIcon, UsersRoundIcon } from "lucide-angular";
 import { Location } from '@angular/common';
-import { ZardButtonComponent } from "~/shared/components/button";
 import { ZardAccordionImports } from '~/shared/components/accordion';
-import { ZardDialogComponent, ZardDialogService } from '~/shared/components/dialog';
+import { ZardDialogService } from '~/shared/components/dialog';
 import { ChannelType, AssignmentStudent } from '../../student/types';
 import { findChannelById, getAssignmentsByChannelId } from '../../student/data';
 import { ZardBreadcrumbImports } from '~/shared/components/breadcrumb/breadcrumb.imports';
@@ -17,7 +14,7 @@ import { InnerTabs } from "~/shared/components/inner-tabs/inner-tabs";
 
 @Component({
   selector: 'app-module',
-  imports: [ZardTabGroupComponent, ZardTabComponent, ZardTableImports, LucideAngularModule, ZardButtonComponent,
+  imports: [ZardTableImports, LucideAngularModule,
     ZardAccordionImports, ZardBreadcrumbImports, InnerTabs, RouterOutlet],
   templateUrl: './module.html',
   styleUrl: './module.css',
@@ -32,7 +29,6 @@ export class Module implements OnInit {
   readonly plus = PlusIcon;
   readonly group = UserPlusIcon;
 
-  private readonly dialogService = inject(ZardDialogService);
   location = inject(Location);
   route = inject(ActivatedRoute);
   moduleId: string | null = null;

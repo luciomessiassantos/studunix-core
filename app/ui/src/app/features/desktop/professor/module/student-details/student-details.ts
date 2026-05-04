@@ -4,11 +4,11 @@ import { BreadcrumbService } from '~/core/services/Interface/BreadcrumbService/b
 import { StudentProfessor, StudentSemesterRecord } from '../../shared/types';
 import { getGradesByStudentId, getStudentDataById } from '../../shared/data-mock';
 import { ZardBadgeComponent } from "~/shared/components/badge";
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-student-details',
-  imports: [ZardBadgeComponent, DecimalPipe, DatePipe],
+  imports: [ZardBadgeComponent, DecimalPipe],
   templateUrl: './student-details.html',
   styleUrl: './student-details.css',
 })

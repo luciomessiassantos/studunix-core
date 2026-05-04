@@ -1,13 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
-import { ArrowLeft, FolderIcon, HouseIcon, ListFilterIcon, LucideAngularModule, NotebookPenIcon, SearchIcon } from 'lucide-angular';
+import { ArrowLeft, FolderIcon, HouseIcon, LucideAngularModule, NotebookPenIcon } from 'lucide-angular';
 import { ZardTableImports } from '~/shared/components/table';
-import { ZardTabGroupComponent, ZardTabComponent } from "~/shared/components/tabs";
-import { AssignmentStudent, ChannelType } from '../../types';
-import { findChannelById, getAssignmentsByChannelId } from '../../data';
-import { AssignmentCard } from "../../shared/components/assignment-card/assignment-card";
-import { ZardBreadcrumbComponent, ZardBreadcrumbItemComponent } from "~/shared/components/breadcrumb";
+import { ChannelType } from '../../types';
+import { findChannelById } from '../../data';
 import { BreadcrumbService } from '~/core/services/Interface/BreadcrumbService/breadcrumb-service';
 import { TabData } from '~/shared/utils/type';
 import { InnerTabs } from "~/shared/components/inner-tabs/inner-tabs";
@@ -15,7 +12,7 @@ import { InnerTabs } from "~/shared/components/inner-tabs/inner-tabs";
 
 @Component({
   selector: 'app-module',
-  imports: [LucideAngularModule, ZardTableImports, AssignmentCard, ZardBreadcrumbComponent, ZardBreadcrumbItemComponent, RouterOutlet, InnerTabs],
+  imports: [LucideAngularModule, ZardTableImports, RouterOutlet, InnerTabs],
   templateUrl: './module.html',
   styleUrl: './module.css',
 })
