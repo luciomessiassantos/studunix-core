@@ -27,6 +27,13 @@ export type UserDetailsDto = {
     officialEmail: string
 }
 
+export type ProfessorDetailsDto = {
+    registrationId: string
+    department: string
+    moduleCount: number
+    bond: string
+} & UserDetailsDto
+
 export type StudentDetailsDto = {
     registry: string
     period: string,

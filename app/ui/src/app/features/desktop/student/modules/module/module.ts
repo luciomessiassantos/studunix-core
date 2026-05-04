@@ -1,39 +1,36 @@
 import { Location } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ArrowLeft, ListFilterIcon, LucideAngularModule, SearchIcon } from 'lucide-angular';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ArrowLeft, FolderIcon, HouseIcon, ListFilterIcon, LucideAngularModule, NotebookPenIcon, SearchIcon } from 'lucide-angular';
 import { ZardTableImports } from '~/shared/components/table';
 import { ZardTabGroupComponent, ZardTabComponent } from "~/shared/components/tabs";
 import { AssignmentStudent, ChannelType } from '../../types';
 import { findChannelById, getAssignmentsByChannelId } from '../../data';
 import { AssignmentCard } from "../../shared/components/assignment-card/assignment-card";
 import { ZardBreadcrumbComponent, ZardBreadcrumbItemComponent } from "~/shared/components/breadcrumb";
+import { BreadcrumbService } from '~/core/services/Interface/BreadcrumbService/breadcrumb-service';
+import { TabData } from '~/shared/utils/type';
+import { InnerTabs } from "~/shared/components/inner-tabs/inner-tabs";
+
 
 @Component({
   selector: 'app-module',
-  imports: [ZardTabGroupComponent, LucideAngularModule, ZardTabComponent, ZardTableImports, AssignmentCard, ZardBreadcrumbComponent, ZardBreadcrumbItemComponent],
+  imports: [LucideAngularModule, ZardTableImports, AssignmentCard, ZardBreadcrumbComponent, ZardBreadcrumbItemComponent, RouterOutlet, InnerTabs],
   templateUrl: './module.html',
   styleUrl: './module.css',
 })
 export class Module {
 
   readonly leftArrow = ArrowLeft;
-  readonly search = SearchIcon;
-  readonly filter = ListFilterIcon;
 
   location = inject(Location);
   route = inject(ActivatedRoute);
   moduleId: string | null = null;
   data = signal<ChannelType | undefined>(undefined);
-  assignments = signal<AssignmentStudent[]>([]);
 
-  breadCrumbData = [
-    {
-      label: "Módulos",
-      path: '/student/modules/'
-    },
-  ]
+  readonly breadcrumbService = inject(BreadcrumbService);
 
+  tabs: TabData[] = []
 
   ngOnInit(): void {
       this.route.paramMap.subscribe(params => {
@@ -46,32 +43,44 @@ export class Module {
     if (this.moduleId != null) {
 
       this.data.set(findChannelById(this.moduleId));
-      this.assignments.set(getAssignmentsByChannelId(this.moduleId));
       
     }
 
-    if (this.data()) this.breadCrumbData.push({
-      label: this.data()?.name ?? "",
-      path: ''
-  })
-  }
+    if (this.data()) {
+      console.log(this.data()?.name);
+      
+    this.breadcrumbService.setBreadcrumbData(
+      [
+        {
+          label: "Módulos",
+          path: '/student/modules'
+        },
+        {
+          label: this.data()?.name ?? "",
+          path: `${this.moduleId}/index`
+        }
+      ]
+    );
 
-  addAssignmentsPath() {
-      this.breadCrumbData.push({
-        label: 'tarefas',
-        path: ''
-      });
-  }
+    }
 
-  addMaterialsPath() {
-      this.breadCrumbData.push({
-        label: 'materiais',
-        path: ''
-    });
-  }
-
-  goBack() {
-    this.location.back(); 
+    this.tabs = [
+      {
+        label: '#',
+        path: `/student/modules/${this.moduleId}/index`,
+        icon: HouseIcon
+      },
+      {
+        label: "Tarefas",
+        path: `/student/modules/${this.moduleId}/assignments`,
+        icon: NotebookPenIcon
+      },
+      {
+        label: "Materiais",
+        path: `/student/modules/${this.moduleId}/materials`,
+        icon: FolderIcon
+      }
+    ]
   }
 
 }

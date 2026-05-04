@@ -1,181 +1,323 @@
-<main class=" w-full h-screen bg-white">
-    <header class="w-full h-2/16 bg-primary flex justify-between items-center px-10">
-        <h1 class=" font-medium text-xl text-white flex items-center gap-2">
-            <lucide-angular  [size]="32" [img]="GraduationCap" />
-            StudUnix
-        </h1>
+<!-- hero.html -->
+<div class="min-h-screen bg-background text-foreground font-[Manrope]">
 
-        <section>
-            <a [routerLink]="'login/student'" class="pl-1.5!" class="flex items-center text-background cursor-pointer hover:underline font-semibold">
-                <lucide-angular [img]="login" class="mr-1" [size]="20" />
-                Login
-            </a>
-        </section>
-    </header>
+  <header class="fixed top-0 inset-x-0 z-50 h-16 flex items-center justify-between px-8 md:px-14 bg-background/80 backdrop-blur-md border-b border-border">
 
-    <main class=" w-full h-14/16 overflow-y-auto overscroll-none scroll-smooth">
-        <section class="w-full h-full flex bg-linear-180 from-accent to-white">
-            <section class=" enter-in w-1/2 h-full flex flex-col items-center justify-start pt-25">
-                <div class="px-10 ml-20 ">
-                    <h1 class="max-w-80 mb-4 text-3xl font-bold">
-                        StudUnix
-                    </h1>
-                    <p class="mb-2 font-semibold">O sistema universitário que se adapta à sua instituição, não o contrário</p>
-                    <p>O <strong>StudUnix</strong> é uma solução completa e personalizável para universidades que precisam de um sistema confiável, rápido e adaptado às suas necessidades específicas, sem limitações de plataformas genéricas.</p>
-                </div>
-                <div class="flex mt-10 gap-5">
-                    <button (click)="redirect()" class="bg-primary p-2 min-w-60 rounded-lg text-white font-semibold hover:opacity-70 transition-opacity duration-200 ease-in-out">
-                        Conectar à minha instituição
-                    </button>
-                    <button class="bg-primary/20 p-2 min-w-60 rounded-lg text-primary font-semibold hover:opacity-70 transition-opacity duration-200 ease-in-out">
-                        Conhecer o sistema
-                    </button>
-                </div>
-            </section>
-            <section class=" enter-in w-1/2 h-full flex justify-center items-start pt-10">
-                
-                <div class="w-100 h-100 relative">
-                        <div class="w-25 h-25 bg-primary/20 rounded-full text-primary flex items-center justify-center
-                        absolute top-1/3 left-1/2
-                        hover:scale-110 transition-transform duration-200 ease-in-out
-                        ">
-                            <lucide-angular [img]="GraduationCap" [size]="64" [strokeWidth]="1.5" />
-                        </div>
+    <a routerLink="/" class="flex items-center gap-2 text-primary font-bold text-lg tracking-tight">
+      <lucide-angular [img]="GraduationCap" [size]="22" class="text-primary" />
+      StudUnix
+    </a>
 
-                        <div class="w-25 h-25 bg-primary/20 rounded-full text-primary flex items-center justify-center
-                        absolute top-4 left-2/3
-                        hover:scale-110 transition-transform duration-200 ease-in-out
-                        ">
-                            <lucide-angular [img]="notebook" [size]="64" [strokeWidth]="1.5" />
-                        </div>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-muted-foreground font-medium">
+      <a href="#beneficios"  class="hover:text-foreground transition-colors">Benefícios</a>
+      <a href="#metodologia" class="hover:text-foreground transition-colors">Metodologia</a>
+      <a href="#modulos"     class="hover:text-foreground transition-colors">Módulos</a>
+    </nav>
 
-                        <div class="w-25 h-25 bg-primary/20 rounded-full text-primary flex items-center justify-center
-                        absolute top-1/4 left-16
-                        hover:scale-110 transition-transform duration-200 ease-in-out
-                        ">
-                            <lucide-angular [img]="university" [size]="64" [strokeWidth]="1.5" />
-                        </div>
-
-                        <div class="w-25 h-25 bg-primary/20 rounded-full text-primary flex items-center justify-center
-                        absolute top-4/6 left-2/3
-                        hover:scale-110 transition-transform duration-200 ease-in-out
-                        ">
-                            <lucide-angular [img]="folder" [size]="64" [strokeWidth]="1.5" />
-                        </div>
-
-                        <div class="w-25 h-25 bg-primary/20 rounded-full text-primary flex items-center justify-center
-                        absolute bottom-12 
-                        
-                        hover:scale-110 transition-transform duration-200 ease-in-out
-                        ">
-                            <lucide-angular [img]="cloud" [size]="64" [strokeWidth]="1.5" />
-                        </div>
-                </div>
-            </section>
-        </section>
-
-        <section class="w-full h-full mt-10 ">
-
-            <section id="Situação problema" class="w-full h-full bg-accent" >
-                <div class="m-12 pt-12 h-fit">
-                    <h1 class="font-semibold text-2xl ">
-                        Sistemas engessados travam a inovação. Você já sentiu isso na pele.
-                    </h1>
-                </div>
-                <article class="w-full h-8/10  px-12">
-                    <p class="w-1/2">Muitas instituições de ensino convivem com plataformas que prometem ser completas, mas que na prática impõem limitações: fluxos que não se ajustam à sua realidade, dificuldade de adaptar regras acadêmicas, altos custos de personalização e um ciclo lento de atualizações. O resultado? Gestores sobrecarregados, equipe insatisfeita e uma experiência aquém para alunos e professores.</p>
-                </article>
-            </section>
-
-            <section id="apresentação da solução" class="w-full h-full"  >
-
-            </section>
-
-            <section id="Triade de benefícios" class="w-full h-6/10 gap-8 flex flex-col md:flex-row px-12">
-
-                 <div class="w-1/3 min-h-2/3 border rounded-2xl shadow px-4 py-2 opacity-0
-                 delay-100 ">
-                    <h1 class="m-4 font-semibold text-primary text-xl">Agilidade e autonomia</h1>
-                    <p class="px-4">Deixe de depender de filas de desenvolvimento para cada pequena mudança. Com o StudUnix, sua equipe ganha ferramentas de configuração que permitem ajustar fluxos, regras de negócio e permissões sem comprometer a estabilidade. Mais autonomia, menos burocracia.</p>
-                 </div>
-
-                 <div class="w-1/3 min-h-2/3 border rounded-2xl shadow px-4 py-2 opacity-0
-                 delay-200 ">
-                    <h1 class="m-4 font-semibold text-primary text-xl">Escalabilidade sem surpresas</h1>
-                    <p class="px-4">Comece com o que é essencial e expanda quando estiver pronto. Nossa arquitetura modular e incremental permite que você inicie com os módulos mais críticos (como Aluno e Financeiro) e adicione novos recursos (Professor, Administrativo, Biblioteca, etc.) conforme sua instituição cresce.</p>
-                 </div>
-
-                 <div class="w-1/3 min-h-2/3 border rounded-2xl shadow px-4 py-2 opacity-0
-                 delay-300 ">
-                    <h1 class="m-4 font-semibold text-primary text-xl">Evolução guiada por dados e feedback</h1>
-                    <p class="px-4">Decisões baseadas no que realmente importa: a sua realidade. A cada ciclo, coletamos requisitos e feedbacks para priorizar as próximas evoluções. Você não recebe um sistema “pronto e fechado”, mas sim uma plataforma que melhora continuamente junto com a sua instituição.</p>
-                 </div>
-            
-            </section>
-
-            <section id="Metodologia" class="w-full h-12/10 bg-primary mt-12" >
-
-                <div class="w-full text-center pt-12 flex flex-col items-center">
-                    <h1 class="text-white font-semibold text-2xl ">Metodologia: Metodologia Incremental e Orientada a Requisitos</h1>
-                    <h2 class="text-white font-medium mt-4 text-lg w-3/5 " >Acreditamos que um sistema universitário não pode ser um produto estático. Por isso, o StudUnix é construído de forma <strong>incremental</strong> e <strong>colaborativa</strong>. Trabalhamos com ciclos contínuos de:</h2>
-                </div>  
-
-                <article class="w-full h-8/10 flex items-center justify-center  px-4">
-                    <div class="w-1/3 h-5/12 px-6">
-                        <p class="w-full text-white "><strong>Levantamento de requisitos</strong> - Entendemos seus desafios específicos.</p>
-                    </div>
-                    <img src="/assets/triad.png" width="360" height="360" alt="">
-                    <div class="w-1/3 h-6/12 flex flex-col justify-between">
-                        <p class="w-full text-white ml-8 "><strong>Desenvolvimento focado</strong> – Entregamos funcionalidades que geram valor real</p>
-                        <p class="w-full text-white "><strong>Feedback constante</strong> – Validamos com seu time e ajustamos prioridades.</p>
-                    </div>
-                </article>
-            </section>
-
-            <section id="Modularização" class="w-full h-full mt-20 flex ">
-
-                <article class="w-1/2 h-11/10 bg-primary flex flex-col">
-                    <section class="w-full h-2/5 flex items-center justify-center text-background">
-                        <div class="flex flex-col max-w-2/3">
-                            <h1 class="text-2xl font-bold mb-3">Portal do Aluno</h1>
-                            <p class=" font-medium">Ambiente interativo para facilitar o dia a dia do estudante, possibilitando os discente realizar <strong>matrícula online</strong>, <strong>contratos financeiros</strong>, <strong>acompanhar notas</strong>, <strong>entregar tarefas</strong> e <strong>acessar materiais</strong>.</p>
-                        </div>
-                    </section>
-                    <section class="w-full h-3/5 flex items-center justify-center">
-                            <img src="/assets/StudUnixMockPhone.png" class="enter-in" width="200px" height="200px" alt="">
-                    </section>
-                </article>
-
-                <article class="w-1/2 h-11/10 bg-primary-professor flex flex-col">
-
-                    
-                    <section class="w-full h-2/5 flex items-center justify-center text-background">
-                        <div class="flex flex-col max-w-2/3">
-                            <h1 class="text-2xl font-bold mb-3">Ambiente do Professor</h1>
-                            <p class=" font-medium">Plataforma especializada para facilitar a rotina dos docentes, por meio de funcionalidades como: <strong>Gerenciamento de notas</strong>, <strong>Registro de aulas</strong>, <strong>canais de disciplinas</strong> para postagem de <strong>tarefas</strong>, <strong>materiais</strong> e <strong>avisos</strong>, além de um <strong>gerenciador de arquivos em nuvem</strong> integrado.</p>
-                        </div>
-                    </section>
-                    <section class="w-full h-3/5 flex items-center justify-center">
-                        <img src="/assets/laptop-mock.png" width="450px" height="450px" alt="">
-                    </section>
-
-                </article>
-            </section>
+    <button (click)="redirect()"
+      class="flex items-center gap-1.5 text-sm font-semibold text-primary
+             border border-primary rounded-lg px-4 py-2
+             hover:bg-primary hover:text-primary-foreground transition-all duration-200">
+      <lucide-angular [img]="login" [size]="15" />
+      Acessar sistema
+    </button>
+  </header>
 
 
-            <section id="Validação - Exemplos " class="w-full h-full">
+  <section class="relative min-h-screen flex flex-col justify-center pt-16 overflow-hidden">
 
-            </section>
+    <div class="absolute inset-0 bg-linear-to-br from-accent via-background to-background pointer-events-none" aria-hidden="true"></div>
 
-            <section id="Detalhes técnicos" class=" w-full h-full ">
+    <div class="relative max-w-6xl mx-auto w-full px-8 md:px-14 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-            </section>
 
-            <section id="CallToAction" class="w-full h-full" >
+      <div class="flex flex-col gap-6 enter-in">
 
-            </section>
 
-            <app-footer />
-        </section>
-    </main>
-</main>
+        <div class="flex flex-col">
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tight text-foreground">
+            Gestão universitária
+          </h1>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-[1.1] tracking-tight text-primary mt-1">
+            que evolui com você
+          </h1>
+        </div>
+
+        <p class="text-muted-foreground text-[15px] leading-relaxed max-w-115">
+          O <strong class="text-foreground font-semibold">StudUnix</strong> é uma solução completa
+          e personalizável para instituições que precisam de um sistema confiável — sem as limitações
+          de plataformas genéricas.
+        </p>
+
+
+        <div class="flex flex-wrap gap-3 pt-1">
+          <button (click)="redirect()"
+            class="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground
+                   font-semibold text-sm rounded-lg
+                   hover:opacity-90 transition-opacity duration-200 shadow-sm">
+            Conectar à minha instituição
+            <lucide-angular [img]="ArrowRight" [size]="16" />
+          </button>
+          <a href="#beneficios"
+            class="flex items-center px-6 py-3 border border-border text-foreground
+                   font-medium text-sm rounded-lg hover:bg-accent transition-colors duration-200">
+            Conhecer o sistema
+          </a>
+        </div>
+
+      </div>
+
+
+      <div class="hidden lg:flex items-center justify-center" style="animation: enter-in 0.6s 0.15s both">
+        <div class="relative w-100 h-100">
+          
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10
+                      w-48 bg-card border border-border rounded-xl shadow-lg p-4 ">
+            <div class="flex items-center gap-2 text-primary mb-3">
+              <lucide-angular [img]="GraduationCap" [size]="18" />
+              <span class="text-[11px] font-bold text-foreground">Portal do Aluno</span>
+            </div>
+            <p class="text-[10px] text-muted-foreground mb-2">Matrícula · Notas · Financeiro</p>
+            <div class="w-full h-1 bg-muted rounded-full overflow-hidden mb-2.5">
+              <div class="h-full bg-primary rounded-full" style="width:78%"></div>
+            </div>
+            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">Ativo</span>
+          </div>
+
+
+          <div class="absolute top-6 right-0 flex items-center gap-2 bg-card border border-border rounded-xl shadow-md px-3 py-2.5 w-36">
+            <lucide-angular [img]="notebook" [size]="16" class="text-[--color-primary-professor] shrink-0" />
+            <div>
+              <p class="text-[10px] font-bold text-foreground">Professor</p>
+              <p class="text-[9px] text-muted-foreground">3 disciplinas</p>
+            </div>
+          </div>
+
+
+          <div class="absolute bottom-14 left-0 flex items-center gap-2 bg-card border border-border rounded-xl shadow-md px-3 py-2.5 w-36">
+            <lucide-angular [img]="cloud" [size]="16" class="text-primary shrink-0" />
+            <div>
+              <p class="text-[10px] font-bold text-foreground">Nuvem</p>
+              <p class="text-[9px] text-muted-foreground">Sync automático</p>
+            </div>
+          </div>
+
+          <div class="absolute bottom-4 right-4 flex items-center gap-2 bg-card border border-border rounded-xl shadow-md px-3 py-2.5 w-36">
+            <lucide-angular [img]="university" [size]="16" class="text-muted-foreground shrink-0" />
+            <div>
+              <p class="text-[10px] font-bold text-foreground">Instituição</p>
+              <p class="text-[9px] text-muted-foreground">Personalizada</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+
+  <section class="bg-accent border-y border-border py-20 px-8 md:px-14">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-4">O Problema</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold leading-snug text-foreground mb-5">
+        Sistemas engessados travam a inovação institucional
+      </h2>
+      <p class="text-muted-foreground text-[15px] leading-relaxed">
+        Muitas instituições convivem com plataformas que prometem ser completas, mas impõem limitações reais:
+        fluxos que não se ajustam à sua realidade, altos custos de personalização e ciclos lentos de atualização.
+        O resultado? Gestores sobrecarregados e uma experiência aquém para alunos e professores.
+      </p>
+    </div>
+  </section>
+
+
+  <section id="beneficios" class="py-20 px-8 md:px-14 bg-background">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14">
+        <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-primary mb-3">Benefícios</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-foreground">Por que o StudUnix?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+        <div class="opacity-0 delay-100 flex flex-col gap-4 p-6
+                    border border-border rounded-xl bg-card
+                    hover:border-primary/30 hover:shadow-sm transition-all duration-200">
+          <div class="w-10 h-10 rounded-lg bg-primary/8 text-primary flex items-center justify-center">
+            <lucide-angular [img]="Zap" [size]="20" />
+          </div>
+          <h3 class="font-bold text-[15px] text-foreground">Agilidade e autonomia</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Ajuste fluxos, regras de negócio e permissões sem depender de filas de desenvolvimento.
+            Mais autonomia, menos burocracia.
+          </p>
+        </div>
+
+        <div class="opacity-0 delay-200 flex flex-col gap-4 p-6
+                    border border-border rounded-xl bg-card
+                    hover:border-primary/30 hover:shadow-sm transition-all duration-200">
+          <div class="w-10 h-10 rounded-lg bg-primary/8 text-primary flex items-center justify-center">
+            <lucide-angular [img]="layers" [size]="20" />
+          </div>
+          <h3 class="font-bold text-[15px] text-foreground">Escalabilidade sem surpresas</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Comece pelo essencial e expanda quando estiver pronto. Arquitetura modular para crescer
+            junto com a sua instituição.
+          </p>
+        </div>
+
+        <div class="opacity-0 delay-300 flex flex-col gap-4 p-6
+                    border border-border rounded-xl bg-card
+                    hover:border-primary/30 hover:shadow-sm transition-all duration-200">
+          <div class="w-10 h-10 rounded-lg bg-primary/8 text-primary flex items-center justify-center">
+            <lucide-angular [img]="TrendingUp" [size]="20" />
+          </div>
+          <h3 class="font-bold text-[15px] text-foreground">Evolução guiada por dados</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            A cada ciclo, coletamos requisitos e feedbacks para priorizar as próximas evoluções.
+            Uma plataforma que melhora continuamente.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="metodologia" class="py-20 px-8 md:px-14 bg-primary">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <p class="text-xs font-bold uppercase tracking-[0.15em] text-primary-foreground/50 mb-3">Metodologia</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-primary-foreground">
+          Incremental e orientada a requisitos
+        </h2>
+        <p class="mt-4 text-primary-foreground/65 text-sm max-w-xl mx-auto leading-relaxed">
+          Acreditamos que um sistema universitário não pode ser um produto estático.
+          Trabalhamos com ciclos contínuos de levantamento, desenvolvimento e feedback.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-primary-foreground/10">
+
+        <div class="opacity-0 flex flex-col items-center text-center px-10 py-8">
+          <span class="text-7xl font-extrabold text-primary-foreground/10 mb-5 leading-none select-none">01</span>
+          <h3 class="font-bold text-primary-foreground text-sm mb-2">Levantamento de requisitos</h3>
+          <p class="text-primary-foreground/55 text-sm leading-relaxed">
+            Entendemos seus desafios específicos e mapeamos as necessidades reais da sua instituição.
+          </p>
+        </div>
+
+        <div class="opacity-0 delay-200 flex flex-col items-center text-center px-10 py-8">
+          <span class="text-7xl font-extrabold text-primary-foreground/10 mb-5 leading-none select-none">02</span>
+          <h3 class="font-bold text-primary-foreground text-sm mb-2">Desenvolvimento focado</h3>
+          <p class="text-primary-foreground/55 text-sm leading-relaxed">
+            Entregamos funcionalidades que geram valor real, ciclo a ciclo, sem retrabalho desnecessário.
+          </p>
+        </div>
+
+        <div class="opacity-0 delay-300 flex flex-col items-center text-center px-10 py-8">
+          <span class="text-7xl font-extrabold text-primary-foreground/10 mb-5 leading-none select-none">03</span>
+          <h3 class="font-bold text-primary-foreground text-sm mb-2">Feedback constante</h3>
+          <p class="text-primary-foreground/55 text-sm leading-relaxed">
+            Validamos com sua equipe e ajustamos prioridades. Você guia a evolução do sistema.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="modulos" class="py-20 px-8 md:px-14 bg-accent">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-14">
+        <p class="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3">Módulos</p>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-foreground">Uma plataforma, múltiplos perfis</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+        <article class="opacity-0 flex flex-col bg-card border border-border
+                        rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200">
+          <div class="p-7 flex flex-col gap-4 flex-1">
+            <z-badge class="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full w-fit
+                         bg-primary-student/10 text-primary-student">
+              Aluno
+            </z-badge>
+            <h3 class="text-xl font-extrabold text-foreground">Portal do Aluno</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Ambiente interativo para facilitar o dia a dia do estudante: matrícula online, contratos financeiros,
+              acompanhamento de notas, entrega de tarefas e acesso a materiais.
+            </p>
+            <ul class="flex flex-wrap gap-2 pt-1">
+              @for (f of alunoFeatures; track f) {
+                <li class="text-xs font-medium px-2.5 py-1 rounded-full
+                           bg-muted text-muted-foreground border border-border">{{ f }}</li>
+              }
+            </ul>
+          </div>
+          <div class="h-44 bg-primary-student/5 border-t border-border
+                      flex items-center justify-center overflow-hidden">
+            <img src="/assets/StudUnixMockPhone.png" alt="Portal do Aluno"
+                 class=" h-32 object-contain" />
+          </div>
+        </article>
+
+
+        <article class="opacity-0 delay-200 flex flex-col bg-card border border-border
+                        rounded-2xl overflow-hidden hover:shadow-md transition-shadow duration-200">
+          <div class="p-7 flex flex-col gap-4 flex-1">
+            <z-badge class="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full w-fit
+                         bg-primary-professor/10 text-primary-professor">
+              Professor
+            </z-badge>
+            <h3 class="text-xl font-extrabold text-foreground">Ambiente do Professor</h3>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              Plataforma especializada para facilitar a rotina docente: gerenciamento de notas,
+              registro de aulas, canais de disciplinas e gerenciador de arquivos em nuvem integrado.
+            </p>
+            <ul class="flex flex-wrap gap-2 pt-1">
+              @for (f of professorFeatures; track f) {
+                <li class="text-xs font-medium px-2.5 py-1 rounded-full
+                           bg-muted text-muted-foreground border border-border">{{ f }}</li>
+              }
+            </ul>
+          </div>
+          <div class="h-44 bg-primary-professor/5 border-t border-border
+                      flex items-center justify-center overflow-hidden">
+            <img src="/assets/laptop-mock.png" alt="Ambiente do Professor"
+                 class="h-48 object-contain" />
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-24 px-8 md:px-14 bg-background border-t border-border">
+    <div class="max-w-xl mx-auto text-center flex flex-col items-center gap-5">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-foreground leading-snug">
+        Pronto para modernizar<br/>sua instituição?
+      </h2>
+      <p class="text-muted-foreground text-[15px] leading-relaxed">
+        Conecte sua universidade ao StudUnix e comece a transformação hoje.
+      </p>
+      <button (click)="redirect()"
+        class="flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground
+               font-semibold text-sm rounded-lg
+               hover:opacity-90 transition-opacity duration-200 shadow-sm">
+        Conectar à minha instituição
+        <lucide-angular [img]="ArrowRight" [size]="16" />
+      </button>
+    </div>
+  </section>
+
+  <app-footer />
+
+</div>

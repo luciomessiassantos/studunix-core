@@ -1,21 +1,55 @@
+<div class="relative w-full h-50 rounded-xl overflow-hidden aspect-video bg-muted">
 
-<z-card class="p-0! h-full w-full border-none shadow-none">
-    <div class="w-full h-full overflow-y-hidden overflow-x-auto snap-mandatory snap-x rounded-xl  relative">
-        @for (news of data; track $index) {
-            <img [src]="news.imageUrl" class="w-full h-full object-cover object-center" 
-            [class.opacity-0]="loading()"
-            [class.opacity-100]="!loading()"
-            loading="lazy" (load)="onLoad()" (error)="onError()" alt="">
-            @if(loading()) {
-                <z-skeleton class="w-full h-full absolute inset-0 z-10 top-0 rounded-lg"></z-skeleton>
+  @for (news of data; track news.id; let i = $index) {
+    @if (i === active()) {
+
+      @if (loading()) {
+        <z-skeleton class="absolute inset-0 w-full h-full" />
+      }
+
+      <img [src]="news.imageUrl" [alt]="news.title"
+           class="w-full h-full object-cover object-center transition-opacity duration-300"
+           [class.opacity-0]="loading()"
+           loading="lazy"
+           (load)="onLoad()" (error)="onError()" />
+
+      <div class="absolute inset-0 bg-linear-to-t from-black/75 to-transparent
+                  hover:from-black/88 transition-colors duration-300"></div>
+
+      <span class="absolute top-3 left-3.5 text-[10px] font-medium text-white/80
+                   bg-black/40 backdrop-blur-sm rounded-full px-2.5 py-0.5">
+        UNIFIP
+      </span>
+      
+      <div class="absolute bottom-0 left-0 right-0 p-3.5">
+
+        @if (data.length > 1) {
+          <div class="flex items-center gap-1 mb-2">
+            @for (n of data; track n.id; let j = $index) {
+              <button (click)="active.set(j)"
+              [classList]="(j !== active()) ? 'bg-white/35' : ''"
+                      class="h-1.5 rounded-full transition-all duration-200"
+                      [class.w-3.5]="j === active()"
+                      [class.w-1.5]="j !== active()"
+                      [class.bg-white]="j === active()"
+                      >
+              </button>
             }
-            @else {
-                <div class="w-full h-full z-10 top-0 absolute bg-linear-0 from-black/80 to-black/10 hover:from-black/90 transition-colors duration-300 ease-in-out 
-            flex items-end
-            ">
-                <h1 class="text-white font-semibold text-sm md:text-md p-4">{{news.title}}</h1>
-            </div>
-            }
+          </div>
         }
-    </div>
-</z-card>
+
+        <h2 class="text-white text-[13px] font-medium leading-snug mb-1.5">
+          {{ news.title }}
+        </h2>
+        <a [href]="news.link" target="_blank" rel="noopener"
+           class="inline-flex items-center gap-1 text-[11px] text-white/60
+                  hover:text-white/90 transition-colors">
+          Leia mais
+          <lucide-angular [img]="arrow" [size]="10" [strokeWidth]="1.5" />
+        </a>
+      </div>
+
+    }
+  }
+
+</div>

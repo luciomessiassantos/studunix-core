@@ -1,5 +1,6 @@
 import { ChannelType, StudentRecord, AssignmentStudent, Material } from "./types";
 
+
 const now = new Date();
 const oneDay = 24 * 60 * 60 * 1000;
 const pastDate = (days: number) => new Date(now.getTime() - days * oneDay);
@@ -256,6 +257,10 @@ export const assignments: AssignmentStudent[] = [
 
 export const getAssignmentsByChannelId = (channelId: string) => {
   return assignments.filter(a => a.module === channelId);
+} 
+
+export const getAssignmentById = (assignmentId: string) => {
+  return assignments.filter(a => a.id === assignmentId);
 } 
 
 export const materials: Material[] = [

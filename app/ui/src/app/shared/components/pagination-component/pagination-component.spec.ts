@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChannelCardProfessor } from './channel-card-professor';
+import { PaginationComponent } from './pagination-component';
 
-describe('ChannelCardProfessor', () => {
-  let component: ChannelCardProfessor;
-  let fixture: ComponentFixture<ChannelCardProfessor>;
+describe('PaginationComponent', () => {
+  let component: PaginationComponent;
+  let fixture: ComponentFixture<PaginationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChannelCardProfessor]
+      imports: [PaginationComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChannelCardProfessor);
+    fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

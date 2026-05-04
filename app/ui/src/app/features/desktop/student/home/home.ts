@@ -7,10 +7,11 @@ import { FileIcon, FolderIcon, NotebookPenIcon, LucideAngularModule } from 'luci
 import { Footer } from "~/shared/components/footer/footer";
 import { AcademicCalendar } from "~/shared/components/academic-calendar/academic-calendar";
 import { ProfileCard } from '~/shared/components/profile-card/profile-card';
+import { UpdatesCard } from "../shared/updates-card/updates-card";
 
 @Component({
   selector: 'app-home',
-  imports: [ZardSkeletonComponent, Schedules, LucideAngularModule, Footer, AcademicCalendar, ProfileCard],
+  imports: [ZardSkeletonComponent, Schedules, LucideAngularModule, Footer, AcademicCalendar, ProfileCard, UpdatesCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

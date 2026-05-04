@@ -1,0 +1,81 @@
+<article class="bg-background border rounded-xl overflow-hidden">
+
+  <header class="flex items-center justify-between px-5 py-3.5 border-b">
+    <div class="flex items-center gap-1.5">
+      <lucide-angular [img]="folders" [size]="15" [strokeWidth]="1.5"
+                      class="text-muted-foreground" />
+      <span class="text-sm font-medium text-foreground">Acessos recentes</span>
+    </div>
+    <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-muted
+                 text-muted-foreground border">
+      {{ accesses.length }} acessos
+    </span>
+  </header>
+
+
+  <div class="flex items-center gap-1.5 px-5 py-2.5 border-b overflow-x-auto scrollbar-none">
+    <button (click)="activeFilter.set(null)"
+            class="text-[11px] px-3 py-1 rounded-full border transition-colors whitespace-nowrap"
+            [class.bg-primary]="activeFilter() === null"
+            [class.text-primary-foreground]="activeFilter() === null"
+            [class.border-transparent]="activeFilter() === null"
+            [class.text-muted-foreground]="activeFilter() !== null">
+      Todos
+    </button>
+
+    @for (f of filters; track f.value) {
+      <button (click)="setFilter(f.value)"
+              class="text-[11px] px-3 py-1 rounded-full border transition-colors
+                     whitespace-nowrap flex items-center gap-1.5"
+              [class.border-transparent]="activeFilter() === f.value"
+              [class.font-medium]="activeFilter() === f.value"
+              [class.text-muted-foreground]="activeFilter() !== f.value"
+              [ngClass]="activeFilter() === f.value ? pillClass(f.value) : ''">
+        <span class="w-1.5 h-1.5 rounded-full shrink-0"
+              [style.background]="f.color"></span>
+        {{ f.label }}
+      </button>
+    }
+  </div>
+
+
+  @if (filtered.length > 0) {
+    @for (item of filtered; track item.id) {
+      <div class="flex items-center gap-3.5 px-5 py-3 border-b last:border-b-0
+                  hover:bg-accent/50 transition-colors duration-150 cursor-pointer">
+
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
+             [ngClass]="iconClass(item.type)">
+          <lucide-angular [img]="iconFor(item.type)" [size]="14" [strokeWidth]="1.5" />
+        </div>
+
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-sm text-foreground truncate">{{ item.label }}</span>
+            <span class="text-[11px] text-muted-foreground whitespace-nowrap shrink-0">
+              {{ relativeTime(item.date) }}
+            </span>
+          </div>
+          <div class="flex items-center gap-1.5 mt-0.5">
+            <span class="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
+                  [ngClass]="pillClass(item.type)">
+              {{ item.type }}
+            </span>
+            @if (item.path) {
+              <span class="text-muted-foreground text-[11px]">·</span>
+              <span class="text-[11px] text-muted-foreground truncate">{{ item.path }}</span>
+            }
+          </div>
+        </div>
+
+      </div>
+    }
+  } @else {
+    <div class="flex flex-col items-center justify-center gap-2 py-10">
+      <lucide-angular [img]="folders" [size]="28" [strokeWidth]="1.2"
+                      class="text-muted-foreground opacity-40" />
+      <p class="text-sm text-muted-foreground">Nenhum acesso encontrado</p>
+    </div>
+  }
+
+</article>

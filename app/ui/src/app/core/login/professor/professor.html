@@ -1,24 +1,42 @@
-<main class="w-full h-screen flex items-center justify-center bg-mute/5 professor overflow-y-auto">
+<main class="w-full h-screen flex items-center justify-center bg-accent professor p-0! pb-0!
+">
 
-    <z-card class="w-full h-full shadow-none border-none 
+    <z-card class="w-full h-full shadow-xs border
     
     md:w-5/6 md:h-5/6 lg:w-2/3 lg:h-4/5 
-    2xl:h-3/6
+    2xl:h-3/6 
     flex flex-row enter-in">
-        <div class="w-full  
-        pb-12 flex 
-        flex-col md:flex-row">
+        <div  class="w-full h-full
+        
+        flex flex-col md:flex-row md:justify-center">
             
-                <section class="w-full h-1/2 md:w-2/5 md:h-full flex flex-col items-center justify-start py-10">
-                    <div class="w-32 h-32 rounded-full bg-primary/20 flex justify-center items-center">
-                            <lucide-angular [img]="cap" class="text-primary" [size]="64" [strokeWidth]="1.5" />
-                    </div>
-                    <h1 class="text-primary font-medium text-3xl mt-2">Studunix</h1>
-                    <p class="text-center px-4 text-sm mt-6">Conecte-se com sua instituição, em qualquer lugar e a qualquer momento.</p>
-                </section>
-                <z-divider class="hidden md:block" [zOrientation]="'vertical'" />
-                <section class=" w-full md:w-3/5 h-full flex justify-center">
+                <section class="w-full h-1/2 
+                md:w-4/10  md:h-full flex flex-col  items-center justify-between pt-10
+                md:px-2
+                ">
                     
+                        <section class="flex flex-col  items-center justify-center">
+                            <div class="w-28 h-28 rounded-full bg-primary/20 flex justify-center items-center">
+                                    <lucide-angular [img]="cap" class="text-primary" [size]="64" [strokeWidth]="1.5" />
+                            </div>
+                            <h1 class="text-primary font-medium text-3xl mt-2">StudUnix</h1>
+                            <p class="text-center px-4 text-sm mt-6">Conecte-se com sua instituição, em qualquer lugar e a qualquer momento.</p>
+                            
+                        </section>
+
+                        <!-- <section class="w-full h-3/12 pt-4 px-4 ">
+                            <div class="w-full h-full rounded-xl bg-primary/20 px-4 pt-3 cursor-pointer
+                            hover:bg-primary/25 hover:scale-102 transition-all duration-300 ease-in-out 
+                            ">
+                                <h1 class=" w-fit text-primary text-sm font-semibold  hover:underline">Conta de demonstração</h1>
+                                <p class="text-xs text-mute mt-2">Conta teste de aluno para a visualização do sistema</p>
+                            </div>
+                        </section> -->
+                        
+                </section>
+                
+                <div class="hidden  md:flex border-l  md:min-h-full "></div>
+                <section class=" w-full  md:w-6/10 md:h-full h-full flex justify-center">
                         <form [formGroup]="professorForm" (ngSubmit)="handleSubmit()" class="w-8/10 mt-10" >
                             <z-form-field>
                                 <label z-form-label zRequired for="login">Email ou Matrícula</label>
@@ -35,14 +53,28 @@
                                 </z-form-control>
                             </z-form-field>
                             <a class="text-primary font-medium text-sm w-full flex justify-center mt-6 hover:underline cursor-pointer ">Esqueci a senha</a>
-                            <button type="submit" z-button [zDisabled]="isSubmiting()" class="w-full  py-5 text-sm rounded-lg transition-none"  [class]="(isFieldInvalid('password') || isFieldInvalid('login')) ? 'mt-8' : 'mt-14'" >
+                            <div class="w-full h-1/10 flex gap-4"
+                            [class]="(isFieldInvalid('password') || isFieldInvalid('login')) ? 'mt-8' : 'mt-20'"
+                            >
+                                <button type="submit" z-button [zDisabled]="isSubmiting()" class="w-1/2 text-white py-5 text-sm rounded-lg transition-none"   >
                                 @if (isSubmiting()) {
                                     <lucide-angular [img]="load" class="animate-spin" />
                                 } 
                                 @else {
                                     Entrar
                                 }
-                            </button>
+                                </button>
+
+                                <button type="submit" z-button [zDisabled]="isSubmiting()" [zType]="'outline'" class="w-1/2  py-5 text-sm rounded-lg text-foreground transition-none"   >
+                                @if (isSubmiting()) {
+                                    <lucide-angular [img]="load" class="animate-spin" />
+                                } 
+                                @else {
+                                    <img src="https://img.icons8.com/color/1200/google-logo.jpg" class="h-6"  alt="">
+                                    Entrar com o Google
+                                }
+                                </button>
+                            </div>
                             <a [routerLink]="'/login/student'" class="text-primary-student text-sm font-semibold hover:underline cursor-pointer w-full flex justify-center mt-6">Sou Aluno</a>
                         </form>
                 </section>

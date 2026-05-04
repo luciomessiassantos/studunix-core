@@ -1,51 +1,177 @@
-<main class="w-full h-screen border overflow-y-auto" [class]="userType() == 'STUDENT' ? 'student' : 'professor'">
-    <button z-button (click)="back()" [zType]="'outline'" class="absolute flex bg-white z-10 m-4 border-black/20 ">
-        <lucide-angular [img]="chevronLeft" class="mr-1"/>
-        Voltar
+<main class="flex flex-col min-h-screen max-h-screen bg-background overflow-y-auto"
+[classList]="userType() === 'PROFESSOR' ? 'professor' : 'student'"
+>
+
+
+  <section class="w-full h-28 md:h-36 bg-primary/80 relative shrink-0">
+    <button z-button [zType]="'ghost'"
+            (click)="back()"
+            class="absolute top-3 left-3 flex items-center gap-1.5 text-xs
+                   text-white bg-white/15 border-white/25 backdrop-blur-sm">
+      <lucide-angular [img]="chevronLeft" [size]="13" [strokeWidth]="1.5" />
+      Voltar
     </button>
-<section class=" w-full min-h-2/12 xl:min-h-3/10 bg-primary/20 relative">
-    <div class="w-24 h-24 absolute inset-0 m-auto rounded-full bg-primary -bottom-full">
-        <div class="
-        flex flex-col items-center justify-center cursor-default
-        w-full h-full absolute rounded-full inset-0 text-white top-0 z-10 opacity-0 hover:opacity-100 bg-mute/20  transition-all duration-200 ease-in-out">
-            <lucide-angular [img]="image" [size]="32" />
-            <p class="text-sm">Mudar foto</p>
-        </div>
+
+
+    <div class="absolute -bottom-7 left-5 w-14 h-14 rounded-full border-[3px]
+                border-background bg-primary flex items-center justify-center
+                text-white font-medium text-lg overflow-hidden cursor-pointer group">
+      <span>{{ initials() }}</span>
+      <div class="absolute inset-0 bg-black/45 flex flex-col items-center
+                  justify-center gap-0.5 opacity-0 group-hover:opacity-100
+                  transition-opacity duration-200">
+        <lucide-angular [img]="image" [size]="14" [strokeWidth]="1.5"
+                        class="text-white" />
+        <span class="text-[9px] text-white">Alterar</span>
+      </div>
     </div>
-</section>
+  </section>
 
-    <article class="flex flex-col mt-16 p-6 gap-4
-    xl:flex-row xl:flex-wrap xl:mt-18
-    ">
-        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
-            <label class="text-sm text-mute">Nome de Usuário:</label>
-            <p class="px-2">{{userDetails()?.firstName + ' ' + userDetails()?.lastName}}</p>
-        </div>
-        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
-            <label class="text-sm text-mute">Email Institucional:</label>
-            <p class="px-2">{{userDetails()?.officialEmail}}</p>
-        </div>
-        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
-            <label class="text-sm text-mute">Senha:</label>
-            <div class="flex justify-between items-center">
-                <p class="px-2 text-mute">***********</p>
-                <button z-button class="rounded-lg">Mudar senha</button>
-            </div>
+  <div class="flex flex-col gap-4 px-4 pt-12 pb-8 max-w-xl mx-auto w-full ">
+
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <h1 class="text-[15px] font-medium text-foreground">
+          {{ userDetails()?.firstName }} {{ userDetails()?.lastName }}
+        </h1>
+        <p class="text-xs text-muted-foreground mt-0.5">
+          @if (userType() === 'STUDENT') {
+            {{ studentDetails()?.registry }}
+          } @else {
+            {{ studentDetails()?.registry }}
+          }
+        </p>
+      </div>
+
+      @if (userType() === 'STUDENT') {
+        <z-badge class="bg-primary-student/10 rounded-xl text-primary-student">
+            Aluno
+        </z-badge>
+      } @else {
+        <z-badge class="bg-primary-student/10 rounded-xl text-primary-student">
+            Professor
+        </z-badge>
+      }
+
+    </div>
+
+
+    <div class="border rounded-xl bg-background overflow-hidden">
+      <p class="text-[11px] font-medium text-muted-foreground uppercase
+                tracking-wider px-4 py-2.5 border-b">
+        Dados pessoais
+      </p>
+
+      <div class="divide-y divide-border">
+        <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+          <span class="text-muted-foreground shrink-0">Email institucional</span>
+          <span class="text-foreground font-medium font-mono text-xs text-right truncate">
+            {{ userDetails()?.officialEmail ?? '—' }}
+          </span>
         </div>
 
-        <div class="xl:min-w-1/4 xl:px-2 xl:mx-4 xl:mb-5">
-            <label class="text-sm text-mute">Último Login:</label>
-            <p class="px-2">{{lastLoginData() | date: 'dd MMMM yyyy HH:mm:ss'}}</p>
+        <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+          <span class="text-muted-foreground shrink-0">Senha</span>
+          <div class="flex items-center gap-3">
+            <span class="text-foreground tracking-widest text-xs">••••••••</span>
+            <button class="text-xs text-primary hover:underline" type="button">
+              Alterar
+            </button>
+          </div>
         </div>
 
-        
-    </article>
-    <section class="w-full h-2/10 mt-80 rounded-lg 
-    xl:mt-0 xl:flex xl:justify-end xl:px-6
-    ">
-            <button z-button class="w-full rounded-lg h-10 text-lg
-            xl:w-26 xl:text-sm xl:h-8 
-            ">Editar Perfil</button>
-        </section>
+        <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+          <span class="text-muted-foreground shrink-0">Último login</span>
+          <span class="text-foreground font-medium text-right">
+            {{ lastLoginData() | date:"d MMM yyyy · HH:mm" : '' : 'pt-BR' }}
+          </span>
+        </div>
+      </div>
+    </div>
 
+
+    @if (userType() === 'STUDENT') {
+      <div class="border rounded-xl bg-background overflow-hidden">
+        <p class="text-[11px] font-medium text-muted-foreground uppercase
+                  tracking-wider px-4 py-2.5 border-b">
+          Dados acadêmicos
+        </p>
+        <div class="divide-y divide-border">
+
+<div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+  <span class="text-muted-foreground">Matrícula</span>
+  <span class="text-foreground font-medium font-mono text-xs">
+    {{ studentDetails()?.registry ?? '—' }}
+  </span>
+</div>
+<div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+  <span class="text-muted-foreground">Curso</span>
+  <span class="text-foreground font-medium text-right">
+    {{ studentDetails()?.courseName ?? '—' }}
+  </span>
+</div>
+<div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+  <span class="text-muted-foreground">Período letivo</span>
+  <span class="text-foreground font-medium">
+    {{ studentDetails()?.period ?? '—' }}
+  </span>
+</div>
+
+
+<p class="text-xs text-muted-foreground mt-0.5">
+  @if (userType() === 'STUDENT') {
+    {{ studentDetails()?.registry ?? '—' }}
+  } @else {
+    {{ userDetails()?.officialEmail ?? '—' }}
+  }
+</p>
+        </div>
+      </div>
+    } @else {
+      <div class="border rounded-xl bg-background overflow-hidden">
+        <p class="text-[11px] font-medium text-muted-foreground uppercase
+                  tracking-wider px-4 py-2.5 border-b">
+          Dados institucionais
+        </p>
+        <div class="divide-y divide-border">
+          <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+            <span class="text-muted-foreground">Registro</span>
+            <span class="text-foreground font-medium font-mono text-xs">
+              {{ professorDetails()?.registrationId ?? 'PROF-2024-001' }}
+            </span>
+          </div>
+          <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+            <span class="text-muted-foreground">Departamento</span>
+            <span class="text-foreground font-medium text-right">
+              {{ professorDetails()?.department ?? 'Departamento de Tecnologia' }}
+            </span>
+          </div>
+          <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+            <span class="text-muted-foreground">Disciplinas</span>
+            <span class="text-foreground font-medium text-right">
+              {{ professorDetails()?.moduleCount ?? 2 }} ativas
+            </span>
+          </div>
+          <div class="flex items-center justify-between gap-3 px-4 py-2.5 text-sm">
+            <span class="text-muted-foreground">Vínculo</span>
+            <span class="text-foreground font-medium">
+              {{ professorDetails()?.bond ?? 'Efetivo' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    }
+
+    <div class="flex flex-col gap-2 pt-1">
+      <button z-button [zType]="'default'" class="w-full">
+        Editar perfil
+      </button>
+      <button z-button [zType]="'outline'"
+              class="w-full text-destructive border-destructive/40
+                     hover:bg-destructive/5">
+        Sair da conta
+      </button>
+    </div>
+
+  </div>
 </main>

@@ -1,0 +1,34 @@
+<article class="w-full border rounded-xl px-6 py-4 shadow-sm">
+
+  <header class="flex items-center justify-between gap-3">
+    <a [routerLink]="routePrefix + data?.id"
+       class="font-semibold hover:underline cursor-pointer">
+      {{ data?.title }}
+    </a>
+
+    @switch (data?.state) {
+      @case ('Timeout') {
+        <z-badge class="bg-pastel-red/20 text-pastel-red font-semibold">Expirada</z-badge>
+      }
+      @default {
+        <z-badge class="bg-pastel-yellow/20 text-pastel-yellow font-semibold">Pendente</z-badge>
+      }
+    }
+  </header>
+
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-0 mt-2 text-sm text-muted-foreground">
+    <span class="px-2 py-1">Turma <strong class="text-foreground">{{ data?.classLetter }}</strong></span>
+    <span class="text-muted-foreground/40">·</span>
+    <span class="px-2 py-1">Pasta: <strong class="text-foreground">{{ data?.folderOriginName }}</strong></span>
+    <span class="text-muted-foreground/40">·</span>
+    <span class="px-2 py-1"><strong class="text-foreground">{{ data?.submissionsQuantity }}</strong> entregas</span>
+    <span class="text-muted-foreground/40">·</span>
+    <span class="px-2 py-1">Criada em <strong class="text-foreground">{{ createdDate }}</strong></span>
+    <span class="text-muted-foreground/40">·</span>
+    <span class="px-2 py-1">
+      {{ data?.state === 'Timeout' ? 'Venceu em' : 'Vence em' }}
+      <strong class="text-foreground">{{ deadlineDate }}</strong>
+    </span>
+  </div>
+
+</article>

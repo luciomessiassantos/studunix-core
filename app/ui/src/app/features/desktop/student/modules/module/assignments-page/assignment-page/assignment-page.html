@@ -1,0 +1,153 @@
+<main class="max-w-3xl h-120 max-h-120 mx-auto px-4 py-6 flex flex-col gap-4 pb-16
+    overflow-y-auto
+    ">
+
+  <div class="flex enter-in items-start justify-between gap-3 flex-wrap">
+    <div>
+      <h1 class="text-base font-medium text-foreground mb-1.5">
+        {{ assignmentData()?.title }}
+      </h1>
+      @switch (assignmentData()?.status) {
+        @case ('EXPIRED') {
+          <z-badge class="bg-pastel-red/20 text-pastel-red font-medium">Expirada</z-badge>
+        }
+        @case ('PENDING') {
+          <z-badge class="bg-pastel-yellow/20 text-pastel-yellow font-medium">Pendente</z-badge>
+        }
+        @default {
+          <z-badge class="bg-primary/10 text-primary font-medium">Nova</z-badge>
+        }
+      }
+    </div>
+  </div>
+
+
+  <div class="enter-in delay-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <div class="border rounded-xl p-4 bg-background">
+      <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-3">
+        Informações
+      </p>
+      <div class="flex flex-col divide-y divide-border text-sm">
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Disciplina</span>
+          <strong class="font-medium">{{ moduleName() }}</strong>
+        </div>
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Criada em</span>
+          <strong class="font-medium">{{ createdDate }}</strong>
+        </div>
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Vencimento</span>
+          <strong class="font-medium">{{ deadlineDate }}</strong>
+        </div>
+        <div class="flex justify-between items-center py-2">
+          <span class="text-muted-foreground">Tentativas</span>
+          <div class="flex flex-col items-end gap-1">
+            <div class="flex items-center gap-1">
+              @for (i of triesArray(); track i) {
+                <span class="w-2.5 h-2.5 rounded-full border"
+                      [class.bg-primary]="i <= usedTries()"
+                      [class.border-primary]="i <= usedTries()"
+                      [class.bg-muted]="i > usedTries()"
+                      [class.border-border]="i > usedTries()">
+                </span>
+              }
+            </div>
+            <span class="text-[11px] text-muted-foreground">
+              {{ usedTries() }} de {{ assignmentData()?.tries }} usadas
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border rounded-xl p-4 bg-background">
+      <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        Descrição
+      </p>
+      <p class="text-sm text-muted-foreground leading-relaxed">
+        {{ assignmentData()?.description ?? 'Sem descrição.' }}
+      </p>
+    </div>
+
+  </div>
+
+  @if (taskFiles().length > 0) {
+    <div class=" enter-in border rounded-xl p-4 bg-background">
+      <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+        Anexos da tarefa
+      </p>
+      @for (file of taskFiles(); track file.name) {
+        <div class="flex items-center gap-2.5 py-2 border-b last:border-b-0 text-sm">
+          <div class="w-7 h-7 rounded-md bg-muted flex items-center justify-center shrink-0">
+            <lucide-angular [img]="fileIcon" [size]="13" [strokeWidth]="1.5"
+                            class="text-muted-foreground" />
+          </div>
+          <span class="flex-1 truncate text-foreground">{{ file.name }}</span>
+          <span class="text-[11px] text-muted-foreground">{{ formatBytes(file.size) }}</span>
+        </div>
+      }
+    </div>
+  }
+
+  <div class=" enter-in delay-200 border rounded-xl p-4 bg-background">
+    <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-3">
+      Minha entrega
+    </p>
+
+    @if (assignmentData()?.submission) {
+      <div class="enter-in delay-200 flex items-center gap-3 bg-muted rounded-lg px-4 py-3 mb-3">
+        <lucide-angular [img]="checkCircle" [size]="16" [strokeWidth]="1.5"
+                        class="text-emerald-700 shrink-0" />
+        <div>
+          <p class="text-sm font-medium text-foreground">Entregue</p>
+          <span class="text-[11px] text-muted-foreground">{{ submissionDate }}</span>
+        </div>
+      </div>
+
+      @for (file of assignmentData()?.submission?.files; track file.name) {
+        <div class=" flex items-center gap-2.5 py-2 border-b last:border-b-0 text-sm">
+          <div class="w-7 h-7 rounded-md bg-muted flex items-center justify-center shrink-0">
+            <lucide-angular [img]="fileIcon" [size]="13" [strokeWidth]="1.5"
+                            class="text-muted-foreground" />
+          </div>
+          <span class="flex-1 truncate text-foreground">{{ file.name }}</span>
+        </div>
+      }
+
+      @if (canResubmit()) {
+        <div class="flex justify-end mt-3">
+          <button z-button [zType]="'secondary'" (click)="fileInput()"
+                  class="flex items-center gap-1.5 text-xs">
+            <lucide-angular [img]="upload" [size]="13" [strokeWidth]="1.5" />
+            Nova tentativa
+          </button>
+        </div>
+      }
+
+    } @else {
+
+      <label (click)="fileInput()"
+             class="flex flex-col items-center justify-center gap-1.5 border border-dashed
+                    rounded-lg py-7 cursor-pointer hover:bg-muted/50 transition-colors">
+        <lucide-angular [img]="upload" [size]="20" [strokeWidth]="1.5"
+                        class="text-muted-foreground" />
+        <p class="text-sm text-muted-foreground">Arraste arquivos ou clique para selecionar</p>
+        <span class="text-[11px] text-muted-foreground/60">PDF, DOCX, ZIP — máx. 20 MB</span>
+      </label>
+      <input id="file-input" type="file" multiple class="hidden" />
+
+      <div class="flex justify-end mt-3">
+        <button z-button [zType]="'default'"
+                [disabled]="assignmentData()?.status === 'EXPIRED'"
+                class="flex items-center gap-1.5 text-xs">
+          <lucide-angular [img]="upload" [size]="13" [strokeWidth]="1.5" />
+          Enviar entrega
+        </button>
+      </div>
+    }
+
+  </div>
+
+</main>

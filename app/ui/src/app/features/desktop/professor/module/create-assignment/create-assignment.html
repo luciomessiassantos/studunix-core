@@ -1,1 +1,205 @@
-<p>create-assignment works!</p>
+<section [formGroup]="form" class="max-w-full h-120 max-h-120 mx-auto px-4 py-6 flex flex-col gap-4 overflow-y-auto ">
+
+  <h1 class="text-base font-medium text-foreground">Nova tarefa</h1>
+
+
+  <div class="border rounded-xl p-4 bg-background flex flex-col gap-4">
+    <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+      Identificação
+    </p>
+
+    <z-form-field>
+      <label z-form-label zRequired>Título</label>
+      <z-form-control>
+        <input z-input type="text" placeholder="Ex: Consultas SQL Avançadas"
+               formControlName="title"
+               [zStatus]="field('title').invalid && field('title').touched ? 'error' : undefined" />
+      </z-form-control>
+      @if (field('title').hasError('required') && field('title').touched) {
+        <z-form-message zType="error">Título é obrigatório.</z-form-message>
+      }
+    </z-form-field>
+
+    <z-form-field>
+      <label z-form-label>Descrição</label>
+      <z-form-control>
+        <textarea z-input rows="3"
+                  placeholder="Instruções, contexto e critérios de avaliação..."
+                  formControlName="details">
+        </textarea>
+      </z-form-control>
+      <z-form-message>Opcional — visível para os alunos.</z-form-message>
+    </z-form-field>
+  </div>
+
+  <div class="border rounded-xl p-4 bg-background flex flex-col gap-4">
+    <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+      Destino
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <z-form-field>
+        <label z-form-label zRequired>Disciplina</label>
+        <z-form-control>
+          <z-select
+          class="border!"
+          formControlName="moduleId"
+                  zLabel="Selecione uma disciplina"
+                zPlaceholder="Selecione uma disciplina"
+                >
+            <z-select-item [zValue]="'select'">Selecione...</z-select-item>
+            @for (m of modules; track m.id) {
+              <z-select-item [zValue]="m.id">{{ m.name }}</z-select-item>
+            }
+          </z-select>
+        </z-form-control>
+        @if (field('moduleId').hasError('required') && field('moduleId').touched) {
+          <z-form-message zType="error">Selecione uma disciplina.</z-form-message>
+        }
+      </z-form-field>
+
+      <z-form-field>
+        <label z-form-label zRequired>Pasta de origem</label>
+        <z-form-control>
+          <z-select class="border!" formControlName="folderId"
+                zLabel="Selecione uma pasta"
+                zPlaceholder="Selecione uma pasta"
+                >
+            <z-select-item  [zValue]="'select'">Selecione...</z-select-item>
+            @for (f of availableFolders(); track f.id) {
+              <z-select-item [zValue]="f.id">{{ f.name }}</z-select-item>
+            }
+          </z-select>
+        </z-form-control>
+        <z-form-message>Pasta onde a tarefa ficará acessível.</z-form-message>
+        @if (field('folderId').hasError('required') && field('folderId').touched) {
+          <z-form-message zType="error">Selecione uma pasta.</z-form-message>
+        }
+      </z-form-field>
+
+      <z-form-field>
+        <label z-form-label zRequired>Período</label>
+        <z-form-control>
+          <input z-input type="text" placeholder="Ex: 2026.1"
+                 formControlName="period"
+                 [zStatus]="field('period').invalid && field('period').touched ? 'error' : undefined" />
+        </z-form-control>
+        @if (field('period').hasError('required') && field('period').touched) {
+          <z-form-message zType="error">Período é obrigatório.</z-form-message>
+        }
+      </z-form-field>
+
+      <z-form-field>
+        <label z-form-label zRequired>Turma</label>
+        <z-form-control>
+          <z-select
+            class="border!"
+            zLabel="Selecione uma turma"
+            zPlaceholder="Selecione uma turma"
+          formControlName="classLetter"
+                  >
+            <z-select-item zValue="">Selecione...</z-select-item>
+            <z-select-item zValue="A">A</z-select-item>
+            <z-select-item zValue="B">B</z-select-item>
+          </z-select>
+        </z-form-control>
+        @if (field('classLetter').hasError('required') && field('classLetter').touched) {
+          <z-form-message zType="error">Selecione a turma.</z-form-message>
+        }
+      </z-form-field>
+    </div>
+  </div>
+
+  <div class="border rounded-xl p-4 bg-background flex flex-col gap-4">
+    <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider">
+      Configurações
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <z-form-field>
+        <label z-form-label zRequired>Pontuação</label>
+        <z-form-control>
+          <input z-input type="number" min="0" placeholder="Ex: 10"
+                 formControlName="points"
+                 [zStatus]="field('points').invalid && field('points').touched ? 'error' : undefined" />
+        </z-form-control>
+        @if (field('points').invalid && field('points').touched) {
+          <z-form-message zType="error">Mínimo 0.</z-form-message>
+        }
+      </z-form-field>
+
+      <z-form-field>
+        <label z-form-label zRequired>Tentativas</label>
+        <z-form-control>
+          <input z-input type="number" min="1" max="10" placeholder="Ex: 3"
+                 formControlName="tries"
+                 [zStatus]="field('tries').invalid && field('tries').touched ? 'error' : undefined" />
+        </z-form-control>
+        @if (field('tries').invalid && field('tries').touched) {
+          <z-form-message zType="error">Entre 1 e 10.</z-form-message>
+        }
+      </z-form-field>
+
+      <z-form-field>
+        <label z-form-label zRequired>Vencimento</label>
+        <z-form-control>
+          <input z-input type="datetime-local"
+                 formControlName="deadline"
+                 [zStatus]="field('deadline').invalid && field('deadline').touched ? 'error' : undefined" />
+        </z-form-control>
+        @if (field('deadline').hasError('required') && field('deadline').touched) {
+          <z-form-message zType="error">Informe a data limite.</z-form-message>
+        }
+      </z-form-field>
+    </div>
+
+    <div class="flex items-center justify-between pt-3 border-t">
+      <div>
+        <p class="text-sm text-foreground">Reutilizável</p>
+        <p class="text-[11px] text-muted-foreground mt-0.5">
+          Permite reaproveitar esta tarefa em outros períodos
+        </p>
+      </div>
+
+      <z-switch [zSize]="'sm'" [(zChecked)]="isReusable" />
+    </div>
+  </div>    
+
+  <div class="border rounded-xl p-4 bg-background">
+    <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-3">
+      Arquivos
+    </p>
+    <label (click)="fileInput()"
+           class="flex flex-col items-center gap-1.5 border border-dashed rounded-lg
+                  py-7 cursor-pointer hover:bg-muted/50 transition-colors">
+      <lucide-angular [img]="upload" [size]="20" [strokeWidth]="1.5"
+                      class="text-muted-foreground" />
+      <p class="text-sm text-muted-foreground">Arraste arquivos ou clique para selecionar</p>
+      <span class="text-[11px] text-muted-foreground/60">PDF, DOCX, ZIP, PPT — máx. 50 MB cada</span>
+    </label>
+    <input id="file-input" type="file" multiple class="hidden" (change)="onFilesChange($event)" />
+
+    @if (selectedFiles().length > 0) {
+      <div class="mt-3 flex flex-col gap-1">
+        @for (f of selectedFiles(); track f.name) {
+          <div class="flex items-center gap-2 text-sm py-1.5 border-b last:border-b-0">
+            <lucide-angular [img]="fileIcon" [size]="13" [strokeWidth]="1.5"
+                            class="text-muted-foreground shrink-0" />
+            <span class="flex-1 truncate text-foreground">{{ f.name }}</span>
+            <span class="text-[11px] text-muted-foreground">{{ formatBytes(f.size) }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="flex justify-end gap-2 pb-4">
+    <button z-button [zType]="'secondary'" type="button" routerLink="..">Cancelar</button>
+    <button z-button [zType]="'default'" type="button"
+            [disabled]="form.invalid"
+            (click)="onSubmit()">
+      Criar tarefa
+    </button>
+  </div>
+
+</section>

@@ -22,7 +22,7 @@ export interface StudentFormData {
 
 @Component({
   selector: 'app-student',
-  imports: [LucideAngularModule, ZardCardComponent, ZardDividerComponent,
+  imports: [LucideAngularModule, ZardCardComponent,
     ReactiveFormsModule,
     ZardButtonComponent,
     ZardInputDirective,
@@ -39,7 +39,6 @@ export class Student implements OnInit {
   load = LoaderCircleIcon;
 
   private readonly builder = inject(FormBuilder);
-  private readonly destroyRef = inject(DestroyRef);
   private readonly auth = inject(AuthStore);
   private readonly router = inject(Router);
 

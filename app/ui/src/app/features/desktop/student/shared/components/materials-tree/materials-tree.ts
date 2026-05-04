@@ -30,9 +30,7 @@ export class MaterialsTree implements OnInit {
             key: f.modified_at.toLocaleDateString(), 
             label: f.name, 
             icon: 'lucideFile', 
-            leaf: true , 
-            
-
+            leaf: true,
           }
         })
       }

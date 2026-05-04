@@ -76,6 +76,17 @@ export type AssignmentStudent = {
     status: "PENDING" | "EXPIRED" 
 }
 
+export type UpdateType = 'task' | 'file';
+
+export type ChannelUpdate = {
+  id: string;
+  label: string;
+  type: UpdateType;
+  time: string;
+  date: Date;
+  channel: ChannelType;
+};
+
 export type Submission = {
     date: Date
     files: File[]
@@ -94,3 +105,4 @@ export type Material = {
     channelId: string
     folders: TFolder[]
 }
+

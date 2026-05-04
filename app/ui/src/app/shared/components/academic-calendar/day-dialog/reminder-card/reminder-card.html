@@ -1,9 +1,31 @@
-<article class="w-full min-h-full rounded-lg p-4 text-white" [class]="theme()?.bg">
-    <h1 class="font-semibold">{{reminder.name}}</h1>
-    <p class="text-sm text-white font-medium m-2">
-        {{reminder.description}}
+<article class="rounded-md px-3 py-2.5 flex flex-col gap-1 relative overflow-hidden"
+         [class]="theme()?.bgSofter">
+
+
+  <span class="absolute left-0 top-0 bottom-0 w-0.75 rounded-l-md"
+        [class]="theme()?.bg"></span>
+
+  <div class="pl-1 flex items-start justify-between gap-2">
+    <h4 class="text-sm font-medium leading-snug" [class]="theme()?.text">
+      {{ reminder.name }}
+    </h4>
+    <span class="text-[10px] px-1.5 py-0.5 rounded-full shrink-0 mt-0.5"
+          [class]="theme()?.bgSoft + ' ' + 'text-white'"
+          >
+      {{ reminder.isAcademic ? 'Sistema' : 'Pessoal' }}
+    </span>
+  </div>
+
+  @if (reminder.description) {
+    <p class="text-xs pl-1 leading-relaxed opacity-75" [class]="theme()?.text">
+      {{ reminder.description }}
     </p>
-    <footer class="m-2 text-sm font-medium">
-        <h3>Data:   {{reminder.date | date : "dd 'de' MMMM"}}</h3>
-    </footer>
+  }
+
+  <footer class="pl-1 mt-0.5">
+    <span class="text-[11px] opacity-60" [class]="theme()?.text">
+      {{ reminder.date | date:"d 'de' MMMM" : '' : 'pt-BR' }}
+    </span>
+  </footer>
+
 </article>

@@ -1,4 +1,4 @@
-<main class="w-full h-48 rounded-xl shadow-none relative enter-in">
+<main class="w-full h-48 shadow-xs rounded-xl relative enter-in">
 
     <section class="w-full h-3/5 px-5 pt-2 rounded-t-xl absolute" [class]="theme?.bgSoft">
         <div class="z-0 opacity-50">
@@ -8,7 +8,7 @@
 
     <section class="w-full bg-background border-b border-l border-r h-2/5 z-30 rounded-b-xl absolute bottom-0 " >
         <article class="flex justify-between items-start w-full p-2 px-3 pr-4">
-            <a [routerLink]="`${prefix}${data?.id}`" class=" max-w-5/6 font-medium cursor-pointer hover:underline" [class]="theme?.text">
+            <a [routerLink]="`${prefix}${data?.id}/index`" class=" max-w-5/6 font-medium cursor-pointer hover:underline text-sm" [class]="theme?.text">
                {{data?.name}} 
             </a>
             <button z-dropdown [zDropdownMenu]="channelOptions" class="max-w-fit p-1 px-1.5 h-fit hover:bg-accent rounded-full">

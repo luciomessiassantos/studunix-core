@@ -5,11 +5,12 @@ import { ZardTableBodyComponent, ZardTableRowComponent, ZardTableCellComponent }
 import { DatePipe } from '@angular/common';
 import { ZardButtonComponent } from '~/shared/components/button';
 import { ZardBadgeComponent } from "~/shared/components/badge";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-assignment-card',
   imports: [ZardAccordionComponent, ZardAccordionItemComponent, ZardTableBodyComponent, ZardTableRowComponent, ZardTableCellComponent, DatePipe,
-    ZardButtonComponent, ZardBadgeComponent],
+    ZardButtonComponent, ZardBadgeComponent, RouterLink],
   templateUrl: './assignment-card.html',
   styleUrl: './assignment-card.css',
 })
@@ -17,6 +18,7 @@ export class AssignmentCard implements OnInit {
 
 
   @Input() data: AssignmentStudent | undefined;
+  @Input() routePrefix: string = "";
 
   expiresDate = "";
   createdDate = "";

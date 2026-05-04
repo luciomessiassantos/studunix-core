@@ -63,31 +63,31 @@ export class Performance implements OnInit, OnDestroy {
         id: 'col-2',
         header: '1° Estágio',
         accessor: 'firstGrade',
-        cell: (r) => r.firstGrade ? r.firstGrade.value : "Sem nota"
+        cell: (r) => r.firstGrade ? r.firstGrade.value : "----"
       },
       {
         id: 'col-3',
         header: '2° Estágio',
         accessor: 'secondGrade',
-        cell: (r) => r.secondGrade ? r.secondGrade.value : "Sem nota"
+        cell: (r) => r.secondGrade ? r.secondGrade.value : "----"
       },
       {
         id: 'col-4',
         header: '3° Estágio',
         accessor: 'thirdGrade',
-        cell: (r) => r.thirdGrade ? r.thirdGrade.value : "Sem nota"
+        cell: (r) => r.thirdGrade ? r.thirdGrade.value : "----"
       },
       {
         id: 'col-5',
         header: 'Reposição',
         accessor: 'replacement',
-        cell: (r) => r.replacement ? r.replacement.value : "Sem nota"
+        cell: (r) => r.replacement ? r.replacement.value : "----"
       },
       {
         id: 'col-6',
         header: 'Final',
         accessor: 'final',
-        cell: (r) => r.replacement ? r.replacement.value : "Sem nota"
+        cell: (r) => r.replacement ? r.replacement.value : "----"
       },
       {
         id: 'col-7',

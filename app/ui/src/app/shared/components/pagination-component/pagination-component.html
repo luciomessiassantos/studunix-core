@@ -1,0 +1,71 @@
+<nav
+  class="flex items-center gap-1 select-none font-[Manrope]"
+  aria-label="Navegação de páginas"
+>
+ 
+
+  <button
+    class="
+      inline-flex items-center justify-center w-8 h-8 rounded-(--radius)
+      text-sm font-medium text-muted-foreground bg-transparent border border-border
+      transition-colors duration-150 cursor-pointer
+      hover:bg-accent hover:text-accent-foreground
+      disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none
+    "
+    [disabled]="!hasPrev()"
+    (click)="prev()"
+    aria-label="Página anterior"
+  >
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+ 
+
+  @for (page of pages(); track $index) {
+    @if (isEllipsis(page)) {
+ 
+      <span class="inline-flex items-center justify-center w-8 h-8 text-sm text-muted-foreground tracking-widest">
+        ···
+      </span>
+ 
+    } @else {
+ 
+      <button
+        class="
+          inline-flex items-center justify-center w-8 h-8 rounded-(--radius)
+          text-sm font-medium transition-colors duration-150 cursor-pointer border
+        "
+        [class]="page === current()
+          ? 'bg-primary text-primary-foreground border-primary font-semibold pointer-events-none'
+          : 'bg-transparent text-muted-foreground border-border hover:bg-accent hover:text-accent-foreground'
+        "
+        (click)="goTo(page)"
+        [attr.aria-current]="page === current() ? 'page' : null"
+        [attr.aria-label]="'Ir para página ' + (page + 1)"
+      >
+        {{ page + 1 }}
+      </button>
+ 
+    }
+  }
+ 
+  <!-- Botão próximo -->
+  <button
+    class="
+      inline-flex items-center justify-center w-8 h-8 rounded-(--radius)
+      text-sm font-medium text-muted-foreground bg-transparent border border-border
+      transition-colors duration-150 cursor-pointer
+      hover:bg-accent hover:text-accent-foreground
+      disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none
+    "
+    [disabled]="!hasNext()"
+    (click)="next()"
+    aria-label="Próxima página"
+  >
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+      <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+ 
+</nav>

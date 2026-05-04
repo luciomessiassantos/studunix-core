@@ -1,5 +1,7 @@
 import { LucideIconData } from "lucide-angular";
 import { CommomColors } from "~/shared/utils/colorUtils";
+import { ChannelType } from "../../student/types";
+import { NumberInput } from "@angular/cdk/coercion";
 
 export type AssignmentState = "Pending" | "Timeout";
 export type ClassLetter = "A" | "B";
@@ -34,15 +36,24 @@ export type StudentProfessor = {
     firstName: string
     lastName: string
     period: AcademicPeriod
-    
+    turma: "A" | "B",
+    matricula: string
+    turno: "Manhã" | "Noite"
+}
+
+export type Grade = {
+    id: string
+    value?: number | null
+    updated: boolean
+    lastUpdated?: Date
 }
 
 export type StudentGrades = {
-    p1: number | null;
-    p2: number | null;
-    p3: number | null;
-    recovery: number | null;
-    final: number | null;
+    p1: Grade
+    p2: Grade
+    p3: Grade
+    recovery: Grade;
+    final: Grade;
 };
 
 export type StudentSemesterRecord = {
@@ -157,4 +168,15 @@ export type Classroom = {
     icon: LucideIconData
 }
 
+export type RecentAccessType = 'Disciplina' | 'Pasta' | 'Tarefa' | 'Aluno';
+
+export type RecentAccess = {
+  id: string;
+  label: string;
+  type: RecentAccessType;
+  date: Date;
+  path?: string | null;
+
+  targetId?: string;
+};
 

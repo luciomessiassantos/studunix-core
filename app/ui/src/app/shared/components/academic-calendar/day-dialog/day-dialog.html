@@ -1,24 +1,78 @@
-<main class="w-full min-h-120 h-120">
-    <section class="w-full h-8/10 ">
-        @if(data.reminders.length > 0) {
-        @for (reminder of data.reminders; track $index) {
-            <article class="w-full p-4 ">
-                <app-reminder-card [reminder]="reminder" />
-            </article>
-        }
-    } 
-    @else {
-        <section class="w-full min-h-20 flex items-center justify-center">
-            <h1>Sem lembretes</h1>
-        </section>
-    }
-    </section>
+<main class="flex flex-col h-full">
 
-    <footer class="w-full h-2/10 flex items-end gap-4 ">
-        <section class="w-3/5 space-y-4">
-            <input type="text" z-input>
-            <input type="date" z-input />
-        </section>
-        <button z-button class="bg-primary" >Criar lembrete</button>
-    </footer>
+  <header class="px-5 py-4 border-b">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-base font-semibold text-foreground">
+          {{ data.date | date:"d 'de' MMMM" : '' : 'pt-BR' }}
+        </h2>
+        <p class="text-xs text-muted-foreground mt-0.5">
+          {{ data.date | date:"EEEE · yyyy" : '' : 'pt-BR' | titlecase }}
+        </p>
+      </div>
+      @if (data.reminders.length > 0) {
+        <span class="text-[11px] px-2.5 py-0.5 rounded-full
+                     bg-primary/10 text-primary font-medium">
+          {{ data.reminders.length }}
+          {{ data.reminders.length === 1 ? 'lembrete' : 'lembretes' }}
+        </span>
+      }
+    </div>
+  </header>
+
+
+  <section class="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-2 min-h-50 max-h-70">
+    @if (data.reminders.length > 0) {
+      @for (reminder of data.reminders; track reminder.id) {
+        <app-reminder-card [reminder]="reminder" />
+      }
+    } @else {
+      <div class="flex-1 flex flex-col items-center justify-center gap-2 py-10">
+        <lucide-angular [img]="calendarOff" [size]="32"
+                        [strokeWidth]="1.2"
+                        class="text-muted-foreground opacity-40" />
+        <p class="text-sm text-muted-foreground">Sem lembretes para este dia</p>
+      </div>
+    }
+  </section>
+
+
+  <footer class="border-t px-5 py-4">
+    <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-3">
+      Novo lembrete
+    </p>
+
+    <div class="grid grid-cols-2 gap-2 mb-3">
+      <input z-input type="text"   class="col-span-2" placeholder="Nome do lembrete"
+             [(ngModel)]="form.name" />
+      <input z-input type="date"
+             [(ngModel)]="form.date" />
+      <input z-input type="text"   placeholder="Descrição (opcional)"
+             [(ngModel)]="form.description" />
+    </div>
+
+
+    <div class="flex items-center gap-1.5 mb-4">
+      @for (color of colors; track color.value) {
+        <button (click)="form.color = color.value"
+                class="w-4.5 h-4.5 rounded-full transition-transform duration-100"
+                [style.background]="color.hex"
+                [class.scale-110]="form.color === color.value"
+                [class.ring-1]="form.color === color.value"
+                [class.ring-offset-1]="form.color === color.value"
+                [class.ring-foreground]="form.color === color.value">
+        </button>
+      }
+    </div>
+
+    <div class="flex justify-end gap-2">
+      <button z-button [zType]="'secondary'">Cancelar</button>
+      <button z-button [zType]="'default'"
+              [disabled]="!form.name || !form.date"
+              (click)="createReminder()">
+        Criar lembrete
+      </button>
+    </div>
+  </footer>
+
 </main>

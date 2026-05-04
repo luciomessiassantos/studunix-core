@@ -3,6 +3,7 @@ import { ClipboardIcon, DatabaseIcon, FolderIcon, GraduationCapIcon, NotebookPen
 import { InfoCardSection, CompoundInfoCard } from '~/shared/components/compound-info-card/compound-info-card';
 import { ChannelType } from '../../student/types';
 import { ChannelCard } from '~/shared/components/channel-card/channel-card';
+import { channels } from '../../student/data';
 
 
 const cardData: InfoCardSection[] = [
@@ -31,23 +32,7 @@ const cardData: InfoCardSection[] = [
     data: '34'
   }
 ] 
-
-const channels: ChannelType[] = [
-  {
-    id: 'ch-01',
-    name: 'Banco de Dados I - 2026.1',
-    color: 'pastel-orange',
-    icon: 'database',
-    created_at: new Date()
-  },
-  {
-    id: 'ch-02',
-    name: 'Banco de Dados II - 2026.1',
-    color: 'pastel-green',
-    icon: 'database',
-    created_at: new Date()
-  }
-]
+  
 
 @Component({
   selector: 'app-dashboard',
@@ -58,5 +43,5 @@ const channels: ChannelType[] = [
 export class Dashboard {
 
   readonly infoCardData = cardData
-  readonly channels = channels
+  readonly channels = channels;
 }

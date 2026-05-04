@@ -1,0 +1,82 @@
+<article class="bg-background border rounded-xl overflow-hidden">
+
+  <header class="flex items-center justify-between px-5 py-3.5 border-b">
+    <span class="text-sm font-medium text-foreground">Atualizações recentes</span>
+    <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-muted
+                 text-muted-foreground border">
+      {{ updates.length }} novidades
+    </span>
+  </header>
+
+
+  <div class="flex items-center gap-1.5 px-5 py-2.5 border-b overflow-x-auto scrollbar-none">
+    <button (click)="setFilter(null)"
+            class="text-[11px] px-3 py-1 rounded-full border transition-colors"
+            [class.bg-primary]="activeFilter() === null"
+            [class.text-primary-foreground]="activeFilter() === null"
+            [class.border-transparent]="activeFilter() === null"
+            [class.text-muted-foreground]="activeFilter() !== null">
+      Todos
+    </button>
+    @for (ch of channels; track ch.id) {
+      <button (click)="setFilter(ch.id)"
+              class="text-[11px] px-3 py-1 rounded-full border whitespace-nowrap transition-colors"
+              [class.bg-primary]="activeFilter() === ch.id"
+              [class.text-primary-foreground]="activeFilter() === ch.id"
+              [class.border-transparent]="activeFilter() === ch.id"
+              [class.text-muted-foreground]="activeFilter() !== ch.id">
+        {{ ch.name | slice:0:20 }}…
+      </button>
+    }
+  </div>
+
+  @for (group of grouped; track group.label) {
+    <p class="text-[10px] uppercase tracking-wider font-medium
+              text-muted-foreground px-5 pt-3 pb-1.5">
+      {{ group.label }}
+    </p>
+
+    @for (item of group.items; track item.id) {
+      <div class="flex items-center gap-3.5 px-5 py-3 border-b last:border-b-0
+                  hover:bg-accent/50 transition-colors duration-150">
+
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+             [style.background]="'var(--color-' + item.channel.color + ')'">
+          <lucide-angular [img]="iconFor(item.channel)"
+                          [size]="15" [strokeWidth]="1.5" />
+        </div>
+
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-sm text-foreground truncate">{{ item.label }}</span>
+            <span class="text-[11px] text-muted-foreground whitespace-nowrap shrink-0">
+              {{ item.time }}
+            </span>
+          </div>
+          <div class="flex items-center gap-1.5 mt-0.5">
+            <span class="text-[11px] text-muted-foreground truncate">
+              {{ item.channel.name }}
+            </span>
+            <span class="text-muted-foreground">·</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded-full font-medium"
+            
+                  [class.bg-amber-100]="item.type === 'task'"
+                  [class.text-amber-800]="item.type === 'task'"
+                  [class.bg-muted]="item.type === 'file'"
+                  [class.text-muted-foreground]="item.type === 'file'">
+              {{ item.type === 'task' ? 'Tarefa' : 'Material' }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    }
+  }
+
+  @if (filtered.length === 0) {
+    <p class="text-sm text-muted-foreground text-center py-10">
+      Nenhuma atualização para este canal.
+    </p>
+  }
+
+</article>

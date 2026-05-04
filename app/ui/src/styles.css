@@ -137,12 +137,12 @@
     --color-mute: hsl(0deg, 0%, 30%);
 
     --color-primary-professor: hsl(3deg, 52%, 50%);
-    --color-primary-student: hsl(224deg, 59%, 40%);
+    --color-primary-student: hsl(228, 55%, 52%);
 }
 
 .student {
-    --primary: #253fa7;
-    --sidebar-primary: oklch(41.794% 0.16972 267.464);
+    --primary: hsl(228, 55%, 52%);
+    --sidebar-primary: oklch(51.223% 0.17083 269.01);
 }
 
 .professor {
