@@ -37,7 +37,7 @@ export class DayCard {
       zData: d,
       zHideFooter: true,
       zWidth: '1500px',
-      zCustomClasses: 'min-w-200 '
+      zCustomClasses: 'md:min-w-200 min-w-90 '
     });
   }
 

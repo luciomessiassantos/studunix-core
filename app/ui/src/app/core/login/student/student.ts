@@ -91,7 +91,7 @@ export class Student implements OnInit {
     this.isSubmiting.set(true);
  
     await this.simulateApiCall();
- 
+
     const { login, password } = this.studentForm.getRawValue();
 
     const isValid =
@@ -113,19 +113,18 @@ export class Student implements OnInit {
     this.showSuccess.set(true);
  
     this.auth.login({ id: 'user-2', username: "Mauricio Gama", roles: ["STUDENT"] });
-    if (this.isMobile) {
-      this.router.navigateByUrl("/m/student");
-      
-    }
-    else {
-      this.router.navigateByUrl("/student");
-    }
+    this.router.navigateByUrl("/student");
 
     setTimeout(() => {
       this.showSuccess.set(false);
     }, 5000);
   }
  
+  demonstrationAccount() {
+    this.auth.login({ id: 'user-2', username: "Mauricio Gama", roles: ["STUDENT"] });
+    this.router.navigateByUrl("/student");
+  }
+
   resetForm(): void {
     this.studentForm.reset();
     this.showSuccess.set(false);

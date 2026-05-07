@@ -187,7 +187,6 @@
 }
 
 /* Animações de mudança */
-
 .switch-left {
     animation: switch-left 0.5s forwards;
 }
@@ -215,7 +214,6 @@
 /*
     os keyframes das animações
 */
-
 @keyframes fade-in {
     0% {
         opacity: 0;

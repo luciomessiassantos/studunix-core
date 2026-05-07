@@ -50,11 +50,11 @@ professorDetails = computed(() =>
     : undefined
 );
 
-initials = computed(() => {
-  const d = this.userDetails();
-  if (!d) return '?';
-  return `${d.firstName[0]}${d.lastName[0]}`.toUpperCase();
-});
+  initials = computed(() => {
+    const d = this.userDetails();
+    if (!d) return '?';
+    return `${d.firstName[0]}${d.lastName[0]}`.toUpperCase();
+  });
 
   back(): void { this.location.back(); }
 }

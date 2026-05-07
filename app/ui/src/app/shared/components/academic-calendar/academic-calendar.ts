@@ -32,10 +32,10 @@ export class AcademicCalendar implements OnInit {
 
 legend = [
   { label: 'Avaliação', color: '#378ADD' },
-  { label: 'Entrega',   color: '#BA7517' },
+  { label: 'Entrega', color: '#BA7517' },
   { label: 'Acadêmico', color: '#639922' },
-  { label: 'Aula',      color: '#7F77DD' },
-  { label: 'Feriado',   color: '#E24B4A' },
+  { label: 'Aula', color: '#7F77DD' },
+  { label: 'Feriado', color: '#E24B4A' },
 ];
 
 goToToday(): void {

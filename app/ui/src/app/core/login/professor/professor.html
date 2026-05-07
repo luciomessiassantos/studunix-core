@@ -23,15 +23,6 @@
                             <p class="text-center px-4 text-sm mt-6">Conecte-se com sua instituição, em qualquer lugar e a qualquer momento.</p>
                             
                         </section>
-
-                        <!-- <section class="w-full h-3/12 pt-4 px-4 ">
-                            <div class="w-full h-full rounded-xl bg-primary/20 px-4 pt-3 cursor-pointer
-                            hover:bg-primary/25 hover:scale-102 transition-all duration-300 ease-in-out 
-                            ">
-                                <h1 class=" w-fit text-primary text-sm font-semibold  hover:underline">Conta de demonstração</h1>
-                                <p class="text-xs text-mute mt-2">Conta teste de aluno para a visualização do sistema</p>
-                            </div>
-                        </section> -->
                         
                 </section>
                 
@@ -66,13 +57,8 @@
                                 </button>
 
                                 <button type="submit" z-button [zDisabled]="isSubmiting()" [zType]="'outline'" class="w-1/2  py-5 text-sm rounded-lg text-foreground transition-none"   >
-                                @if (isSubmiting()) {
-                                    <lucide-angular [img]="load" class="animate-spin" />
-                                } 
-                                @else {
                                     <img src="https://img.icons8.com/color/1200/google-logo.jpg" class="h-6"  alt="">
-                                    Entrar com o Google
-                                }
+                                        Entrar com o Google
                                 </button>
                             </div>
                             <a [routerLink]="'/login/student'" class="text-primary-student text-sm font-semibold hover:underline cursor-pointer w-full flex justify-center mt-6">Sou Aluno</a>

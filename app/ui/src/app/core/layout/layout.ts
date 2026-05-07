@@ -97,6 +97,8 @@ export class Layout implements OnInit{
   readonly sections = this.currentRole?.includes('PROFESSOR') ? ProfessorPages : StudentPages; 
   readonly router = inject(Router);
 
+  initial = this.auth.user()?.username.charAt(0);
+
   displayDialog() {
     this.dialogService.create({
       zHideFooter: true,

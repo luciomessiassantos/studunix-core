@@ -44,7 +44,7 @@
                 </button>
 
 
-                <button type="button" z-button z-dropdown [zDropdownMenu]="options" class="w-10 h-10 rounded-full bg-primary/40 text-primary text-xl font-medium">N</button>
+                <button type="button" z-button z-dropdown [zDropdownMenu]="options" class="w-10 h-10 rounded-full bg-primary/40 text-primary text-xl font-medium">{{initial}}</button>
                 <z-dropdown-menu-content #options="zDropdownMenuContent" class="w-60 right-40 absolute" >  
                     <z-menu-label>Opções</z-menu-label>
                     <z-dropdown-menu-item (click)="goToDetails()">

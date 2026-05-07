@@ -13,10 +13,6 @@ import { ZardSkeletonComponent } from "../skeleton";
 })
 export class VerticalTable implements OnInit {
 
-  // @Input() colDef!: ColumnDef<T>[];
-  // @Input() data!: T[]
-  // @Input() label: TemplateRef<any> | undefined
-
   @Input() recordData!: StudentRecord[];
 
   loading = signal(true)

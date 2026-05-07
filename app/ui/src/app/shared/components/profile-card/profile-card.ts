@@ -14,6 +14,7 @@ export class ProfileCard implements OnInit {
 
   readonly user = this.auth.user()
 
+  initial = this.user?.username.charAt(0);
   loading = signal(true);
 
   ngOnInit(): void {
