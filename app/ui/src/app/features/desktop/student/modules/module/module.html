@@ -1,0 +1,11 @@
+<main class="w-full h-full px-4">
+    <article class="w-full h-1/12 flex items-center gap-4 px-4">
+        <h1 class="text-xl font-semibold">{{ data()?.name }}</h1>
+    </article>
+    <header class="w-full h-1/12">
+        <app-inner-tabs [tabsData]="tabs" />
+    </header>
+    <section class="w-full h-full">
+        <router-outlet />
+    </section>
+</main>

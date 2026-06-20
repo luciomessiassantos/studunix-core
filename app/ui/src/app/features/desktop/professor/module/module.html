@@ -1,0 +1,21 @@
+<main class="w-full h-full px-4">
+    <z-breadcrumb >
+        @for (bp of breadcrumbService.breadcrumbData(); track $index) {
+            <z-breadcrumb-item [routerLink]="[bp.path]" >
+                {{bp.label}}
+            </z-breadcrumb-item>
+        }
+    </z-breadcrumb>
+    <article class="w-full h-1/12 flex items-center gap-4 px-6">
+        <h1 class="text-xl font-semibold">{{ data()?.name }}</h1>
+    </article>
+    <section class="w-full h-11/12 px-6">
+        <header class="w-full ">
+            <app-inner-tabs [tabsData]="tabs" />
+        </header>
+        <main>
+            <router-outlet />
+        </main>
+    </section>
+
+</main>

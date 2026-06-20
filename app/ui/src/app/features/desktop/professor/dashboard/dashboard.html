@@ -1,0 +1,15 @@
+<main class="w-full h-full overflow-y-auto">
+    <section class="
+    w-full min-h-full 
+    md:w-full md:h-3/12 md:min-h-3/12 p-5">
+        <app-compound-info-card [data]="infoCardData" />
+    </section>
+    <section class="w-full h-7/10 px-6">
+        <label class="text-sm font-semibold text-mute h-1/12 ">Disciplinas</label>
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full h-auto pt-4">
+            @for (channel of channels; track $index) {
+                <app-channel-card [prefix]="'/professor/dashboard/module/'" [_data]="channel" />
+            }
+        </section>
+    </section>
+</main>

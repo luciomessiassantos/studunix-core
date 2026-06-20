@@ -1,0 +1,12 @@
+<main class="w-full h-full px-4">
+    <z-breadcrumb >
+        @for (bp of breadcrumbService.breadcrumbData(); track $index) {
+            <z-breadcrumb-item [routerLink]="[bp.path]" >
+                {{bp.label}}
+            </z-breadcrumb-item>
+        }
+</z-breadcrumb>
+
+<router-outlet />
+
+</main>

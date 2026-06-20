@@ -1,0 +1,93 @@
+<z-layout class="w-full h-screen flex bg-background" [class]="currentRole?.includes('STUDENT') ? 'student' : 'professor'">
+
+    <z-sidebar
+        class="p-0! bg-primary shrink-0 md:h-full border-none max-w-14.5 md:max-w-42 xl:max-w-200 hidden md:block ">
+        <section class="h-2/10 w-full text-white p-4">
+            <h1 class="font-medium">StudUnix</h1>
+        </section>
+            <nav class="w-full px-2 pr-3 mt-10 md:mt-2 text-white">
+                @for (section of sections; track $index) {
+                    <z-sidebar-group-label class="hidden md:inline text-white">{{section.title}}</z-sidebar-group-label>
+                    @for (page of section.pages; track $index) {
+                        <button z-button (click)="navigatePage(page.path)" [zType]="isPage(page.id) ? 'default' : 'ghost'" class="mb-2 hover:bg-white/30 hover:text-white hover:border-l-2 hover:border-l-white rounded-lg w-full text-white flex justify-start md:wrap-break-word"
+                            [class]="isPage(page.id) ? 'border-l-2 border-l-white bg-white/20' : ''"
+                        >
+                            <lucide-angular [img]="page.icon" class="md:mr-1 xl:mr-2" />
+                            <p class="hidden md:block  md:max-w-9/10" >{{ page.label }}</p>
+                        </button>
+                    }
+                }
+            </nav>
+             
+        </z-sidebar>
+
+    <z-layout class=" flex flex-1 flex-col min-h-0">
+
+        
+
+    <z-header class="border-none w-full shrink-0">
+        <div class="w-full flex justify-end items-center">
+
+            <div class=" relative w-3/10 2xl:w-1/16 xl:w-1/10 md:w-2/16 flex items-center justify-between">
+                <button z-button z-dropdown [zDropdownMenu]="notifications" class="bg-transparen text-foreground shadow-none border-none h-fit! w-fit! hover:bg-transparent">
+                    <lucide-angular [img]="bellIcon" size="18" />
+                </button>
+                <z-dropdown-menu-content #notifications="zDropdownMenuContent" class="w-100 md:w-120 pb-5 px-2 md:right-43 right-19 absolute" >  
+                    <z-menu-label>Notificações</z-menu-label>
+                    <section class="w-full h-fit py-1 max-h-300 overflow-y-auto mt-1">
+                        <app-notification />
+                    </section>
+                </z-dropdown-menu-content>
+
+                <button z-button (click)="displayDialog()" class="bg-transparen text-foreground shadow-none border-none h-fit! w-fit! hover:bg-transparent">
+                    <lucide-angular [img]="helpIcon" size="18" />
+                </button>
+
+
+                <button type="button" z-button z-dropdown [zDropdownMenu]="options" class="w-10 h-10 rounded-full bg-primary/40 text-primary text-xl font-medium">{{initial}}</button>
+                <z-dropdown-menu-content #options="zDropdownMenuContent" class="w-60 right-40 absolute" >  
+                    <z-menu-label>Opções</z-menu-label>
+                    <z-dropdown-menu-item (click)="goToDetails()">
+                            <lucide-angular [img]="user" [size]="16" />
+                            <p>Conta</p>
+                        
+                    </z-dropdown-menu-item>
+                    <z-dropdown-menu-item (click)="logOut()">
+                            <lucide-angular [img]="logout" [size]="16" />
+                            <p>Sair</p>
+                        
+                    </z-dropdown-menu-item>
+                </z-dropdown-menu-content>
+            </div>
+        </div>
+    </z-header>
+
+
+    <div class="flex flex-col flex-1 min-h-0 overflow-hidden relative">
+      <router-outlet />
+
+      <!-- MOBILE TAB NAVIGATION -->
+      <section class="absolute z-10 bottom-0 w-full h-20 border bg-background block md:hidden " >
+            <nav class="w-full h-full  flex items-center justify-evenly">
+                @for (section of sections; track $index) {
+                    
+                    @for (page of section.pages; track $index) {
+                        <button (click)="navigatePage(page.path)" class=" rounded-lg w-fit flex justify-start md:wrap-break-word
+                        
+                        "
+                        [class]="isPage(page.id) ? 'text-primary' : 'text-mute'"
+                        >
+                            <lucide-angular [img]="page.icon" class="" [size]="28" />
+                        </button>
+                    }
+                }
+            </nav>
+
+      </section>
+      <z-toaster [theme]="'light'" />
+    </div>
+
+
+</z-layout>
+
+</z-layout>

@@ -1,0 +1,54 @@
+<article class="bg-background border rounded-xl px-5 py-4
+                flex flex-col md:flex-row items-start md:items-center gap-4">
+  @if (loading()) {
+    <z-skeleton class="w-11 h-11 rounded-full flex items-center justify-center shrink-0">
+    
+  </z-skeleton>
+
+  <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 flex-1">
+    <div>
+      <z-skeleton class="w-52 h-3 rounded-full mb-2"></z-skeleton>
+      <z-skeleton class="w-48 h-3 rounded-full mt-2"></z-skeleton>
+    </div>
+
+    <div class="hidden md:block w-px h-8 bg-border"></div>
+
+    <div class="flex flex-col gap-2">
+      <z-skeleton class="w-64 h-3 rounded-full"></z-skeleton>
+      <z-skeleton class="w-32 h-3 rounded-full"></z-skeleton>
+    </div>
+
+
+  </div>
+  }
+  @else {
+      <div class="w-11 h-11 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+    <span class="font-medium text-primary text-base">{{initial}}</span>
+  </div>
+
+  <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 flex-1">
+    <div>
+      <h2 class="text-sm font-medium text-foreground">{{user?.username}}</h2>
+      @if(user?.roles?.includes("STUDENT")) {
+        <p class="text-xs text-muted-foreground mt-0.5">2026.1.333.666</p>
+      }
+    </div>
+
+    <div class="hidden md:block w-px h-8 bg-border"></div>
+
+    <div class="flex flex-col gap-0.5">
+      <span class="text-sm text-foreground">Análise e Desenvolvimento de Sistemas</span>
+      <span class="text-xs text-muted-foreground">Período letivo · 2026.1</span>
+    </div>
+
+    <span class="md:ml-auto text-xs bg-green-50 text-green-700
+                 dark:bg-green-950 dark:text-green-400
+                 px-2.5 py-1 rounded-md self-start md:self-auto">
+      Ativo
+    </span>
+  </div>
+  }
+  
+
+</article>
+

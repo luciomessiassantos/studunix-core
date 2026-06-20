@@ -4,20 +4,20 @@ import { Login } from './core/login/login';
 import { Student } from './core/login/student/student';
 import { Professor } from './core/login/professor/professor';
 import { Layout } from './core/layout/layout';
-import { HomeProfessor } from './features/professor/home/home';
-import { Dashboard } from './features/professor/dashboard/dashboard';
-import { Grades } from './features/professor/grades/grades';
-import { ErrorPage } from './features/error-page/error-page';
+import { ErrorPage } from './features/desktop/error-page/error-page';
 import { authGuardGuard } from './core/auth/auth-guard-guard';
+import { Details } from './core/details/details';
+import { studenRoutes } from './student.routes';
+import { professorRoutes } from './professor.routes';
 
 export const routes: Routes = [
     {
-        path: '*',
-        component: ErrorPage
+        path: '',
+        component: Hero
     },
     {
-        path: 'studunix',
-        component: Hero
+        path: 'details',
+        component: Details
     },
     {
         path: 'login',
@@ -38,20 +38,12 @@ export const routes: Routes = [
         component: Layout,
         canActivateChild: [authGuardGuard],
         children: [
-            {
-                path: 'professor',
-                component: HomeProfessor,
-                children: [
-                    {
-                        path: "dasboard",
-                        component: Dashboard
-                    },
-                    {
-                        path: "students",
-                        component: Grades
-                    }
-                ]
-            }
+            ...studenRoutes,
+            ...professorRoutes
         ]
-    }
+    },
+    {
+        path: '**',
+        component: ErrorPage
+    },
 ];

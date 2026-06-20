@@ -1,0 +1,58 @@
+<section class="w-full h-120 max-h-120 overflow-y-auto flex flex-col items-center">
+    <section class="w-4/6 enter-in h-2/14 mt-6 flex items-center justify-between border-b px-2">
+        <article class="flex items-center gap-2">
+            <div class="w-12 h-12 flex items-center justify-center bg-primary/20 text-primary rounded-full">
+                {{initials()}}
+            </div>
+            <div>
+                <h1 class="font-semibold">{{ studentData()?.firstName + " " + studentData()?.lastName }}</h1>
+                <div class="flex items-center gap-1.5">
+                    <span class="text-[11px] text-muted-foreground">{{ studentData()?.matricula }}</span>
+                    <span class="text-muted-foreground/40">·</span>
+                    <span class="text-[11px] text-muted-foreground">
+                        {{ studentData()?.period?.year }} · {{ studentData()?.period?.semester }}º sem.
+                    </span>
+            </div>
+            </div>
+        </article>
+        <div class="w-1/5 flex justify-evenly">
+            <z-badge class="rounded-xl border border-mute/30 text-mute bg-accent">
+                {{ studentData()?.period?.year }}.{{ studentData()?.period?.semester }}
+            </z-badge>
+            @if (studentData()?.turno == "Manhã") {
+                <z-badge class="rounded-xl bg-yellow-500/40 text-yellow-500">
+                    Manhã
+                </z-badge>
+            } @else {
+                <z-badge class="rounded-xl bg-blue-500/40 text-blue-500">
+                    Noite
+                </z-badge>
+            }
+        </div>
+    </section>
+
+
+    <div class="border rounded-xl bg-background overflow-hidden w-4/6 mt-10 enter-in delay-200">
+      <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider
+                px-4 py-2.5 border-b">
+        Notas
+      </p>
+      <div class="grid grid-cols-5 gap-2 p-3">
+        @for (entry of convertedGrades(); track entry.key) {
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-[10px] font-medium text-muted-foreground uppercase">
+              {{ entry.label }}
+            </span>
+            <span class="text-[15px] font-medium leading-none"
+                  [class.text-emerald-700]="entry.value !== null && entry.value >= 7"
+                  [class.text-amber-600]="entry.value !== null && entry.value >= 5 && entry.value < 7"
+                  [class.text-red-700]="entry.value !== null && entry.value < 5"
+                  [class.text-muted-foreground]="entry.value === null"
+                  [class.text-sm]="entry.value === null">
+              {{ entry.value !== null ? (entry.value | number:'1.1-1':'pt-BR') : '—' }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+</section>

@@ -1,0 +1,112 @@
+<section class="max-w-4xl h-120 max-120 overflow-y-auto pb-10 mx-auto px-4 py-6 flex flex-col gap-4">
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <div>
+      <h1 class="text-base font-medium text-foreground mb-1.5">{{ data()?.title }}</h1>
+      <div class="flex items-center gap-1.5 flex-wrap">
+        @switch (data()?.state) {
+          @case ('Timeout') {
+            <z-badge class="bg-pastel-red/20 text-pastel-red font-medium">Expirada</z-badge>
+          }
+          @default {
+            <z-badge class="bg-pastel-yellow/20 text-pastel-yellow font-medium">Pendente</z-badge>
+          }
+        }
+        <z-badge class="bg-muted text-muted-foreground border">
+          Turma {{ data()?.classLetter }}
+        </z-badge>
+        @if (data()?.isReusable) {
+          <z-badge class="bg-primary/10 text-primary font-medium">Reutilizável</z-badge>
+        }
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <button z-button [zType]="'secondary'" class="flex items-center gap-1.5 text-xs">
+        <lucide-angular [img]="pencil" [size]="13" [strokeWidth]="1.5" />
+        Editar
+      </button>
+      <button z-button [zType]="'default'" class="flex items-center gap-1.5 text-xs">
+        <lucide-angular [img]="download" [size]="13" [strokeWidth]="1.5" />
+        Exportar
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-3">
+    <div class="bg-muted rounded-lg p-4">
+      <p class="text-xs text-muted-foreground mb-1">Submissões</p>
+      <strong class="text-2xl font-medium text-foreground">
+        {{ data()?.submissionsQuantity }}
+      </strong>
+    </div>
+  </div>
+
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <div class="border rounded-xl p-4 bg-background">
+      <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-3">
+        Informações
+      </p>
+      <div class="flex flex-col divide-y divide-border text-sm">
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Criada em</span>
+          <strong class="font-medium">{{ createdDate }}</strong>
+        </div>
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Vencimento</span>
+          <strong class="font-medium">{{ deadlineDate }}</strong>
+        </div>
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Período</span>
+          <strong class="font-medium">{{ data()?.period }}</strong>
+        </div>
+        <div class="flex justify-between py-2">
+          <span class="text-muted-foreground">Turma</span>
+          <strong class="font-medium">{{ data()?.classLetter }}</strong>
+        </div>
+        <div class="flex justify-between items-center py-2">
+          <span class="text-muted-foreground">Pasta de origem</span>
+          <div class="flex flex-col items-end gap-0.5">
+            <span class="font-medium flex items-center gap-1">
+              <lucide-angular [img]="folder" [size]="13" [strokeWidth]="1.5"
+                              class="text-muted-foreground" />
+              {{ data()?.folderOriginName }}
+            </span>
+            <span class="text-[11px] text-muted-foreground">{{ data()?.moduleName }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border rounded-xl p-4 bg-background flex flex-col gap-4">
+      <div>
+        <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+          Descrição
+        </p>
+        <p class="text-sm text-muted-foreground leading-relaxed">
+          {{ data()?.description ?? 'Sem descrição.' }}
+        </p>
+      </div>
+
+      <div>
+        <p class="text-[11px] font-medium text-muted-foreground uppercase tracking-wider mb-2">
+          Arquivos da tarefa
+        </p>
+        @for (file of data()?.files; track file.name) {
+          <div class="flex items-center gap-2.5 py-2 border-b last:border-b-0 text-sm">
+            <div class="w-7 h-7 rounded-md bg-muted flex items-center justify-center shrink-0">
+              <lucide-angular [img]="fileIcon" [size]="13" [strokeWidth]="1.5"
+                              class="text-muted-foreground" />
+            </div>
+            <span class="flex-1 truncate text-foreground">{{ file.name }}</span>
+            <span class="text-[11px] text-muted-foreground whitespace-nowrap">
+              {{ formatBytes(file.size) }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
+
+</section>

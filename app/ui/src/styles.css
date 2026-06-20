@@ -137,16 +137,16 @@
     --color-mute: hsl(0deg, 0%, 30%);
 
     --color-primary-professor: hsl(3deg, 52%, 50%);
-    --color-primary-student: hsl(224deg, 59%, 40%);
+    --color-primary-student: hsl(228, 55%, 52%);
 }
 
 .student {
-    --primary: oklch(41.794% 0.16972 267.464);
-    --sidebar-primary: oklch(41.794% 0.16972 267.464);
+    --primary: hsl(228, 55%, 52%);
+    --sidebar-primary: oklch(51.223% 0.17083 269.01);
 }
 
 .professor {
-    --primary: oklch(51.035% 0.17762 26.202);
+    --primary: #b62929;
     --sidebar-primary: oklch(51.035% 0.17762 26.202);     
 }
 
@@ -187,7 +187,6 @@
 }
 
 /* Animações de mudança */
-
 .switch-left {
     animation: switch-left 0.5s forwards;
 }
@@ -215,7 +214,6 @@
 /*
     os keyframes das animações
 */
-
 @keyframes fade-in {
     0% {
         opacity: 0;
@@ -315,4 +313,18 @@
     100% {
         transform: translateX(0px);
     }
+}
+
+
+router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+input:focus {
+    outline: none;
+    border: none;
 }

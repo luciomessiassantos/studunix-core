@@ -1,0 +1,46 @@
+<article class="w-full border rounded-xl overflow-hidden bg-background">
+
+  <header class="flex items-center justify-between px-5 py-3 border-b bg-background">
+    <div class="flex items-center gap-2">
+      <button z-button [zType]="'ghost'" (click)="decreaseMonth()"
+              class="w-7 h-7 rounded-full flex items-center justify-center
+                     hover:bg-accent transition-colors">
+        <lucide-angular [img]="left" [size]="14" [strokeWidth]="1.5" />
+      </button>
+      <span class="text-sm font-medium w-32 text-center">
+        {{ monthName | titlecase }} de {{ year() }}
+      </span>
+      <button z-button [zType]="'ghost'" (click)="increaseMonth()"
+              class="w-7 h-7 rounded-full flex items-center justify-center
+                     hover:bg-accent transition-colors">
+        <lucide-angular [img]="right" [size]="14" [strokeWidth]="1.5" />
+      </button>
+    </div>
+    <button z-button [zType]="'secondary'" (click)="goToToday()"
+            class="text-xs px-3 py-1 h-auto rounded-md">
+      Hoje
+    </button>
+  </header>
+
+  <div class="grid grid-cols-7 bg-accent/50 border-b">
+    @for (wd of weekdays; track wd) {
+      <p class="text-center text-[11px] font-medium text-muted-foreground py-1.5">{{ wd }}</p>
+    }
+  </div>
+
+  <section class="grid grid-cols-7">
+    @for (day of days(); track day.date.toISOString(); let idx = $index) {
+      <app-day-card [data]="day" [index]="idx" />
+    }
+  </section>
+
+  <footer class="flex items-center gap-4 px-5 py-2.5 border-t flex-wrap">
+    @for (item of legend; track item.label) {
+      <div class="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+        <span class="w-1.5 h-1.5 rounded-sm inline-block" [style.background]="item.color"></span>
+        {{ item.label }}
+      </div>
+    }
+  </footer>
+
+</article>

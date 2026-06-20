@@ -1,0 +1,47 @@
+<article class="w-full max-h-120 h-120  space-y-8 px-4 pr-4 pb-8">
+    <header class="h-2/14 border-b flex items-end pb-2 justify-between">
+        <div class="w-3/4 flex h-full items-end pt-2 gap-6 ">
+            <div class="w-3/12 h-2/3 border rounded-xl flex items-center px-2 gap-2">
+                <lucide-angular [img]="search" [size]="16" class="text-mute/50" />
+                <input type="text" class="w-8/10 placeholder:text-mute/50 placeholder:text-xs text-xs" placeholder="Pesquisar material">
+            </div>
+            <div  class="w-4/12 h-2/3 mr-0! border rounded-xl flex items-center pl-3 gap-2 hover:bg-mute/10 transition-colors duration-100">
+            <lucide-angular [img]="filter" [size]="16" class="text-mute" />
+            
+             <z-select
+             class="
+            w-full rounded-xl! placeholder:text-xs
+             "
+                    zPlaceholder="Filtros"
+                    
+                    [zMultiple]="true"
+                    [zMaxLabelCount]="3"
+                    [(zValue)]="filters"
+                >
+                    <z-select-item zValue="most_recent">Mais recentes</z-select-item>
+                    <z-select-item zValue="least_recent">Mais antigos</z-select-item>
+                    <z-select-item zValue="most_size">Maiores</z-select-item>
+                    <z-select-item zValue="least_size">Menores</z-select-item>
+            
+                </z-select>
+            </div>
+        </div>
+
+        <div class="w-1/4 flex items-center justify-end gap-4">
+            <a [routerLink]="'create'" z-button class="rounded-xl text-[12px]">
+                <lucide-angular [img]="plus" />
+                Criar tarefa
+            </a>
+            <button z-button class="rounded-xl text-[12px]">
+                <lucide-angular [img]="group" />
+                Criar turma
+            </button>
+        </div>
+    </header>
+    <section class="h-12/14 w-full flex flex-col gap-6 pb-14 overflow-y-auto">
+        @for (assignment of assignments(); track $index) {
+            <app-assignment-card-professor [data]="assignment" />
+        }
+    </section>
+                        
+</article>

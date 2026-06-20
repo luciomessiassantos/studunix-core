@@ -1,0 +1,47 @@
+ <main class="w-full max-h-120 h-120 gap-8">
+    <header class="w-full h-2/18 border-b mb-3 flex items-center justify-between md:px-4">
+        <div class=" w-5/12 md:w-3/12 h-2/3 border rounded-xl flex items-center px-2 gap-2">
+            <lucide-angular [img]="search" [size]="16" class="text-mute/50" />
+            <input type="text" class="w-8/10 placeholder:text-mute/50 placeholder:text-xs text-xs" placeholder="Pesquisar tarefa">
+        </div>
+        <div  class=" w-6/12 md:w-4/12 h-2/3 mr-0! border rounded-xl flex items-center pl-3 gap-2 hover:bg-mute/10 transition-colors duration-100">
+            <lucide-angular [img]="filter" [size]="16" class="text-mute" />
+            
+             <z-select
+             class="
+            w-full rounded-xl! text-xs!
+             "
+                    zPlaceholder="Filtros"
+                    [zMultiple]="true"
+                    [zMaxLabelCount]="3"
+                    [(zValue)]="filters"
+                >
+                    <z-select-item zValue="most_recent">Mais recentes</z-select-item>
+                    <z-select-item zValue="least_recent">Mais antigos</z-select-item>
+                    <z-select-item zValue="expired">Expirados</z-select-item>
+                    <z-select-item zValue="pending">Pendentes</z-select-item>
+                    
+                </z-select>
+        </div>
+
+    </header>
+    <section class="mt-6 overflow-y-auto max-h-full md:max-h-13/18">
+            @if(loading()) {
+                <div class="w-full h-28 p-6 border shadow-xs rounded-xl">
+                    <z-skeleton class="w-full h-5/10 rounded-full" />
+                    <div class="w-full h-4/10 mt-3 flex items-center">
+                        <z-skeleton class="w-8/10 h-7/10 rounded-full" />
+                        <z-skeleton class="w-8/10 h-7/10 rounded-full" />
+                    </div>
+                </div>
+            }
+            @else {
+                <label class="text-xs font-medium text-mute w-full h-3 mb-5 ">Exibindo {{assignments().length}} resultados</label>
+                @for (assignment of assignments(); track $index) {
+                    <section class="mb-6">
+                        <app-assignment-card [routePrefix]="''" [data]="assignment" />
+                    </section>
+                }
+            }
+    </section>
+</main>

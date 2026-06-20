@@ -1,14 +1,12 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
-import { GraduationCapIcon, LoaderCircleIcon, LoaderIcon, LucideAngularModule } from 'lucide-angular';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewEncapsulation } from '@angular/core';
+import { GraduationCapIcon, LoaderCircleIcon, LucideAngularModule } from 'lucide-angular';
 import { ZardCardComponent } from "~/shared/components/card";
-import { ZardDividerComponent } from "~/shared/components/divider";
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
 import { ZardButtonComponent } from '~/shared/components/button';
 import { ZardInputDirective } from '~/shared/components/input';
 import { ZardFormImports } from '~/shared/components/form';
 import { Router, RouterLink } from "@angular/router";
 import { toast } from 'ngx-sonner';
-import { CircleAlertIcon } from 'lucide-angular'
 import { ErrorCard } from '~/shared/components/error-card/error-card';
 import { AuthStore } from '~/core/auth/auth-store';
 
@@ -21,7 +19,7 @@ interface ProfessorFormData {
 }
 @Component({
   selector: 'app-professor',
-  imports: [LucideAngularModule, ZardCardComponent, ZardDividerComponent,
+  imports: [LucideAngularModule, ZardCardComponent,
     ReactiveFormsModule,
     ZardButtonComponent,
     ZardInputDirective,
@@ -33,7 +31,7 @@ interface ProfessorFormData {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class Professor implements OnInit {
+export class Professor {
 
   cap = GraduationCapIcon;
   load = LoaderCircleIcon;
@@ -50,8 +48,8 @@ export class Professor implements OnInit {
     password: ['', [Validators.required]]
   });
 
-
- 
+  
+  
   isFieldInvalid(fieldName: keyof ProfessorFormData): boolean {
     const field = this.professorForm.get(fieldName);
     return !!(field?.invalid && (field?.dirty || field?.touched));
@@ -103,8 +101,8 @@ export class Professor implements OnInit {
     
     this.showSuccess.set(true);
 
-    this.auth.login({ id: '1234qwert', username: "Nando Moura Araújo Júnior", role: "PROFESSOR" });
-    this.router.navigateByUrl("/professor")
+    this.auth.login({ id: 'user-1', username: "Nando Moura Araújo Júnior", roles: ["PROFESSOR"] });
+    this.router.navigateByUrl("/professor");
     
 
     setTimeout(() => {
@@ -117,15 +115,6 @@ export class Professor implements OnInit {
     this.showSuccess.set(false);
   }
 
-  ngOnInit(): void {
-    if (this.auth.isAuthenticated()) {
-      console.log("ta certo ");
-      
-      if (this.auth.user()?.role == 'PROFESSOR') {
-        this.router.navigateByUrl("/professor");
-      }
-    }  
-  }
 
 
 }

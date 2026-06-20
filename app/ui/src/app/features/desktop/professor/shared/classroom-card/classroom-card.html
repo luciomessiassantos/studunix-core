@@ -1,0 +1,21 @@
+<main class="w-full h-full min-h-50 rounded-xl border relative">
+
+    <section class="w-full h-1/2 rounded-t-xl"[class]="theme()?.bgSoft" >
+        <lucide-angular [img]="data.icon" class="z-1 absolute opacity-70" [class]="theme()?.text" [size]="120" />
+    </section>
+    <section class="w-full h-1/2 z-10 absolute bg-white rounded-b-xl">
+        <div class="w-full flex items-start justify-between p-4 " >
+            <a [routerLink]="data.id" class=" font-medium hover:underline w-fit cursor-pointer" [class]="theme()?.text" >{{data.moduleName}} - {{data.academicPeriod}}</a>
+            <div z-dropdown [zDropdownMenu]="classEdit" class="p-1 hover:bg-accent rounded-full">
+                <lucide-angular [img]="ellipse" [size]="20" class="text-mute" />
+            </div>
+            <z-dropdown-menu-content #classEdit="zDropdownMenuContent" class="absolute right-40">
+                <label class="text-xs font-medium text-mute p-1 pb-4">Opções</label>
+                <z-dropdown-menu-item class="mt-1" (click)="openDialog(data)" >
+                    <lucide-angular [img]="edit" />
+                    Editar
+                </z-dropdown-menu-item>
+            </z-dropdown-menu-content>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,33 @@
+<section class="w-full h-120 max-h-120 pb-12 ">
+                <header class="w-full h-2/14 border-b mb-3 flex items-center justify-between px-2">
+                    <div class="w-3/12 h-2/4 border rounded-xl flex items-center px-2 gap-2">
+                        <lucide-angular [img]="search" [size]="16" class="text-mute/50" />
+                        <input type="text" class="w-8/10 placeholder:text-mute/50 placeholder:text-xs text-xs" placeholder="Pesquisar aluno">
+                    </div>
+                    <div  class="w-4/12 h-2/4 mr-0! border rounded-xl flex items-center pl-3 gap-2 hover:bg-mute/10 transition-colors duration-100">
+                        <lucide-angular [img]="filter" [size]="14" class="text-mute" />
+                        
+                         <z-select
+                         class="
+                        w-full rounded-xl! placeholder:text-[12px]
+                         "
+                                zPlaceholder="Filtros"
+                                [zMultiple]="true"
+                                [zMaxLabelCount]="3"
+                                [(zValue)]="filters"
+                            >
+                                <z-select-item zValue="most_recent">Mais recentes</z-select-item>
+                                <z-select-item zValue="least_recent">Mais antigos</z-select-item>                                
+                            </z-select>
+                    </div>
+                </header>
+                <section class="w-full h-12/14 overflow-y-auto mt-8">
+                    <label class="text-xs font-semibold text-mute/50">Exibindo {{studentsData().length}} resultados</label>
+                    @for (student of studentsData(); track $index) {
+                        <section class="w-full mb-6">
+                            <app-student-professor-card [data]="student" />
+                        </section>
+
+                    }
+                </section>
+</section>
